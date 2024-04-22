@@ -1,0 +1,738 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>dltflow.cli.deploy &#8212; dltflow 0.0.1 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=eafc0fe6" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js?v=f6245a2f"></script>
+    <script src="../../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'autoapi/dltflow/cli/deploy/index';</script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="dltflow.cli.initialize" href="../initialize/index.html" />
+    <link rel="prev" title="dltflow.cli.models.project" href="../models/project/index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">dltflow 0.0.1 documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../../_static/examples.html">
+                        Examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../../../index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../../_static/examples.html">
+                        Examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../../../index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dltflow</span></code></a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dltflow.cli</span></code></a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3 has-children"><a class="reference internal" href="../models/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dltflow.cli.models</span></code></a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../models/deployment/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dltflow.cli.models.deployment</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../models/project/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dltflow.cli.models.project</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dltflow.cli.deploy</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../initialize/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dltflow.cli.initialize</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../interface/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dltflow.cli.interface</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reader/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dltflow.cli.reader</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../utils/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dltflow.cli.utils</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../quality/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dltflow.quality</span></code></a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../quality/config/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dltflow.quality.config</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../quality/dlt_meta/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dltflow.quality.dlt_meta</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../quality/exceptions/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dltflow.quality.exceptions</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../utils/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dltflow.utils</span></code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../index.html" class="nav-link">API Reference</a></li>
+    
+    
+    <li class="breadcrumb-item"><i class="fa-solid fa-ellipsis"></i></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dltflow.cli</span></code></a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><code...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-dltflow.cli.deploy">
+<span id="dltflow-cli-deploy"></span><h1><a class="reference internal" href="#module-dltflow.cli.deploy" title="dltflow.cli.deploy"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dltflow.cli.deploy</span></code></a><a class="headerlink" href="#module-dltflow.cli.deploy" title="Permalink to this heading">#</a></h1>
+<section id="dltflow-deploy-py">
+<p>The module provides a command line interface to deploy a python module as a DLT pipeline.</p>
+<p>In the context of Databricks, a DLT pipeline is a Databricks notebook that runs a pipeline. This package provides
+a unique and standalone interface to deploy a python module as a DLT pipeline.</p>
+<p>It does so in the following steps:</p>
+<ol class="arabic simple">
+<li><dl class="simple">
+<dt>Upload the python package to the Databricks workspace.</dt><dd><ol class="loweralpha simple">
+<li><p>The package is uploaded to the workspace in the form of a directory.</p></li>
+<li><p>This is done to ensure that the package is available to the Databricks cluster.</p></li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Create a DLT pipeline notebook.</dt><dd><ol class="loweralpha simple">
+<li><p>The notebook is created with the necessary imports and configurations.</p></li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><p>The notebook is deployed to the Databricks workspace.</p></li>
+<li><p>The notebook is registered as a DLT pipeline in the Databricks workspace.</p></li>
+</ol>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading">#</a></h2>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">#</a></h3>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dltflow.cli.deploy.upload_py_package_to_workspace" title="dltflow.cli.deploy.upload_py_package_to_workspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">upload_py_package_to_workspace</span></code></a>(run_id, dbfs_path, ...)</p></td>
+<td><p>Upload a python package to the Databricks workspace. The logic being leveraged by</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dltflow.cli.deploy.get_class_name_from_text" title="dltflow.cli.deploy.get_class_name_from_text"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_class_name_from_text</span></code></a>(text)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dltflow.cli.deploy.get_module_info_from_path_name" title="dltflow.cli.deploy.get_module_info_from_path_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_module_info_from_path_name</span></code></a>(project_name, ...)</p></td>
+<td><p>A helper function to get the class name and module name from a module path.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dltflow.cli.deploy.create_notebook_and_upload" title="dltflow.cli.deploy.create_notebook_and_upload"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_notebook_and_upload</span></code></a>(ws_client, dbfs_path, ...)</p></td>
+<td><p>This function creates a DLT pipeline notebook and uploads it to the Databricks workspace.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dltflow.cli.deploy.deploy_py_module_as_notebook" title="dltflow.cli.deploy.deploy_py_module_as_notebook"><code class="xref py py-obj docutils literal notranslate"><span class="pre">deploy_py_module_as_notebook</span></code></a>(run_id, ws_client, ...[, ...])</p></td>
+<td><p>This function deploys a python module as a DLT pipeline to the Databricks workspace.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dltflow.cli.deploy.register_notebook_as_dlt_pipeline" title="dltflow.cli.deploy.register_notebook_as_dlt_pipeline"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_notebook_as_dlt_pipeline</span></code></a>(ws_client, ...)</p></td>
+<td><p>Register a notebook as a DLT pipeline in the Databricks workspace.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dltflow.cli.deploy.handle_deployment_per_file_config_dependency" title="dltflow.cli.deploy.handle_deployment_per_file_config_dependency"><code class="xref py py-obj docutils literal notranslate"><span class="pre">handle_deployment_per_file_config_dependency</span></code></a>(...)</p></td>
+<td><p>A helper function to handle the deployment of a python module as a DLT pipeline.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dltflow.cli.deploy.deploy_py_dlt2" title="dltflow.cli.deploy.deploy_py_dlt2"><code class="xref py py-obj docutils literal notranslate"><span class="pre">deploy_py_dlt2</span></code></a>(deployment_file, environment, as_individual)</p></td>
+<td><p>Deploy a DLT pipeline from a python module.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="attributes">
+<h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading">#</a></h3>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dltflow.cli.deploy._BASE_NOTEBOOK" title="dltflow.cli.deploy._BASE_NOTEBOOK"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_BASE_NOTEBOOK</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dltflow.cli.deploy._CODE_IMPORT_AND_LAUNCH_CELLS" title="dltflow.cli.deploy._CODE_IMPORT_AND_LAUNCH_CELLS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_CODE_IMPORT_AND_LAUNCH_CELLS</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py data">
+<dt class="sig sig-object py" id="dltflow.cli.deploy._BASE_NOTEBOOK">
+<span class="sig-prename descclassname"><span class="pre">dltflow.cli.deploy.</span></span><span class="sig-name descname"><span class="pre">_BASE_NOTEBOOK</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Multiline-String</span></em><a class="headerlink" href="#dltflow.cli.deploy._BASE_NOTEBOOK" title="Permalink to this definition">#</a></dt>
+<dd><blockquote>
+<div><details><summary>Show Value</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd"># Databricks notebook source</span>
+<span class="sd">{dependencies}</span>
+<span class="sd"># COMMAND ----------</span>
+<span class="sd"># add the deployed artifact to the python path</span>
+<span class="sd"># so DLT can import the module.</span>
+<span class="sd">import sys</span>
+<span class="sd">import yaml</span>
+<span class="sd">import pathlib</span>
+<span class="sd">sys.path.append(&#39;{package_namespace}&#39;)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</details></div></blockquote>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="dltflow.cli.deploy._CODE_IMPORT_AND_LAUNCH_CELLS">
+<span class="sig-prename descclassname"><span class="pre">dltflow.cli.deploy.</span></span><span class="sig-name descname"><span class="pre">_CODE_IMPORT_AND_LAUNCH_CELLS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Multiline-String</span></em><a class="headerlink" href="#dltflow.cli.deploy._CODE_IMPORT_AND_LAUNCH_CELLS" title="Permalink to this definition">#</a></dt>
+<dd><blockquote>
+<div><details><summary>Show Value</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd"># COMMAND ----------</span>
+<span class="sd"># perform necessary imports to load configuration</span>
+<span class="sd"># and to load the core pipeline code we want to run.</span>
+<span class="sd">from {import_path} import {class_name}</span>
+<span class="sd">{config_holder}</span>
+<span class="sd"># COMMAND ----------</span>
+<span class="sd"># load the configuration file if it exists</span>
+<span class="sd"># and run the pipeline.</span>
+<span class="sd">if config_path is not None:</span>
+<span class="sd">    config = yaml.safe_load(pathlib.Path(config_path).read_text())</span>
+<span class="sd">    pipeline = {class_name}(spark=spark, init_conf=config)</span>
+<span class="sd">    pipeline.{launch_method}()</span>
+<span class="sd">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</details></div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dltflow.cli.deploy.upload_py_package_to_workspace">
+<span class="sig-prename descclassname"><span class="pre">dltflow.cli.deploy.</span></span><span class="sig-name descname"><span class="pre">upload_py_package_to_workspace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">run_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dbfs_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pathlib.Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">package_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pathlib.Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">files</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">profile</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ws_client</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">databricks.sdk.WorkspaceClient</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dltflow.cli.deploy.upload_py_package_to_workspace" title="Permalink to this definition">#</a></dt>
+<dd><p>Upload a python package to the Databricks workspace. The logic being leveraged by
+this function loosely follows the <cite>dbx</cite> packages methodology of uploading a package, but
+with a simpler coding interface.</p>
+<p>Simplicity was chosen, instead of using <cite>dbx</cite> commands as a way to understand the underlying
+logic of the <cite>dbx</cite> package. At some point in the future, we may switch to using <cite>dbx</cite> commands
+or <cite>dab</cite> commands to upload the package to the Databricks workspace.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>run_id</strong> – </p></li>
+<li><p><strong>dbfs_path</strong> – </p></li>
+<li><p><strong>package_path</strong> – </p></li>
+<li><p><strong>files</strong> – </p></li>
+<li><p><strong>profile</strong> – </p></li>
+<li><p><strong>ws_client</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dltflow.cli.deploy.get_class_name_from_text">
+<span class="sig-prename descclassname"><span class="pre">dltflow.cli.deploy.</span></span><span class="sig-name descname"><span class="pre">get_class_name_from_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dltflow.cli.deploy.get_class_name_from_text" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dltflow.cli.deploy.get_module_info_from_path_name">
+<span class="sig-prename descclassname"><span class="pre">dltflow.cli.deploy.</span></span><span class="sig-name descname"><span class="pre">get_module_info_from_path_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dltflow.cli.deploy.get_module_info_from_path_name" title="Permalink to this definition">#</a></dt>
+<dd><p>A helper function to get the class name and module name from a module path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>project_name</strong> – </p></li>
+<li><p><strong>project_path</strong> – </p></li>
+<li><p><strong>module_path</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dltflow.cli.deploy.create_notebook_and_upload">
+<span class="sig-prename descclassname"><span class="pre">dltflow.cli.deploy.</span></span><span class="sig-name descname"><span class="pre">create_notebook_and_upload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ws_client</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">databricks.sdk.WorkspaceClient</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dbfs_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pathlib.Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">notebook_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">notebook_src</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dltflow.cli.deploy.create_notebook_and_upload" title="Permalink to this definition">#</a></dt>
+<dd><p>This function creates a DLT pipeline notebook and uploads it to the Databricks workspace.</p>
+<p>With regards to registering a python module as a DLT pipeline, this might be the most important
+step of that process. The logic for generating the notebook is simple, and this is the core reason
+this package is being developed instead of using something like <cite>dbx</cite> or <cite>dab</cite> commands.</p>
+<p>Notebooks should not be used by developers for their production grade code/pipelines. Rather, they
+should use a proper script/module that can be tested.</p>
+<p>To adhere to this standard, a less than 20 line notebook is generated to run the pipeline. This notebook
+can be simply considered a “driver” or “executor” for the pipeline. No core business should be
+added to the notebook.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ws_client</strong> – </p></li>
+<li><p><strong>dbfs_path</strong> – </p></li>
+<li><p><strong>notebook_name</strong> – </p></li>
+<li><p><strong>notebook_src</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dltflow.cli.deploy.deploy_py_module_as_notebook">
+<span class="sig-prename descclassname"><span class="pre">dltflow.cli.deploy.</span></span><span class="sig-name descname"><span class="pre">deploy_py_module_as_notebook</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">run_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ws_client</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">databricks.sdk.WorkspaceClient</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">workflow_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dbfs_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pathlib.Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">package_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pathlib.Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">items</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dependencies</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">launch_method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'launch'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dltflow.cli.deploy.deploy_py_module_as_notebook" title="Permalink to this definition">#</a></dt>
+<dd><p>This function deploys a python module as a DLT pipeline to the Databricks workspace.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>run_id</strong> – </p></li>
+<li><p><strong>ws_client</strong> (<em>WorkspaceClient</em><em>,</em>) – </p></li>
+<li><p><strong>project_name</strong> (<em>str</em><em>,</em>) – </p></li>
+<li><p><strong>workflow_name</strong> (<em>str</em><em>,</em>) – </p></li>
+<li><p><strong>dbfs_path</strong> (<em>pathlib.Path</em><em>,</em>) – </p></li>
+<li><p><strong>package_path</strong> (<em>pathlib.Path</em><em>,</em>) – </p></li>
+<li><p><strong>items</strong> (<em>list</em><em>,</em>) – </p></li>
+<li><p><strong>dependencies</strong> (<em>list = None</em><em>,</em>) – </p></li>
+<li><p><strong>package_namespace</strong> (<em>str = None</em><em>,</em>) – </p></li>
+<li><p><strong>launch_method</strong> (<em>str = 'launch'</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dltflow.cli.deploy.register_notebook_as_dlt_pipeline">
+<span class="sig-prename descclassname"><span class="pre">dltflow.cli.deploy.</span></span><span class="sig-name descname"><span class="pre">register_notebook_as_dlt_pipeline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ws_client</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">databricks.sdk.WorkspaceClient</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">notebook_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pipeline_payload</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../models/deployment/index.html#dltflow.cli.models.deployment.DLTFlowPipeline" title="dltflow.cli.models.deployment.DLTFlowPipeline"><span class="pre">dltflow.cli.models.deployment.DLTFlowPipeline</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">project_conf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">as_individual</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dltflow.cli.deploy.register_notebook_as_dlt_pipeline" title="Permalink to this definition">#</a></dt>
+<dd><p>Register a notebook as a DLT pipeline in the Databricks workspace.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ws_client</strong> – </p></li>
+<li><p><strong>notebook_path</strong> – </p></li>
+<li><p><strong>pipeline_payload</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dltflow.cli.deploy.handle_deployment_per_file_config_dependency">
+<span class="sig-prename descclassname"><span class="pre">dltflow.cli.deploy.</span></span><span class="sig-name descname"><span class="pre">handle_deployment_per_file_config_dependency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">workflow_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">items</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dependencies</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deployment_config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">profile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">as_individual</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dltflow.cli.deploy.handle_deployment_per_file_config_dependency" title="Permalink to this definition">#</a></dt>
+<dd><p>A helper function to handle the deployment of a python module as a DLT pipeline.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>workflow_name</strong> – </p></li>
+<li><p><strong>items</strong> – </p></li>
+<li><p><strong>dependencies</strong> – </p></li>
+<li><p><strong>deployment_config</strong> – </p></li>
+<li><p><strong>profile</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dltflow.cli.deploy.deploy_py_dlt2">
+<span class="sig-prename descclassname"><span class="pre">dltflow.cli.deploy.</span></span><span class="sig-name descname"><span class="pre">deploy_py_dlt2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deployment_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">environment</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">as_individual</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dltflow.cli.deploy.deploy_py_dlt2" title="Permalink to this definition">#</a></dt>
+<dd><p>Deploy a DLT pipeline from a python module.</p>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../models/project/index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dltflow.cli.models.project</span></code></p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../initialize/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dltflow.cli.initialize</span></code></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow-deploy-py">The module provides a command line interface to deploy a python module as a DLT pipeline.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-contents">Module Contents</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attributes">Attributes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.cli.deploy._BASE_NOTEBOOK"><code class="docutils literal notranslate"><span class="pre">_BASE_NOTEBOOK</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.cli.deploy._CODE_IMPORT_AND_LAUNCH_CELLS"><code class="docutils literal notranslate"><span class="pre">_CODE_IMPORT_AND_LAUNCH_CELLS</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.cli.deploy.upload_py_package_to_workspace"><code class="docutils literal notranslate"><span class="pre">upload_py_package_to_workspace()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.cli.deploy.get_class_name_from_text"><code class="docutils literal notranslate"><span class="pre">get_class_name_from_text()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.cli.deploy.get_module_info_from_path_name"><code class="docutils literal notranslate"><span class="pre">get_module_info_from_path_name()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.cli.deploy.create_notebook_and_upload"><code class="docutils literal notranslate"><span class="pre">create_notebook_and_upload()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.cli.deploy.deploy_py_module_as_notebook"><code class="docutils literal notranslate"><span class="pre">deploy_py_module_as_notebook()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.cli.deploy.register_notebook_as_dlt_pipeline"><code class="docutils literal notranslate"><span class="pre">register_notebook_as_dlt_pipeline()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.cli.deploy.handle_deployment_per_file_config_dependency"><code class="docutils literal notranslate"><span class="pre">handle_deployment_per_file_config_dependency()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.cli.deploy.deploy_py_dlt2"><code class="docutils literal notranslate"><span class="pre">deploy_py_dlt2()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../../../../_sources/autoapi/dltflow/cli/deploy/index.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Ricky Schools.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.2.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.2.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

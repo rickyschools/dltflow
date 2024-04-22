@@ -1,0 +1,23 @@
+:py:mod:`dltflow.cli.reader`
+============================
+
+.. py:module:: dltflow.cli.reader
+
+.. autoapi-nested-parse::
+
+   dltflow.reader.py
+   -------------------
+   This module is basically a copy and paste of the dbx.api.config_reader module with some modifications to support
+   the dltflow deployment configuration file format.
+
+   The main difference is that the dltflowDeploymentConfig class is used instead of the DeploymentConfig class.
+
+
+
+Module Contents
+---------------
+
+.. py:data:: config_reader_source
+
+   
+

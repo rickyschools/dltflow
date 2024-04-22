@@ -1,0 +1,224 @@
+:py:mod:`dltflow.quality.dlt_meta`
+==================================
+
+.. py:module:: dltflow.quality.dlt_meta
+
+.. autoapi-nested-parse::
+
+   databricks_utils.quality.dlt.dlt_meta.py
+   ----------------------------------------
+   This module contains a very slim wrapper around the Databricks Live Tables (DLT) API. The DLTMetaMixin class is a
+   metaclass that wraps a function with DLT expectations. The DLTConfig class is a pydantic model that is used to
+   configure the DLTMetaMixin class. The Expectation class is a pydantic model that is used to configure the expectations
+   that will be checked on the dataset.
+
+   The intent of this slim wrapper is to:
+   1. To provide an alternative way of writing DLT pipelines that is framework-driven and not
+       only intended for notebook development.
+   2. A meta-programming (config driven) approach to authoring DLT pipelines.
+   3. A pattern that fits my (Ricky Schools') personal style of writing code.
+
+   Example Pipeline and Configuration:
+
+   ```python
+   cfg = {
+       "dlt": {
+           "func_name": "orchestrate",
+           "kind": "table",
+           "expectations": [
+               {
+                   "name": "check_addition",
+                   "inv": "result > 10"
+               }
+           ],
+           "expectation_action": "allow"
+       }
+   }
+
+   from databricks_utils.quality import DLTMetaMixin
+   from databricks_utils.dataframe import default_session
+
+   class MyPipeline(DLTMetaMixin):
+       def __init__(self, config: dict):
+           self.config = config
+           self.spark = default_session()
+           super().__init__(config)
+
+       def orchestrate(self):
+           df = spark.createDataFrame([(1, 2)], ["a", "b"])             .withColumn("result", F.col("a") + F.col("b"))
+           return df
+
+
+   if __name__ == "__main__":
+       example = MyPipeline(cfg)
+       example.orchestrate()
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   dltflow.quality.dlt_meta.ParameterConfig
+   dltflow.quality.dlt_meta.DLTMetaMixin
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   dltflow.quality.dlt_meta._DANGEROUS_ACTIONS
+   dltflow.quality.dlt_meta._UNSUPPORTED_ACTIONS
+
+
+.. py:data:: _DANGEROUS_ACTIONS
+
+   
+
+.. py:data:: _UNSUPPORTED_ACTIONS
+
+   
+
+.. py:class:: ParameterConfig
+
+
+   This class is a pydantic model that is used to dynamically
+   configure the parameters of a function. This is used in
+   conjunction with the DLTConfig class to enforce the
+   parameters of a function.
+
+   .. py:attribute:: required
+      :type: Optional[List[str]]
+
+      
+
+   .. py:attribute:: optional
+      :type: Optional[List[str]]
+
+      
+
+
+.. py:class:: DLTMetaMixin
+
+
+   A metaclass that wraps a function with DLT expectations. This metaclass is designed
+   to be used in conjunction with the DLTConfig class. The DLTConfig class is a pydantic model
+   that is used to configure the DLTMetaMixin class. The DLTMetaMixin class is a metaclass that
+   wraps a function with DLT expectations.
+
+   The intent of this metaclass is to:
+
+   1. To provide an alternative way of writing DLT pipelines that is framework-driven and not
+       only intended for notebook development.
+   2. A meta-programming (config driven) approach to authoring DLT pipelines.
+
+   .. py:method:: _make_execution_plan(configs: dltflow.quality.config.DLTConfigs)
+
+      This method is used to create an execution plan for the user function.
+
+      :param child_function:
+
+
+   .. py:method:: _get_dlt_config(config) -> dltflow.quality.config.DLTConfigs
+      :staticmethod:
+
+      A static method to get the DLTConfig object from the provided configuration.
+
+      :param config:
+
+      :returns: The DLTConfig object that was created from the provided configuration.
+      :rtype: DLTConfig
+
+
+   .. py:method:: _dangerous_code_check(code: str)
+
+      This method checks for dangerous code (defined according to Databricks' DLT guidelines) in
+      the user-provided code/function.
+      :param code:
+
+
+   .. py:method:: _unsupported_action_check(code: str)
+
+      This method checks for unsupported code (defined according to Databricks' DLT guidelines) in
+      the user-provided code/function.
+      :param code:
+
+
+   .. py:method:: _return_type_check(signature)
+
+      This method aims to ensure that the return type of the user function is a Spark DataFrame.
+      This is done by inspecting the code and typed return annotations.
+
+      :param signature:
+
+
+   .. py:method:: _enforce_delta_limitations_and_requirements(func_name: str) -> Callable
+
+      This method checks for dangerous code (defined according to Databricks' DLT guidelines) in the provided code.
+
+      This is done by grabbing the user function by name and inspecting the source code.
+
+      https://docs.databricks.com/en/delta-live-tables/python-ref.html#limitations
+
+      :param func_name: The source code of the user function.
+      :type func_name: str
+
+      :rtype: None
+
+
+   .. py:method:: table_view_expectation_wrapper(child_function, execution_config)
+
+      This method is the "magic" that dynamically and automatically wraps the user function with DLT expectations.
+
+      This is used for non-streaming tables and intermediate views in delta live table pipelines. If the user
+      chooses, they can also apply expectations to their dataset.
+
+      Read more about streaming tables in Databricks' documentation:
+      https://docs.databricks.com/en/delta-live-tables/python-ref.html#example-define-tables-and-views
+
+      :param child_function:
+
+
+   .. py:method:: streaming_table_expectation_wrapper(child_function, execution_config)
+
+      This method is a magic wrapper that applies streaming dlt operations to user queries/functions.
+
+      This is used for streaming tables in delta live table pipelines. If the user chooses, they can also apply
+      expectations to their dataset.
+
+      Read more about streaming tables in Databricks' documentation:
+      https://docs.databricks.com/en/delta-live-tables/python-ref.html
+
+      Append Flow:
+      https://docs.databricks.com/en/delta-live-tables/python-ref.html#write-to-a-streaming-table-from-multiple-source-streams
+
+      Apply Changes:
+      https://docs.databricks.com/en/delta-live-tables/python-ref.html#write-to-a-streaming-table-from-multiple-source-streams
+      https://docs.databricks.com/en/delta-live-tables/cdc.html
+
+      :param child_function:
+
+
+   .. py:method:: apply_dlt(child_function, execution_config: dltflow.quality.config.DLTExecutionConfig)
+
+      This method is the "magic" that dynamically and automatically wraps the user function with DLT expectations.
+
+      The method is a decorator that wraps the user function (specified in configuration) with the DLT
+      expectations that were provided in the configuration. The return value of the user function is
+      expected to be a Spark DataFrame. If the return value is not a Spark DataFrame,
+      a TypeError will be raised.
+
+      :param child_function: The child function that will be wrapped with DLT expectations.
+      :type child_function: t.Callable
+      :param execution_config: The configuration that will be used to execute the DLT expectations.
+      :type execution_config: DLTExecutionConfig
+
+
+

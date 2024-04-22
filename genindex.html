@@ -1,0 +1,1046 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Index &#8212; dltflow 0.0.1 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=eafc0fe6" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=f6245a2f"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="https://unpkg.com/mermaid@10.2.0/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script src="https://unpkg.com/d3/dist/d3.min.js"></script>
+    <script>
+            window.addEventListener("load", function () {
+              var svgs = d3.selectAll(".mermaid svg");
+              svgs.each(function() {
+                var svg = d3.select(this);
+                svg.html("<g>" + svg.html() + "</g>");
+                var inner = svg.select("g");
+                var zoom = d3.zoom().on("zoom", function(event) {
+                  inner.attr("transform", event.transform);
+                });
+                svg.call(zoom);
+              });
+            });
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'genindex';</script>
+    <link rel="index" title="Index" href="#" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">dltflow 0.0.1 documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="_static/examples.html">
+                        Examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="autoapi/index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="_static/examples.html">
+                        Examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="autoapi/index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article"></div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+
+<h1 id="index">Index</h1>
+
+<div class="genindex-jumpbox">
+ <a href="#_"><strong>_</strong></a>
+ | <a href="#A"><strong>A</strong></a>
+ | <a href="#C"><strong>C</strong></a>
+ | <a href="#D"><strong>D</strong></a>
+ | <a href="#E"><strong>E</strong></a>
+ | <a href="#F"><strong>F</strong></a>
+ | <a href="#G"><strong>G</strong></a>
+ | <a href="#H"><strong>H</strong></a>
+ | <a href="#I"><strong>I</strong></a>
+ | <a href="#K"><strong>K</strong></a>
+ | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
+ | <a href="#O"><strong>O</strong></a>
+ | <a href="#P"><strong>P</strong></a>
+ | <a href="#R"><strong>R</strong></a>
+ | <a href="#S"><strong>S</strong></a>
+ | <a href="#T"><strong>T</strong></a>
+ | <a href="#U"><strong>U</strong></a>
+ | <a href="#V"><strong>V</strong></a>
+ | <a href="#W"><strong>W</strong></a>
+ | <a href="#Z"><strong>Z</strong></a>
+ 
+</div>
+<h2 id="_">_</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/dltflow/cli/models/project/index.html#dltflow.cli.models.project.PathName.__pydantic_config__">__pydantic_config__ (dltflow.cli.models.project.PathName attribute)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.Expectation.__pydantic_model_config__">__pydantic_model_config__ (dltflow.quality.config.Expectation attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.TableProperties.__pydantic_model_config__">(dltflow.quality.config.TableProperties attribute)</a>
+</li>
+        <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.TableWriteOpts.__pydantic_model_config__">(dltflow.quality.config.TableWriteOpts attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/dltflow/index.html#dltflow.__version__">__version__ (in module dltflow)</a>
+
+      <ul>
+        <li><a href="autoapi/dltflow/cli/index.html#dltflow.cli.__version__">(in module dltflow.cli)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/dltflow/cli/deploy/index.html#dltflow.cli.deploy._BASE_NOTEBOOK">_BASE_NOTEBOOK (in module dltflow.cli.deploy)</a>
+</li>
+      <li><a href="autoapi/dltflow/cli/deploy/index.html#dltflow.cli.deploy._CODE_IMPORT_AND_LAUNCH_CELLS">_CODE_IMPORT_AND_LAUNCH_CELLS (in module dltflow.cli.deploy)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/dlt_meta/index.html#dltflow.quality.dlt_meta._DANGEROUS_ACTIONS">_DANGEROUS_ACTIONS (in module dltflow.quality.dlt_meta)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/dlt_meta/index.html#dltflow.quality.dlt_meta.DLTMetaMixin._dangerous_code_check">_dangerous_code_check() (dltflow.quality.dlt_meta.DLTMetaMixin method)</a>
+
+      <ul>
+        <li><a href="autoapi/dltflow/quality/index.html#dltflow.quality.DLTMetaMixin._dangerous_code_check">(dltflow.quality.DLTMetaMixin method)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config._dlt_table_params">_dlt_table_params (in module dltflow.quality.config)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/dlt_meta/index.html#dltflow.quality.dlt_meta.DLTMetaMixin._enforce_delta_limitations_and_requirements">_enforce_delta_limitations_and_requirements() (dltflow.quality.dlt_meta.DLTMetaMixin method)</a>
+
+      <ul>
+        <li><a href="autoapi/dltflow/quality/index.html#dltflow.quality.DLTMetaMixin._enforce_delta_limitations_and_requirements">(dltflow.quality.DLTMetaMixin method)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/dltflow/cli/initialize/index.html#dltflow.cli.initialize._environments_from_databricks_profile">_environments_from_databricks_profile() (in module dltflow.cli.initialize)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.DLTConfig._expectation_function">_expectation_function (dltflow.quality.config.DLTConfig attribute)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config._expectation_map">_expectation_map (in module dltflow.quality.config)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/dlt_meta/index.html#dltflow.quality.dlt_meta.DLTMetaMixin._get_dlt_config">_get_dlt_config() (dltflow.quality.dlt_meta.DLTMetaMixin static method)</a>
+
+      <ul>
+        <li><a href="autoapi/dltflow/quality/index.html#dltflow.quality.DLTMetaMixin._get_dlt_config">(dltflow.quality.DLTMetaMixin static method)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/dltflow/cli/initialize/index.html#dltflow.cli.initialize._get_path">_get_path() (in module dltflow.cli.initialize)</a>
+</li>
+      <li><a href="autoapi/dltflow/cli/initialize/index.html#dltflow.cli.initialize._home">_home (in module dltflow.cli.initialize)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/dlt_meta/index.html#dltflow.quality.dlt_meta.DLTMetaMixin._make_execution_plan">_make_execution_plan() (dltflow.quality.dlt_meta.DLTMetaMixin method)</a>
+
+      <ul>
+        <li><a href="autoapi/dltflow/quality/index.html#dltflow.quality.DLTMetaMixin._make_execution_plan">(dltflow.quality.DLTMetaMixin method)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/dltflow/cli/initialize/index.html#dltflow.cli.initialize._parse_databricks_cfg">_parse_databricks_cfg() (in module dltflow.cli.initialize)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/dlt_meta/index.html#dltflow.quality.dlt_meta.DLTMetaMixin._return_type_check">_return_type_check() (dltflow.quality.dlt_meta.DLTMetaMixin method)</a>
+
+      <ul>
+        <li><a href="autoapi/dltflow/quality/index.html#dltflow.quality.DLTMetaMixin._return_type_check">(dltflow.quality.DLTMetaMixin method)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.DLTConfig._table_or_view_func">_table_or_view_func (dltflow.quality.config.DLTConfig attribute)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/dlt_meta/index.html#dltflow.quality.dlt_meta.DLTMetaMixin._unsupported_action_check">_unsupported_action_check() (dltflow.quality.dlt_meta.DLTMetaMixin method)</a>
+
+      <ul>
+        <li><a href="autoapi/dltflow/quality/index.html#dltflow.quality.DLTMetaMixin._unsupported_action_check">(dltflow.quality.DLTMetaMixin method)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/dltflow/quality/dlt_meta/index.html#dltflow.quality.dlt_meta._UNSUPPORTED_ACTIONS">_UNSUPPORTED_ACTIONS (in module dltflow.quality.dlt_meta)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.TableProperties.allow_reset">allow_reset (dltflow.quality.config.TableProperties attribute)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.DLTConfig.append_config">append_config (dltflow.quality.config.DLTConfig attribute)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.AppendFlowConfig">AppendFlowConfig (class in dltflow.quality.config)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.ApplyChangesConfig.apply_as_deletes">apply_as_deletes (dltflow.quality.config.ApplyChangesConfig attribute)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.ApplyChangesConfig.apply_as_truncates">apply_as_truncates (dltflow.quality.config.ApplyChangesConfig attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.DLTConfig.apply_chg_config">apply_chg_config (dltflow.quality.config.DLTConfig attribute)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/dlt_meta/index.html#dltflow.quality.dlt_meta.DLTMetaMixin.apply_dlt">apply_dlt() (dltflow.quality.dlt_meta.DLTMetaMixin method)</a>
+
+      <ul>
+        <li><a href="autoapi/dltflow/quality/index.html#dltflow.quality.DLTMetaMixin.apply_dlt">(dltflow.quality.DLTMetaMixin method)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.ApplyChangesConfig">ApplyChangesConfig (class in dltflow.quality.config)</a>
+</li>
+      <li><a href="autoapi/dltflow/cli/models/project/index.html#dltflow.cli.models.project.Workspace.artifact_path">artifact_path (dltflow.cli.models.project.Workspace attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="C">C</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.DLTExecutionConfig.child_func_name">child_func_name (dltflow.quality.config.DLTExecutionConfig attribute)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.DLTExecutionConfig.child_func_obj">child_func_obj (dltflow.quality.config.DLTExecutionConfig attribute)</a>
+</li>
+      <li><a href="autoapi/dltflow/cli/interface/index.html#dltflow.cli.interface.cli">cli() (in module dltflow.cli.interface)</a>
+</li>
+      <li><a href="autoapi/dltflow/cli/utils/index.html#dltflow.cli.utils.CLI_NAME">CLI_NAME (in module dltflow.cli.utils)</a>
+</li>
+      <li><a href="autoapi/dltflow/cli/models/project/index.html#dltflow.cli.models.project.ProjectElements.code">code (dltflow.cli.models.project.ProjectElements attribute)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.ApplyChangesConfig.column_list">column_list (dltflow.quality.config.ApplyChangesConfig attribute)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.AppendFlowConfig.comment">comment (dltflow.quality.config.AppendFlowConfig attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.CommonWriteOpts.comment">(dltflow.quality.config.CommonWriteOpts attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.CommonWriteOpts">CommonWriteOpts (class in dltflow.quality.config)</a>
+</li>
+      <li><a href="autoapi/dltflow/cli/models/project/index.html#dltflow.cli.models.project.ProjectElements.conf">conf (dltflow.cli.models.project.ProjectElements attribute)</a>
+</li>
+      <li><a href="autoapi/dltflow/cli/initialize/index.html#dltflow.cli.initialize.CONFIG_FILE_ENV_VAR">CONFIG_FILE_ENV_VAR (in module dltflow.cli.initialize)</a>
+</li>
+      <li><a href="autoapi/dltflow/cli/reader/index.html#dltflow.cli.reader.config_reader_source">config_reader_source (in module dltflow.cli.reader)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.Expectation.constraint">constraint (dltflow.quality.config.Expectation attribute)</a>
+</li>
+      <li><a href="autoapi/dltflow/cli/deploy/index.html#dltflow.cli.deploy.create_notebook_and_upload">create_notebook_and_upload() (in module dltflow.cli.deploy)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.CommonWriteOpts.database">database (dltflow.quality.config.CommonWriteOpts attribute)</a>
+</li>
+      <li><a href="autoapi/dltflow/cli/models/project/index.html#dltflow.cli.models.project.Environment.default">default (dltflow.cli.models.project.Environment attribute)</a>
+</li>
+      <li><a href="autoapi/dltflow/cli/models/deployment/index.html#dltflow.cli.models.deployment.DLTFlowTasks.dependencies">dependencies (dltflow.cli.models.deployment.DLTFlowTasks attribute)</a>
+</li>
+      <li><a href="autoapi/dltflow/cli/deploy/index.html#dltflow.cli.deploy.deploy_py_dlt2">deploy_py_dlt2() (in module dltflow.cli.deploy)</a>
+</li>
+      <li><a href="autoapi/dltflow/cli/deploy/index.html#dltflow.cli.deploy.deploy_py_module_as_notebook">deploy_py_module_as_notebook() (in module dltflow.cli.deploy)</a>
+</li>
+      <li><a href="autoapi/dltflow/cli/models/deployment/index.html#dltflow.cli.models.deployment.deployment_source">deployment_source (in module dltflow.cli.models.deployment)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.DLTExecutionConfig.dlt_config">dlt_config (dltflow.quality.config.DLTExecutionConfig attribute)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.Expectation.dlt_expectation">dlt_expectation (dltflow.quality.config.Expectation property)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.DLTConfig.dlt_expectations">dlt_expectations (dltflow.quality.config.DLTConfig property)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.DLTConfig">DLTConfig (class in dltflow.quality.config)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.DLTConfigs">DLTConfigs (in module dltflow.quality.config)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/exceptions/index.html#dltflow.quality.exceptions.DLTException">DLTException</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.DLTExecutionConfig">DLTExecutionConfig (class in dltflow.quality.config)</a>
+</li>
+      <li>
+    dltflow
+
+      <ul>
+        <li><a href="autoapi/dltflow/index.html#module-dltflow">module</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/dltflow/cli/models/project/index.html#dltflow.cli.models.project.ProjectConfig.dltflow">dltflow (dltflow.cli.models.project.ProjectConfig attribute)</a>
+</li>
+      <li>
+    dltflow.cli
+
+      <ul>
+        <li><a href="autoapi/dltflow/cli/index.html#module-dltflow.cli">module</a>
+</li>
+      </ul></li>
+      <li>
+    dltflow.cli.deploy
+
+      <ul>
+        <li><a href="autoapi/dltflow/cli/deploy/index.html#module-dltflow.cli.deploy">module</a>
+</li>
+      </ul></li>
+      <li>
+    dltflow.cli.initialize
+
+      <ul>
+        <li><a href="autoapi/dltflow/cli/initialize/index.html#module-dltflow.cli.initialize">module</a>
+</li>
+      </ul></li>
+      <li>
+    dltflow.cli.interface
+
+      <ul>
+        <li><a href="autoapi/dltflow/cli/interface/index.html#module-dltflow.cli.interface">module</a>
+</li>
+      </ul></li>
+      <li>
+    dltflow.cli.models
+
+      <ul>
+        <li><a href="autoapi/dltflow/cli/models/index.html#module-dltflow.cli.models">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    dltflow.cli.models.deployment
+
+      <ul>
+        <li><a href="autoapi/dltflow/cli/models/deployment/index.html#module-dltflow.cli.models.deployment">module</a>
+</li>
+      </ul></li>
+      <li>
+    dltflow.cli.models.project
+
+      <ul>
+        <li><a href="autoapi/dltflow/cli/models/project/index.html#module-dltflow.cli.models.project">module</a>
+</li>
+      </ul></li>
+      <li>
+    dltflow.cli.reader
+
+      <ul>
+        <li><a href="autoapi/dltflow/cli/reader/index.html#module-dltflow.cli.reader">module</a>
+</li>
+      </ul></li>
+      <li>
+    dltflow.cli.utils
+
+      <ul>
+        <li><a href="autoapi/dltflow/cli/utils/index.html#module-dltflow.cli.utils">module</a>
+</li>
+      </ul></li>
+      <li>
+    dltflow.quality
+
+      <ul>
+        <li><a href="autoapi/dltflow/quality/index.html#module-dltflow.quality">module</a>
+</li>
+      </ul></li>
+      <li>
+    dltflow.quality.config
+
+      <ul>
+        <li><a href="autoapi/dltflow/quality/config/index.html#module-dltflow.quality.config">module</a>
+</li>
+      </ul></li>
+      <li>
+    dltflow.quality.dlt_meta
+
+      <ul>
+        <li><a href="autoapi/dltflow/quality/dlt_meta/index.html#module-dltflow.quality.dlt_meta">module</a>
+</li>
+      </ul></li>
+      <li>
+    dltflow.quality.exceptions
+
+      <ul>
+        <li><a href="autoapi/dltflow/quality/exceptions/index.html#module-dltflow.quality.exceptions">module</a>
+</li>
+      </ul></li>
+      <li>
+    dltflow.utils
+
+      <ul>
+        <li><a href="autoapi/dltflow/utils/index.html#module-dltflow.utils">module</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/dltflow/cli/utils/index.html#dltflow.cli.utils.dltflow_config_path">dltflow_config_path (in module dltflow.cli.utils)</a>
+</li>
+      <li><a href="autoapi/dltflow/cli/models/deployment/index.html#dltflow.cli.models.deployment.DLTFlowDependency">DLTFlowDependency (class in dltflow.cli.models.deployment)</a>
+</li>
+      <li><a href="autoapi/dltflow/cli/models/deployment/index.html#dltflow.cli.models.deployment.DLTFlowPipeline">DLTFlowPipeline (class in dltflow.cli.models.deployment)</a>
+</li>
+      <li><a href="autoapi/dltflow/cli/models/deployment/index.html#dltflow.cli.models.deployment.DLTFlowSparkPythonTask">DLTFlowSparkPythonTask (class in dltflow.cli.models.deployment)</a>
+</li>
+      <li><a href="autoapi/dltflow/cli/models/deployment/index.html#dltflow.cli.models.deployment.DLTFlowTasks">DLTFlowTasks (class in dltflow.cli.models.deployment)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/index.html#dltflow.quality.DLTMetaMixin">DLTMetaMixin (class in dltflow.quality)</a>
+
+      <ul>
+        <li><a href="autoapi/dltflow/quality/dlt_meta/index.html#dltflow.quality.dlt_meta.DLTMetaMixin">(class in dltflow.quality.dlt_meta)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="E">E</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/dltflow/cli/models/project/index.html#dltflow.cli.models.project.Environment">Environment (class in dltflow.cli.models.project)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.ApplyChangesConfig.except_column_list">except_column_list (dltflow.quality.config.ApplyChangesConfig attribute)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.Expectation">Expectation (class in dltflow.quality.config)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.DLTConfig.expectation_action">expectation_action (dltflow.quality.config.DLTConfig attribute)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.DLTConfig.expectation_function">expectation_function (dltflow.quality.config.DLTConfig property)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.DLTConfig.expectations">expectations (dltflow.quality.config.DLTConfig attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="F">F</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.DLTConfig.func_name">func_name (dltflow.quality.config.DLTConfig attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="G">G</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/dltflow/cli/deploy/index.html#dltflow.cli.deploy.get_class_name_from_text">get_class_name_from_text() (in module dltflow.cli.deploy)</a>
+</li>
+      <li><a href="autoapi/dltflow/cli/utils/index.html#dltflow.cli.utils.get_config">get_config() (in module dltflow.cli.utils)</a>
+</li>
+      <li><a href="autoapi/dltflow/cli/models/deployment/index.html#dltflow.cli.models.deployment.DLTFlowTasks.get_dependencies">get_dependencies() (dltflow.cli.models.deployment.DLTFlowTasks method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/dltflow/cli/models/deployment/index.html#dltflow.cli.models.deployment.DLTFlowDependency.get_dependency">get_dependency() (dltflow.cli.models.deployment.DLTFlowDependency method)</a>
+</li>
+      <li><a href="autoapi/dltflow/cli/models/deployment/index.html#dltflow.cli.models.deployment.DLTFlowTasks.get_items">get_items() (dltflow.cli.models.deployment.DLTFlowTasks method)</a>
+</li>
+      <li><a href="autoapi/dltflow/cli/deploy/index.html#dltflow.cli.deploy.get_module_info_from_path_name">get_module_info_from_path_name() (in module dltflow.cli.deploy)</a>
+</li>
+      <li><a href="autoapi/dltflow/cli/models/deployment/index.html#dltflow.cli.models.deployment.DLTFlowPipeline.get_tasks">get_tasks() (dltflow.cli.models.deployment.DLTFlowPipeline method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="H">H</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/dltflow/cli/deploy/index.html#dltflow.cli.deploy.handle_deployment_per_file_config_dependency">handle_deployment_per_file_config_dependency() (in module dltflow.cli.deploy)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/dltflow/cli/models/project/index.html#dltflow.cli.models.project.Workspace.host">host (dltflow.cli.models.project.Workspace attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="I">I</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.ApplyChangesConfig.ignore_null_updates">ignore_null_updates (dltflow.quality.config.ApplyChangesConfig attribute)</a>
+</li>
+      <li><a href="autoapi/dltflow/cli/models/project/index.html#dltflow.cli.models.project.ProjectConfig.include">include (dltflow.cli.models.project.ProjectConfig attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/dltflow/cli/initialize/index.html#dltflow.cli.initialize.init">init() (in module dltflow.cli.initialize)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.DLTConfig.is_streaming_table">is_streaming_table (dltflow.quality.config.DLTConfig attribute)</a>
+</li>
+      <li><a href="autoapi/dltflow/cli/models/deployment/index.html#dltflow.cli.models.deployment.DLTFlowTasks.items">items (dltflow.cli.models.deployment.DLTFlowTasks attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="K">K</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.ApplyChangesConfig.keys">keys (dltflow.quality.config.ApplyChangesConfig attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.DLTConfig.kind">kind (dltflow.quality.config.DLTConfig attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="M">M</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.TableProperties.managed_optimize">managed_optimize (dltflow.quality.config.TableProperties attribute)</a>
+</li>
+      <li><a href="autoapi/dltflow/cli/models/project/index.html#dltflow.cli.models.project.Environment.mode">mode (dltflow.cli.models.project.Environment attribute)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.PydanticV2BaseModelLazy.model_dump">model_dump() (dltflow.quality.config.PydanticV2BaseModelLazy method)</a>
+</li>
+      <li>
+    module
+
+      <ul>
+        <li><a href="autoapi/dltflow/index.html#module-dltflow">dltflow</a>
+</li>
+        <li><a href="autoapi/dltflow/cli/index.html#module-dltflow.cli">dltflow.cli</a>
+</li>
+        <li><a href="autoapi/dltflow/cli/deploy/index.html#module-dltflow.cli.deploy">dltflow.cli.deploy</a>
+</li>
+        <li><a href="autoapi/dltflow/cli/initialize/index.html#module-dltflow.cli.initialize">dltflow.cli.initialize</a>
+</li>
+        <li><a href="autoapi/dltflow/cli/interface/index.html#module-dltflow.cli.interface">dltflow.cli.interface</a>
+</li>
+        <li><a href="autoapi/dltflow/cli/models/index.html#module-dltflow.cli.models">dltflow.cli.models</a>
+</li>
+        <li><a href="autoapi/dltflow/cli/models/deployment/index.html#module-dltflow.cli.models.deployment">dltflow.cli.models.deployment</a>
+</li>
+        <li><a href="autoapi/dltflow/cli/models/project/index.html#module-dltflow.cli.models.project">dltflow.cli.models.project</a>
+</li>
+        <li><a href="autoapi/dltflow/cli/reader/index.html#module-dltflow.cli.reader">dltflow.cli.reader</a>
+</li>
+        <li><a href="autoapi/dltflow/cli/utils/index.html#module-dltflow.cli.utils">dltflow.cli.utils</a>
+</li>
+        <li><a href="autoapi/dltflow/quality/index.html#module-dltflow.quality">dltflow.quality</a>
+</li>
+        <li><a href="autoapi/dltflow/quality/config/index.html#module-dltflow.quality.config">dltflow.quality.config</a>
+</li>
+        <li><a href="autoapi/dltflow/quality/dlt_meta/index.html#module-dltflow.quality.dlt_meta">dltflow.quality.dlt_meta</a>
+</li>
+        <li><a href="autoapi/dltflow/quality/exceptions/index.html#module-dltflow.quality.exceptions">dltflow.quality.exceptions</a>
+</li>
+        <li><a href="autoapi/dltflow/utils/index.html#module-dltflow.utils">dltflow.utils</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/dltflow/cli/models/project/index.html#dltflow.cli.models.project.PathName.name">name (dltflow.cli.models.project.PathName attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/dltflow/cli/models/project/index.html#dltflow.cli.models.project.ProjectInfo.name">(dltflow.cli.models.project.ProjectInfo attribute)</a>
+</li>
+        <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.AppendFlowConfig.name">(dltflow.quality.config.AppendFlowConfig attribute)</a>
+</li>
+        <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.CommonWriteOpts.name">(dltflow.quality.config.CommonWriteOpts attribute)</a>
+</li>
+        <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.Expectation.name">(dltflow.quality.config.Expectation attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="O">O</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/dltflow/quality/dlt_meta/index.html#dltflow.quality.dlt_meta.ParameterConfig.optional">optional (dltflow.quality.dlt_meta.ParameterConfig attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/dltflow/quality/dlt_meta/index.html#dltflow.quality.dlt_meta.ParameterConfig">ParameterConfig (class in dltflow.quality.dlt_meta)</a>
+</li>
+      <li><a href="autoapi/dltflow/cli/models/deployment/index.html#dltflow.cli.models.deployment.DLTFlowSparkPythonTask.parameters">parameters (dltflow.cli.models.deployment.DLTFlowSparkPythonTask attribute)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.TableWriteOpts.partition_cols">partition_cols (dltflow.quality.config.TableWriteOpts attribute)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.TableWriteOpts.path">path (dltflow.quality.config.TableWriteOpts attribute)</a>
+</li>
+      <li><a href="autoapi/dltflow/cli/models/project/index.html#dltflow.cli.models.project.PathName">PathName (class in dltflow.cli.models.project)</a>
+</li>
+      <li><a href="autoapi/dltflow/cli/models/project/index.html#dltflow.cli.models.project.ProjectConfig">ProjectConfig (class in dltflow.cli.models.project)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/dltflow/cli/models/project/index.html#dltflow.cli.models.project.ProjectElements">ProjectElements (class in dltflow.cli.models.project)</a>
+</li>
+      <li><a href="autoapi/dltflow/cli/models/project/index.html#dltflow.cli.models.project.ProjectInfo">ProjectInfo (class in dltflow.cli.models.project)</a>
+</li>
+      <li><a href="autoapi/dltflow/cli/models/deployment/index.html#dltflow.cli.models.deployment.DLTFlowSparkPythonTask.provide_items">provide_items() (dltflow.cli.models.deployment.DLTFlowSparkPythonTask method)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.PydanticV2BaseModelLazy">PydanticV2BaseModelLazy (class in dltflow.quality.config)</a>
+</li>
+      <li><a href="autoapi/dltflow/cli/models/deployment/index.html#dltflow.cli.models.deployment.DLTFlowDependency.pypi">pypi (dltflow.cli.models.deployment.DLTFlowDependency attribute)</a>
+</li>
+      <li><a href="autoapi/dltflow/cli/models/deployment/index.html#dltflow.cli.models.deployment.DLTFlowSparkPythonTask.python_file">python_file (dltflow.cli.models.deployment.DLTFlowSparkPythonTask attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/dltflow/cli/deploy/index.html#dltflow.cli.deploy.register_notebook_as_dlt_pipeline">register_notebook_as_dlt_pipeline() (in module dltflow.cli.deploy)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/dltflow/quality/dlt_meta/index.html#dltflow.quality.dlt_meta.ParameterConfig.required">required (dltflow.quality.dlt_meta.ParameterConfig attribute)</a>
+</li>
+      <li><a href="autoapi/dltflow/cli/models/project/index.html#dltflow.cli.models.project.Workspace.root_path">root_path (dltflow.cli.models.project.Workspace attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.ApplyChangesConfig.sequence_by">sequence_by (dltflow.quality.config.ApplyChangesConfig attribute)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.ApplyChangesConfig.source">source (dltflow.quality.config.ApplyChangesConfig attribute)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.AppendFlowConfig.spark_conf">spark_conf (dltflow.quality.config.AppendFlowConfig attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.CommonWriteOpts.spark_conf">(dltflow.quality.config.CommonWriteOpts attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.ApplyChangesConfig.stored_as_scd_type">stored_as_scd_type (dltflow.quality.config.ApplyChangesConfig attribute)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/dlt_meta/index.html#dltflow.quality.dlt_meta.DLTMetaMixin.streaming_table_expectation_wrapper">streaming_table_expectation_wrapper() (dltflow.quality.dlt_meta.DLTMetaMixin method)</a>
+
+      <ul>
+        <li><a href="autoapi/dltflow/quality/index.html#dltflow.quality.DLTMetaMixin.streaming_table_expectation_wrapper">(dltflow.quality.DLTMetaMixin method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="T">T</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.DLTConfig.table_or_view_func">table_or_view_func (dltflow.quality.config.DLTConfig property)</a>
+
+      <ul>
+        <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.DLTExecutionConfig.table_or_view_func">(dltflow.quality.config.DLTExecutionConfig attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.TableWriteOpts.table_properties">table_properties (dltflow.quality.config.TableWriteOpts attribute)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/dlt_meta/index.html#dltflow.quality.dlt_meta.DLTMetaMixin.table_view_expectation_wrapper">table_view_expectation_wrapper() (dltflow.quality.dlt_meta.DLTMetaMixin method)</a>
+
+      <ul>
+        <li><a href="autoapi/dltflow/quality/index.html#dltflow.quality.DLTMetaMixin.table_view_expectation_wrapper">(dltflow.quality.DLTMetaMixin method)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.CommonWriteOpts.tablename">tablename (dltflow.quality.config.CommonWriteOpts attribute)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.TableProperties">TableProperties (class in dltflow.quality.config)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.TableWriteOpts">TableWriteOpts (class in dltflow.quality.config)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.AppendFlowConfig.target">target (dltflow.quality.config.AppendFlowConfig attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.ApplyChangesConfig.target">(dltflow.quality.config.ApplyChangesConfig attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/dltflow/cli/models/project/index.html#dltflow.cli.models.project.ProjectConfig.targets">targets (dltflow.cli.models.project.ProjectConfig attribute)</a>
+</li>
+      <li><a href="autoapi/dltflow/cli/models/deployment/index.html#dltflow.cli.models.deployment.DLTFlowPipeline.tasks">tasks (dltflow.cli.models.deployment.DLTFlowPipeline attribute)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.ApplyChangesConfig.track_history_column_list">track_history_column_list (dltflow.quality.config.ApplyChangesConfig attribute)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.ApplyChangesConfig.track_history_except_column_list">track_history_except_column_list (dltflow.quality.config.ApplyChangesConfig attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="U">U</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/dltflow/cli/deploy/index.html#dltflow.cli.deploy.upload_py_package_to_workspace">upload_py_package_to_workspace() (in module dltflow.cli.deploy)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/dltflow/utils/index.html#dltflow.utils.utils_source_code">utils_source_code (in module dltflow.utils)</a>, <a href="autoapi/dltflow/utils/index.html#id0">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="V">V</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/dltflow/cli/models/deployment/index.html#dltflow.cli.models.deployment.DLTFlowDependency.validate">validate() (dltflow.cli.models.deployment.DLTFlowDependency class method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.DLTConfig.validate_expectation_action">validate_expectation_action() (dltflow.quality.config.DLTConfig method)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.DLTConfig.validate_kind">validate_kind() (dltflow.quality.config.DLTConfig method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="W">W</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/dltflow/cli/models/deployment/index.html#dltflow.cli.models.deployment.DLTFlowDependency.whl">whl (dltflow.cli.models.deployment.DLTFlowDependency attribute)</a>
+</li>
+      <li><a href="autoapi/dltflow/cli/models/deployment/index.html#dltflow.cli.models.deployment.DLTFlowPipeline.workflow_type">workflow_type (dltflow.cli.models.deployment.DLTFlowPipeline attribute)</a>
+</li>
+      <li><a href="autoapi/dltflow/cli/models/project/index.html#dltflow.cli.models.project.ProjectElements.workflows">workflows (dltflow.cli.models.project.ProjectElements attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/dltflow/cli/models/project/index.html#dltflow.cli.models.project.Workspace">Workspace (class in dltflow.cli.models.project)</a>
+</li>
+      <li><a href="autoapi/dltflow/cli/models/project/index.html#dltflow.cli.models.project.Environment.workspace">workspace (dltflow.cli.models.project.Environment attribute)</a>
+</li>
+      <li><a href="autoapi/dltflow/cli/utils/index.html#dltflow.cli.utils.write_config">write_config() (in module dltflow.cli.utils)</a>
+</li>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.DLTConfig.write_opts">write_opts (dltflow.quality.config.DLTConfig attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="Z">Z</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/dltflow/quality/config/index.html#dltflow.quality.config.TableProperties.z_order_cols">z_order_cols (dltflow.quality.config.TableProperties attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Ricky Schools.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.2.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.2.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

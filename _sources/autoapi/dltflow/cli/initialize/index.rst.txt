@@ -1,0 +1,119 @@
+:py:mod:`dltflow.cli.initialize`
+================================
+
+.. py:module:: dltflow.cli.initialize
+
+.. autoapi-nested-parse::
+
+   dltflow.initialize.py
+   -----------------------
+   This module contains the `init` command for the dltflow cli. This command is used to help initialize a dltflow
+   project. At a minimum, it will create a `dltflow` config file in the current directory.
+
+   The code, configuration, and workflow directory names can be customized by the user. The default values are:
+   - code: `my_project`
+   - config: `conf`
+   - workflows: `workflows`
+
+   When these directories are created during initialization, a `.gitkeep` file is created in each directory. This is
+   to ensure that the directories are included in the git repository. Also, a `setup.py` and `pyproject.toml` file are
+   created in the root directory. These files are used to help package the project as a python package.
+
+   The `pyproject.toml` file is setup to use the `bumpver` package to help manage versioning.
+
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   dltflow.cli.initialize._get_path
+   dltflow.cli.initialize._parse_databricks_cfg
+   dltflow.cli.initialize._environments_from_databricks_profile
+   dltflow.cli.initialize.init
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   dltflow.cli.initialize.CONFIG_FILE_ENV_VAR
+   dltflow.cli.initialize._home
+
+
+.. py:data:: CONFIG_FILE_ENV_VAR
+   :value: 'DATABRICKS_CONFIG_FILE'
+
+   
+
+.. py:data:: _home
+
+   
+
+.. py:function:: _get_path()
+
+   Get the path to the databricks config file.
+
+
+.. py:function:: _parse_databricks_cfg()
+
+   Parse the databricks config file.
+
+
+.. py:function:: _environments_from_databricks_profile(username, project_name, shared)
+
+   Get the environments from the databricks profile.
+
+
+.. py:function:: init(profile: str, project_name: str = 'my_project', config_path: str = 'conf', workflows_path: str = 'workflows', build_template: bool = False, overwrite: bool = True, dbfs_location: str = None, shared: bool = True)
+
+   Initialize a new dltflow project.
+
+   This cli command is used to help initialize a dltflow project. At a minimum, it will create a `dltflow` config
+   file in the current directory.
+
+   The code, configuration, and workflow directory names can be customized by the user. The default values are:
+   - code: `my_project`
+   - config: `conf`
+   - workflows: `workflows`
+
+   When these directories are created during initialization, a `.gitkeep` file is created in each directory. This is
+   to ensure that the directories are included in the git repository. Also, a `setup.py` and `pyproject.toml` file are
+   created in the root directory. These files are used to help package the project as a python package.
+
+   The `pyproject.toml` file is setup to use the `bumpver` package to help manage versioning.
+
+   If the user opts in to include directories, dltflow will create the following structure:
+
+
+       ```text
+       git-root/
+           my_project/  # code goes here.
+           conf/  # configuration to drive your pipelines.
+           workflows/  # json or yml definitions for workflows in databricks.
+           dltflow.yml  # dltflow config file.
+           setup.py  # setup file for python packages.
+           pyproject.toml  # pyproject file for python packages.
+       ```
+
+   :param profile: Databricks profile to use
+   :type profile: str
+   :param project_name:
+   :type project_name: str
+   :param config_path:
+   :type config_path: str
+   :param workflows_path:
+   :type workflows_path: str
+   :param build_template:
+   :type build_template: bool
+   :param overwrite: True
+   :type overwrite: bool
+
+

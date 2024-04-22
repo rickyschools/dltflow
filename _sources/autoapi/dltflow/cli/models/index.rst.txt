@@ -1,0 +1,16 @@
+:py:mod:`dltflow.cli.models`
+============================
+
+.. py:module:: dltflow.cli.models
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   deployment/index.rst
+   project/index.rst
+
+

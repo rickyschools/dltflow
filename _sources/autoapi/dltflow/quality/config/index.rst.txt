@@ -1,0 +1,436 @@
+:py:mod:`dltflow.quality.config`
+================================
+
+.. py:module:: dltflow.quality.config
+
+.. autoapi-nested-parse::
+
+   databricks_utils.configuration.quality.dlt.py
+   ---------------------------------------------
+   This module contains the pydantic models for the DLT configuration. The Expectation class is a pydantic model that is
+   used to declare the expectations that will be checked on the dataset.
+
+   supported yaml or json configuration patterns:
+
+   ```yaml
+   ...
+   dlt:
+       func_name: "write"
+       kind: "table"
+       expectations:
+           - name: "valid_count"
+             constraint: "count > 1"
+       expectation_action: "drop"
+   ...
+   ```
+
+   ```json
+   {
+       "dlt": {
+           "func_name": "write",
+           "kind": "{table | view}",
+           "expectations": [
+               {
+                   "name": "valid_count",
+                   "constraint": "count > 1"
+               }
+           ],
+           "expectation_action": "{allow | fail | drop}"
+       }
+   }
+   ```
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   dltflow.quality.config.Expectation
+   dltflow.quality.config.PydanticV2BaseModelLazy
+   dltflow.quality.config.CommonWriteOpts
+   dltflow.quality.config.TableProperties
+   dltflow.quality.config.TableWriteOpts
+   dltflow.quality.config.AppendFlowConfig
+   dltflow.quality.config.ApplyChangesConfig
+   dltflow.quality.config.DLTConfig
+   dltflow.quality.config.DLTExecutionConfig
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   dltflow.quality.config._expectation_map
+   dltflow.quality.config._dlt_table_params
+   dltflow.quality.config.DLTConfigs
+
+
+.. py:data:: _expectation_map
+
+   
+
+.. py:class:: Expectation
+
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+   .. py:property:: dlt_expectation
+
+      Property to return the expectation as a dictionary.
+
+   .. py:attribute:: __pydantic_model_config__
+
+      A class to represent an expectation that will be checked on the dataset. This is a slim
+      wrapper around the
+
+   .. py:attribute:: name
+      :type: str
+
+      
+
+   .. py:attribute:: constraint
+      :type: str
+
+      
+
+
+.. py:data:: _dlt_table_params
+
+   
+
+.. py:class:: PydanticV2BaseModelLazy
+
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+   A class to represent the base model for the Pydantic models. This class is a slim wrapper around the Pydantic
+
+   .. py:method:: model_dump(*args, **kwargs)
+
+      Method to dump the model as a dictionary.
+
+
+
+.. py:class:: CommonWriteOpts(*args, **kwargs)
+
+
+   Bases: :py:obj:`PydanticV2BaseModelLazy`
+
+   A class to represent the common write options that will be used to create the table.
+
+   .. py:attribute:: name
+      :type: Optional[str]
+
+      
+
+   .. py:attribute:: comment
+      :type: Optional[str]
+
+      
+
+   .. py:attribute:: spark_conf
+      :type: Optional[dict]
+
+      
+
+   .. py:attribute:: database
+      :type: Optional[str]
+
+      
+
+   .. py:attribute:: tablename
+      :type: Optional[str]
+
+      
+
+
+.. py:class:: TableProperties
+
+
+   Bases: :py:obj:`PydanticV2BaseModelLazy`
+
+   A class to represent the table properties that will be added to the table.
+   https://docs.databricks.com/en/delta-live-tables/properties.html#delta-live-tables-table-properties
+
+   .. py:attribute:: __pydantic_model_config__
+
+      
+
+   .. py:attribute:: managed_optimize
+      :type: str
+
+      
+
+   .. py:attribute:: z_order_cols
+      :type: str
+
+      
+
+   .. py:attribute:: allow_reset
+      :type: str
+
+      
+
+
+.. py:class:: TableWriteOpts(*args, **kwargs)
+
+
+   Bases: :py:obj:`CommonWriteOpts`
+
+   A class to represent the write options that will be used to create the table.
+
+   https://docs.databricks.com/en/delta-live-tables/python-ref.html#python-delta-live-tables-properties
+
+   .. py:attribute:: __pydantic_model_config__
+
+      
+
+   .. py:attribute:: table_properties
+      :type: Optional[dict]
+
+      
+
+   .. py:attribute:: path
+      :type: Optional[str]
+
+      
+
+   .. py:attribute:: partition_cols
+      :type: Optional[List[str]]
+
+      
+
+
+.. py:class:: AppendFlowConfig
+
+
+   Bases: :py:obj:`PydanticV2BaseModelLazy`
+
+   A class to represent the configuration of the append flow.
+
+   .. py:attribute:: target
+      :type: str
+
+      
+
+   .. py:attribute:: name
+      :type: Optional[str]
+
+      
+
+   .. py:attribute:: spark_conf
+      :type: Optional[dict]
+
+      
+
+   .. py:attribute:: comment
+      :type: Optional[str]
+
+      
+
+
+.. py:class:: ApplyChangesConfig
+
+
+   Bases: :py:obj:`PydanticV2BaseModelLazy`
+
+   A class to represent the configuration of the apply changes flow.
+
+   .. py:attribute:: target
+      :type: str
+
+      
+
+   .. py:attribute:: source
+      :type: str
+
+      
+
+   .. py:attribute:: keys
+      :type: List[str]
+
+      
+
+   .. py:attribute:: sequence_by
+      :type: Optional[str]
+
+      
+
+   .. py:attribute:: ignore_null_updates
+      :type: Optional[bool]
+
+      
+
+   .. py:attribute:: apply_as_deletes
+      :type: Optional[bool]
+
+      
+
+   .. py:attribute:: apply_as_truncates
+      :type: Optional[bool]
+
+      
+
+   .. py:attribute:: column_list
+      :type: Optional[List[str]]
+
+      
+
+   .. py:attribute:: except_column_list
+      :type: Optional[List[str]]
+
+      
+
+   .. py:attribute:: stored_as_scd_type
+      :type: Optional[str]
+
+      
+
+   .. py:attribute:: track_history_column_list
+      :type: Optional[List[str]]
+
+      
+
+   .. py:attribute:: track_history_except_column_list
+      :type: Optional[List[str]]
+
+      
+
+
+.. py:class:: DLTConfig(*args, **kwargs)
+
+
+   Bases: :py:obj:`PydanticV2BaseModelLazy`
+
+   A class to represent the configuration of the DLTMetaMixin.
+   This class is a pydantic model that is used to declare:
+
+   1. The name of the function that is being wrapped by the DLTMetaMixin.
+   2. The type of DLT object that will be persisted in the data platform. table | view
+   3. The expectations that will be checked on the dataset.
+   4. The action that will be taken on the dataset. {allow, fail, drop}
+
+   Upon initialization, the DLTConfig class will:
+
+   1. Store the `expect_all`, `expect_all_or_fail`, or `expect_all_or_drop` function in the `_expectation_function`
+   private attribute.
+   2. Store the `dlt.table` or `dlt.view` function in the `_table_or_view_func` private attribute.
+
+   These two elements are used to actually execute and implement the DLT functionality/expectation.
+
+   .. py:property:: table_or_view_func
+      :type: Callable
+
+      Property to return the table or view function based on the kind of DLT object.
+
+   .. py:property:: expectation_function
+      :type: Callable
+
+      Property to return the expectation function based on the expectation action.
+
+   .. py:property:: dlt_expectations
+      :type: dict
+
+      Property to return the expectations as a dictionary.
+
+   .. py:attribute:: func_name
+      :type: str
+
+      
+
+   .. py:attribute:: kind
+      :type: str
+
+      
+
+   .. py:attribute:: expectations
+      :type: List[Expectation]
+
+      
+
+   .. py:attribute:: expectation_action
+      :type: str
+
+      
+
+   .. py:attribute:: _expectation_function
+      :type: Callable
+
+      
+
+   .. py:attribute:: _table_or_view_func
+      :type: Callable
+
+      
+
+   .. py:attribute:: write_opts
+      :type: Optional[TableWriteOpts]
+
+      
+
+   .. py:attribute:: is_streaming_table
+      :type: Optional[bool]
+
+      
+
+   .. py:attribute:: append_config
+      :type: AppendFlowConfig
+
+      
+
+   .. py:attribute:: apply_chg_config
+      :type: ApplyChangesConfig
+
+      
+
+   .. py:method:: validate_expectation_action(value)
+
+      Validator to ensure that the expectation_action is one of the supported actions.
+
+
+   .. py:method:: validate_kind(value)
+
+      Validator to ensure that the kind is one of the supported kinds.
+
+
+
+.. py:class:: DLTExecutionConfig
+
+
+   Bases: :py:obj:`PydanticV2BaseModelLazy`
+
+   A class to represent the configuration of the DLT execution.
+
+   .. py:attribute:: dlt_config
+      :type: DLTConfig
+
+      
+
+   .. py:attribute:: table_or_view_func
+      :type: Callable
+
+      
+
+   .. py:attribute:: child_func_name
+      :type: str
+
+      
+
+   .. py:attribute:: child_func_obj
+      :type: Callable
+
+      
+
+
+.. py:data:: DLTConfigs
+
+   
+

@@ -1,0 +1,1039 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>dltflow.quality.config &#8212; dltflow 0.0.1 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=eafc0fe6" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js?v=f6245a2f"></script>
+    <script src="../../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'autoapi/dltflow/quality/config/index';</script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="dltflow.quality.dlt_meta" href="../dlt_meta/index.html" />
+    <link rel="prev" title="dltflow.quality" href="../index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">dltflow 0.0.1 documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../../_static/examples.html">
+                        Examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../../../index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../../_static/examples.html">
+                        Examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../../../index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dltflow</span></code></a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../cli/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dltflow.cli</span></code></a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../cli/models/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dltflow.cli.models</span></code></a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../cli/models/deployment/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dltflow.cli.models.deployment</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cli/models/project/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dltflow.cli.models.project</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../cli/deploy/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dltflow.cli.deploy</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cli/initialize/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dltflow.cli.initialize</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cli/interface/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dltflow.cli.interface</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cli/reader/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dltflow.cli.reader</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cli/utils/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dltflow.cli.utils</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dltflow.quality</span></code></a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3 current active"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dltflow.quality.config</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dlt_meta/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dltflow.quality.dlt_meta</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../exceptions/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dltflow.quality.exceptions</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../utils/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dltflow.utils</span></code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../index.html" class="nav-link">API Reference</a></li>
+    
+    
+    <li class="breadcrumb-item"><i class="fa-solid fa-ellipsis"></i></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dltflow.quality</span></code></a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><code...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-dltflow.quality.config">
+<span id="dltflow-quality-config"></span><h1><a class="reference internal" href="#module-dltflow.quality.config" title="dltflow.quality.config"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dltflow.quality.config</span></code></a><a class="headerlink" href="#module-dltflow.quality.config" title="Permalink to this heading">#</a></h1>
+<section id="databricks-utils-configuration-quality-dlt-py">
+<p>This module contains the pydantic models for the DLT configuration. The Expectation class is a pydantic model that is
+used to declare the expectations that will be checked on the dataset.</p>
+<p>supported yaml or json configuration patterns:</p>
+<p><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>yaml
+…
+dlt:</p>
+<blockquote>
+<div><p>func_name: “write”
+kind: “table”
+expectations:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>name: “valid_count”
+constraint: “count &gt; 1”</p></li>
+</ul>
+</div></blockquote>
+<p>expectation_action: “drop”</p>
+</div></blockquote>
+<section id="id5">
+<h3>…<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
+<p><a href="#id6"><span class="problematic" id="id7">``</span></a><a href="#id8"><span class="problematic" id="id9">`</span></a>json
+{</p>
+<blockquote>
+<div><dl>
+<dt>“dlt”: {</dt><dd><p>“func_name”: “write”,
+“kind”: “{table | view}”,
+“expectations”: [</p>
+<blockquote>
+<div><dl class="simple">
+<dt>{</dt><dd><p>“name”: “valid_count”,
+“constraint”: “count &gt; 1”</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+<p>],
+“expectation_action”: “{allow | fail | drop}”</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+</section>
+<section id="id10">
+<h3>}<a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading">#</a></h2>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading">#</a></h3>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dltflow.quality.config.Expectation" title="dltflow.quality.config.Expectation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Expectation</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dltflow.quality.config.PydanticV2BaseModelLazy" title="dltflow.quality.config.PydanticV2BaseModelLazy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PydanticV2BaseModelLazy</span></code></a></p></td>
+<td><p>A class to represent the base model for the Pydantic models. This class is a slim wrapper around the Pydantic</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dltflow.quality.config.CommonWriteOpts" title="dltflow.quality.config.CommonWriteOpts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CommonWriteOpts</span></code></a></p></td>
+<td><p>A class to represent the common write options that will be used to create the table.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dltflow.quality.config.TableProperties" title="dltflow.quality.config.TableProperties"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TableProperties</span></code></a></p></td>
+<td><p>A class to represent the table properties that will be added to the table.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dltflow.quality.config.TableWriteOpts" title="dltflow.quality.config.TableWriteOpts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TableWriteOpts</span></code></a></p></td>
+<td><p>A class to represent the write options that will be used to create the table.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dltflow.quality.config.AppendFlowConfig" title="dltflow.quality.config.AppendFlowConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AppendFlowConfig</span></code></a></p></td>
+<td><p>A class to represent the configuration of the append flow.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dltflow.quality.config.ApplyChangesConfig" title="dltflow.quality.config.ApplyChangesConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ApplyChangesConfig</span></code></a></p></td>
+<td><p>A class to represent the configuration of the apply changes flow.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dltflow.quality.config.DLTConfig" title="dltflow.quality.config.DLTConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DLTConfig</span></code></a></p></td>
+<td><p>A class to represent the configuration of the DLTMetaMixin.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dltflow.quality.config.DLTExecutionConfig" title="dltflow.quality.config.DLTExecutionConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DLTExecutionConfig</span></code></a></p></td>
+<td><p>A class to represent the configuration of the DLT execution.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="attributes">
+<h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading">#</a></h3>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dltflow.quality.config._expectation_map" title="dltflow.quality.config._expectation_map"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_expectation_map</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dltflow.quality.config._dlt_table_params" title="dltflow.quality.config._dlt_table_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_dlt_table_params</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dltflow.quality.config.DLTConfigs" title="dltflow.quality.config.DLTConfigs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DLTConfigs</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py data">
+<dt class="sig sig-object py" id="dltflow.quality.config._expectation_map">
+<span class="sig-prename descclassname"><span class="pre">dltflow.quality.config.</span></span><span class="sig-name descname"><span class="pre">_expectation_map</span></span><a class="headerlink" href="#dltflow.quality.config._expectation_map" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="dltflow.quality.config.Expectation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dltflow.quality.config.</span></span><span class="sig-name descname"><span class="pre">Expectation</span></span><a class="headerlink" href="#dltflow.quality.config.Expectation" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">pydantic.BaseModel</span></code></p>
+<dl class="py property">
+<dt class="sig sig-object py" id="dltflow.quality.config.Expectation.dlt_expectation">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dlt_expectation</span></span><a class="headerlink" href="#dltflow.quality.config.Expectation.dlt_expectation" title="Permalink to this definition">#</a></dt>
+<dd><p>Property to return the expectation as a dictionary.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.Expectation.__pydantic_model_config__">
+<span class="sig-name descname"><span class="pre">__pydantic_model_config__</span></span><a class="headerlink" href="#dltflow.quality.config.Expectation.__pydantic_model_config__" title="Permalink to this definition">#</a></dt>
+<dd><p>A class to represent an expectation that will be checked on the dataset. This is a slim
+wrapper around the</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.Expectation.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#dltflow.quality.config.Expectation.name" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.Expectation.constraint">
+<span class="sig-name descname"><span class="pre">constraint</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#dltflow.quality.config.Expectation.constraint" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="dltflow.quality.config._dlt_table_params">
+<span class="sig-prename descclassname"><span class="pre">dltflow.quality.config.</span></span><span class="sig-name descname"><span class="pre">_dlt_table_params</span></span><a class="headerlink" href="#dltflow.quality.config._dlt_table_params" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="dltflow.quality.config.PydanticV2BaseModelLazy">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dltflow.quality.config.</span></span><span class="sig-name descname"><span class="pre">PydanticV2BaseModelLazy</span></span><a class="headerlink" href="#dltflow.quality.config.PydanticV2BaseModelLazy" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">pydantic.BaseModel</span></code></p>
+<p>A class to represent the base model for the Pydantic models. This class is a slim wrapper around the Pydantic</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="dltflow.quality.config.PydanticV2BaseModelLazy.model_dump">
+<span class="sig-name descname"><span class="pre">model_dump</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dltflow.quality.config.PydanticV2BaseModelLazy.model_dump" title="Permalink to this definition">#</a></dt>
+<dd><p>Method to dump the model as a dictionary.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="dltflow.quality.config.CommonWriteOpts">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dltflow.quality.config.</span></span><span class="sig-name descname"><span class="pre">CommonWriteOpts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dltflow.quality.config.CommonWriteOpts" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#dltflow.quality.config.PydanticV2BaseModelLazy" title="dltflow.quality.config.PydanticV2BaseModelLazy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PydanticV2BaseModelLazy</span></code></a></p>
+<p>A class to represent the common write options that will be used to create the table.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.CommonWriteOpts.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#dltflow.quality.config.CommonWriteOpts.name" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.CommonWriteOpts.comment">
+<span class="sig-name descname"><span class="pre">comment</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#dltflow.quality.config.CommonWriteOpts.comment" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.CommonWriteOpts.spark_conf">
+<span class="sig-name descname"><span class="pre">spark_conf</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#dltflow.quality.config.CommonWriteOpts.spark_conf" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.CommonWriteOpts.database">
+<span class="sig-name descname"><span class="pre">database</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#dltflow.quality.config.CommonWriteOpts.database" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.CommonWriteOpts.tablename">
+<span class="sig-name descname"><span class="pre">tablename</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#dltflow.quality.config.CommonWriteOpts.tablename" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="dltflow.quality.config.TableProperties">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dltflow.quality.config.</span></span><span class="sig-name descname"><span class="pre">TableProperties</span></span><a class="headerlink" href="#dltflow.quality.config.TableProperties" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#dltflow.quality.config.PydanticV2BaseModelLazy" title="dltflow.quality.config.PydanticV2BaseModelLazy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PydanticV2BaseModelLazy</span></code></a></p>
+<p>A class to represent the table properties that will be added to the table.
+<a class="reference external" href="https://docs.databricks.com/en/delta-live-tables/properties.html#delta-live-tables-table-properties">https://docs.databricks.com/en/delta-live-tables/properties.html#delta-live-tables-table-properties</a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.TableProperties.__pydantic_model_config__">
+<span class="sig-name descname"><span class="pre">__pydantic_model_config__</span></span><a class="headerlink" href="#dltflow.quality.config.TableProperties.__pydantic_model_config__" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.TableProperties.managed_optimize">
+<span class="sig-name descname"><span class="pre">managed_optimize</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#dltflow.quality.config.TableProperties.managed_optimize" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.TableProperties.z_order_cols">
+<span class="sig-name descname"><span class="pre">z_order_cols</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#dltflow.quality.config.TableProperties.z_order_cols" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.TableProperties.allow_reset">
+<span class="sig-name descname"><span class="pre">allow_reset</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#dltflow.quality.config.TableProperties.allow_reset" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="dltflow.quality.config.TableWriteOpts">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dltflow.quality.config.</span></span><span class="sig-name descname"><span class="pre">TableWriteOpts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dltflow.quality.config.TableWriteOpts" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#dltflow.quality.config.CommonWriteOpts" title="dltflow.quality.config.CommonWriteOpts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CommonWriteOpts</span></code></a></p>
+<p>A class to represent the write options that will be used to create the table.</p>
+<p><a class="reference external" href="https://docs.databricks.com/en/delta-live-tables/python-ref.html#python-delta-live-tables-properties">https://docs.databricks.com/en/delta-live-tables/python-ref.html#python-delta-live-tables-properties</a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.TableWriteOpts.__pydantic_model_config__">
+<span class="sig-name descname"><span class="pre">__pydantic_model_config__</span></span><a class="headerlink" href="#dltflow.quality.config.TableWriteOpts.__pydantic_model_config__" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.TableWriteOpts.table_properties">
+<span class="sig-name descname"><span class="pre">table_properties</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#dltflow.quality.config.TableWriteOpts.table_properties" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.TableWriteOpts.path">
+<span class="sig-name descname"><span class="pre">path</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#dltflow.quality.config.TableWriteOpts.path" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.TableWriteOpts.partition_cols">
+<span class="sig-name descname"><span class="pre">partition_cols</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#dltflow.quality.config.TableWriteOpts.partition_cols" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="dltflow.quality.config.AppendFlowConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dltflow.quality.config.</span></span><span class="sig-name descname"><span class="pre">AppendFlowConfig</span></span><a class="headerlink" href="#dltflow.quality.config.AppendFlowConfig" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#dltflow.quality.config.PydanticV2BaseModelLazy" title="dltflow.quality.config.PydanticV2BaseModelLazy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PydanticV2BaseModelLazy</span></code></a></p>
+<p>A class to represent the configuration of the append flow.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.AppendFlowConfig.target">
+<span class="sig-name descname"><span class="pre">target</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#dltflow.quality.config.AppendFlowConfig.target" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.AppendFlowConfig.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#dltflow.quality.config.AppendFlowConfig.name" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.AppendFlowConfig.spark_conf">
+<span class="sig-name descname"><span class="pre">spark_conf</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#dltflow.quality.config.AppendFlowConfig.spark_conf" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.AppendFlowConfig.comment">
+<span class="sig-name descname"><span class="pre">comment</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#dltflow.quality.config.AppendFlowConfig.comment" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="dltflow.quality.config.ApplyChangesConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dltflow.quality.config.</span></span><span class="sig-name descname"><span class="pre">ApplyChangesConfig</span></span><a class="headerlink" href="#dltflow.quality.config.ApplyChangesConfig" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#dltflow.quality.config.PydanticV2BaseModelLazy" title="dltflow.quality.config.PydanticV2BaseModelLazy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PydanticV2BaseModelLazy</span></code></a></p>
+<p>A class to represent the configuration of the apply changes flow.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.ApplyChangesConfig.target">
+<span class="sig-name descname"><span class="pre">target</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#dltflow.quality.config.ApplyChangesConfig.target" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.ApplyChangesConfig.source">
+<span class="sig-name descname"><span class="pre">source</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#dltflow.quality.config.ApplyChangesConfig.source" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.ApplyChangesConfig.keys">
+<span class="sig-name descname"><span class="pre">keys</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#dltflow.quality.config.ApplyChangesConfig.keys" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.ApplyChangesConfig.sequence_by">
+<span class="sig-name descname"><span class="pre">sequence_by</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#dltflow.quality.config.ApplyChangesConfig.sequence_by" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.ApplyChangesConfig.ignore_null_updates">
+<span class="sig-name descname"><span class="pre">ignore_null_updates</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#dltflow.quality.config.ApplyChangesConfig.ignore_null_updates" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.ApplyChangesConfig.apply_as_deletes">
+<span class="sig-name descname"><span class="pre">apply_as_deletes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#dltflow.quality.config.ApplyChangesConfig.apply_as_deletes" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.ApplyChangesConfig.apply_as_truncates">
+<span class="sig-name descname"><span class="pre">apply_as_truncates</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#dltflow.quality.config.ApplyChangesConfig.apply_as_truncates" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.ApplyChangesConfig.column_list">
+<span class="sig-name descname"><span class="pre">column_list</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#dltflow.quality.config.ApplyChangesConfig.column_list" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.ApplyChangesConfig.except_column_list">
+<span class="sig-name descname"><span class="pre">except_column_list</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#dltflow.quality.config.ApplyChangesConfig.except_column_list" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.ApplyChangesConfig.stored_as_scd_type">
+<span class="sig-name descname"><span class="pre">stored_as_scd_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#dltflow.quality.config.ApplyChangesConfig.stored_as_scd_type" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.ApplyChangesConfig.track_history_column_list">
+<span class="sig-name descname"><span class="pre">track_history_column_list</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#dltflow.quality.config.ApplyChangesConfig.track_history_column_list" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.ApplyChangesConfig.track_history_except_column_list">
+<span class="sig-name descname"><span class="pre">track_history_except_column_list</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#dltflow.quality.config.ApplyChangesConfig.track_history_except_column_list" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="dltflow.quality.config.DLTConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dltflow.quality.config.</span></span><span class="sig-name descname"><span class="pre">DLTConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dltflow.quality.config.DLTConfig" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#dltflow.quality.config.PydanticV2BaseModelLazy" title="dltflow.quality.config.PydanticV2BaseModelLazy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PydanticV2BaseModelLazy</span></code></a></p>
+<p>A class to represent the configuration of the DLTMetaMixin.
+This class is a pydantic model that is used to declare:</p>
+<ol class="arabic simple">
+<li><p>The name of the function that is being wrapped by the DLTMetaMixin.</p></li>
+<li><p>The type of DLT object that will be persisted in the data platform. table | view</p></li>
+<li><p>The expectations that will be checked on the dataset.</p></li>
+<li><p>The action that will be taken on the dataset. {allow, fail, drop}</p></li>
+</ol>
+<p>Upon initialization, the DLTConfig class will:</p>
+<p>1. Store the <cite>expect_all</cite>, <cite>expect_all_or_fail</cite>, or <cite>expect_all_or_drop</cite> function in the <cite>_expectation_function</cite>
+private attribute.
+2. Store the <cite>dlt.table</cite> or <cite>dlt.view</cite> function in the <cite>_table_or_view_func</cite> private attribute.</p>
+<p>These two elements are used to actually execute and implement the DLT functionality/expectation.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="dltflow.quality.config.DLTConfig.table_or_view_func">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">table_or_view_func</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Callable</span></em><a class="headerlink" href="#dltflow.quality.config.DLTConfig.table_or_view_func" title="Permalink to this definition">#</a></dt>
+<dd><p>Property to return the table or view function based on the kind of DLT object.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="dltflow.quality.config.DLTConfig.expectation_function">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">expectation_function</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Callable</span></em><a class="headerlink" href="#dltflow.quality.config.DLTConfig.expectation_function" title="Permalink to this definition">#</a></dt>
+<dd><p>Property to return the expectation function based on the expectation action.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="dltflow.quality.config.DLTConfig.dlt_expectations">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dlt_expectations</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span></em><a class="headerlink" href="#dltflow.quality.config.DLTConfig.dlt_expectations" title="Permalink to this definition">#</a></dt>
+<dd><p>Property to return the expectations as a dictionary.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.DLTConfig.func_name">
+<span class="sig-name descname"><span class="pre">func_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#dltflow.quality.config.DLTConfig.func_name" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.DLTConfig.kind">
+<span class="sig-name descname"><span class="pre">kind</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#dltflow.quality.config.DLTConfig.kind" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.DLTConfig.expectations">
+<span class="sig-name descname"><span class="pre">expectations</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#dltflow.quality.config.Expectation" title="dltflow.quality.config.Expectation"><span class="pre">Expectation</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#dltflow.quality.config.DLTConfig.expectations" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.DLTConfig.expectation_action">
+<span class="sig-name descname"><span class="pre">expectation_action</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#dltflow.quality.config.DLTConfig.expectation_action" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.DLTConfig._expectation_function">
+<span class="sig-name descname"><span class="pre">_expectation_function</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Callable</span></em><a class="headerlink" href="#dltflow.quality.config.DLTConfig._expectation_function" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.DLTConfig._table_or_view_func">
+<span class="sig-name descname"><span class="pre">_table_or_view_func</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Callable</span></em><a class="headerlink" href="#dltflow.quality.config.DLTConfig._table_or_view_func" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.DLTConfig.write_opts">
+<span class="sig-name descname"><span class="pre">write_opts</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#dltflow.quality.config.TableWriteOpts" title="dltflow.quality.config.TableWriteOpts"><span class="pre">TableWriteOpts</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#dltflow.quality.config.DLTConfig.write_opts" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.DLTConfig.is_streaming_table">
+<span class="sig-name descname"><span class="pre">is_streaming_table</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#dltflow.quality.config.DLTConfig.is_streaming_table" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.DLTConfig.append_config">
+<span class="sig-name descname"><span class="pre">append_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#dltflow.quality.config.AppendFlowConfig" title="dltflow.quality.config.AppendFlowConfig"><span class="pre">AppendFlowConfig</span></a></em><a class="headerlink" href="#dltflow.quality.config.DLTConfig.append_config" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.DLTConfig.apply_chg_config">
+<span class="sig-name descname"><span class="pre">apply_chg_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#dltflow.quality.config.ApplyChangesConfig" title="dltflow.quality.config.ApplyChangesConfig"><span class="pre">ApplyChangesConfig</span></a></em><a class="headerlink" href="#dltflow.quality.config.DLTConfig.apply_chg_config" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dltflow.quality.config.DLTConfig.validate_expectation_action">
+<span class="sig-name descname"><span class="pre">validate_expectation_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dltflow.quality.config.DLTConfig.validate_expectation_action" title="Permalink to this definition">#</a></dt>
+<dd><p>Validator to ensure that the expectation_action is one of the supported actions.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dltflow.quality.config.DLTConfig.validate_kind">
+<span class="sig-name descname"><span class="pre">validate_kind</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dltflow.quality.config.DLTConfig.validate_kind" title="Permalink to this definition">#</a></dt>
+<dd><p>Validator to ensure that the kind is one of the supported kinds.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="dltflow.quality.config.DLTExecutionConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dltflow.quality.config.</span></span><span class="sig-name descname"><span class="pre">DLTExecutionConfig</span></span><a class="headerlink" href="#dltflow.quality.config.DLTExecutionConfig" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#dltflow.quality.config.PydanticV2BaseModelLazy" title="dltflow.quality.config.PydanticV2BaseModelLazy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PydanticV2BaseModelLazy</span></code></a></p>
+<p>A class to represent the configuration of the DLT execution.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.DLTExecutionConfig.dlt_config">
+<span class="sig-name descname"><span class="pre">dlt_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#dltflow.quality.config.DLTConfig" title="dltflow.quality.config.DLTConfig"><span class="pre">DLTConfig</span></a></em><a class="headerlink" href="#dltflow.quality.config.DLTExecutionConfig.dlt_config" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.DLTExecutionConfig.table_or_view_func">
+<span class="sig-name descname"><span class="pre">table_or_view_func</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Callable</span></em><a class="headerlink" href="#dltflow.quality.config.DLTExecutionConfig.table_or_view_func" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.DLTExecutionConfig.child_func_name">
+<span class="sig-name descname"><span class="pre">child_func_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#dltflow.quality.config.DLTExecutionConfig.child_func_name" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.DLTExecutionConfig.child_func_obj">
+<span class="sig-name descname"><span class="pre">child_func_obj</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Callable</span></em><a class="headerlink" href="#dltflow.quality.config.DLTExecutionConfig.child_func_obj" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="dltflow.quality.config.DLTConfigs">
+<span class="sig-prename descclassname"><span class="pre">dltflow.quality.config.</span></span><span class="sig-name descname"><span class="pre">DLTConfigs</span></span><a class="headerlink" href="#dltflow.quality.config.DLTConfigs" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dltflow.quality</span></code></p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../dlt_meta/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dltflow.quality.dlt_meta</span></code></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#databricks-utils-configuration-quality-dlt-py">This module contains the pydantic models for the DLT configuration. The Expectation class is a pydantic model that is
+used to declare the expectations that will be checked on the dataset.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">…</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">}</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-contents">Module Contents</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classes">Classes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attributes">Attributes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config._expectation_map"><code class="docutils literal notranslate"><span class="pre">_expectation_map</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.Expectation"><code class="docutils literal notranslate"><span class="pre">Expectation</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.Expectation.dlt_expectation"><code class="docutils literal notranslate"><span class="pre">Expectation.dlt_expectation</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.Expectation.__pydantic_model_config__"><code class="docutils literal notranslate"><span class="pre">Expectation.__pydantic_model_config__</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.Expectation.name"><code class="docutils literal notranslate"><span class="pre">Expectation.name</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.Expectation.constraint"><code class="docutils literal notranslate"><span class="pre">Expectation.constraint</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config._dlt_table_params"><code class="docutils literal notranslate"><span class="pre">_dlt_table_params</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.PydanticV2BaseModelLazy"><code class="docutils literal notranslate"><span class="pre">PydanticV2BaseModelLazy</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.PydanticV2BaseModelLazy.model_dump"><code class="docutils literal notranslate"><span class="pre">PydanticV2BaseModelLazy.model_dump()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.CommonWriteOpts"><code class="docutils literal notranslate"><span class="pre">CommonWriteOpts</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.CommonWriteOpts.name"><code class="docutils literal notranslate"><span class="pre">CommonWriteOpts.name</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.CommonWriteOpts.comment"><code class="docutils literal notranslate"><span class="pre">CommonWriteOpts.comment</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.CommonWriteOpts.spark_conf"><code class="docutils literal notranslate"><span class="pre">CommonWriteOpts.spark_conf</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.CommonWriteOpts.database"><code class="docutils literal notranslate"><span class="pre">CommonWriteOpts.database</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.CommonWriteOpts.tablename"><code class="docutils literal notranslate"><span class="pre">CommonWriteOpts.tablename</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.TableProperties"><code class="docutils literal notranslate"><span class="pre">TableProperties</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.TableProperties.__pydantic_model_config__"><code class="docutils literal notranslate"><span class="pre">TableProperties.__pydantic_model_config__</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.TableProperties.managed_optimize"><code class="docutils literal notranslate"><span class="pre">TableProperties.managed_optimize</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.TableProperties.z_order_cols"><code class="docutils literal notranslate"><span class="pre">TableProperties.z_order_cols</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.TableProperties.allow_reset"><code class="docutils literal notranslate"><span class="pre">TableProperties.allow_reset</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.TableWriteOpts"><code class="docutils literal notranslate"><span class="pre">TableWriteOpts</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.TableWriteOpts.__pydantic_model_config__"><code class="docutils literal notranslate"><span class="pre">TableWriteOpts.__pydantic_model_config__</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.TableWriteOpts.table_properties"><code class="docutils literal notranslate"><span class="pre">TableWriteOpts.table_properties</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.TableWriteOpts.path"><code class="docutils literal notranslate"><span class="pre">TableWriteOpts.path</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.TableWriteOpts.partition_cols"><code class="docutils literal notranslate"><span class="pre">TableWriteOpts.partition_cols</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.AppendFlowConfig"><code class="docutils literal notranslate"><span class="pre">AppendFlowConfig</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.AppendFlowConfig.target"><code class="docutils literal notranslate"><span class="pre">AppendFlowConfig.target</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.AppendFlowConfig.name"><code class="docutils literal notranslate"><span class="pre">AppendFlowConfig.name</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.AppendFlowConfig.spark_conf"><code class="docutils literal notranslate"><span class="pre">AppendFlowConfig.spark_conf</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.AppendFlowConfig.comment"><code class="docutils literal notranslate"><span class="pre">AppendFlowConfig.comment</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.ApplyChangesConfig"><code class="docutils literal notranslate"><span class="pre">ApplyChangesConfig</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.ApplyChangesConfig.target"><code class="docutils literal notranslate"><span class="pre">ApplyChangesConfig.target</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.ApplyChangesConfig.source"><code class="docutils literal notranslate"><span class="pre">ApplyChangesConfig.source</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.ApplyChangesConfig.keys"><code class="docutils literal notranslate"><span class="pre">ApplyChangesConfig.keys</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.ApplyChangesConfig.sequence_by"><code class="docutils literal notranslate"><span class="pre">ApplyChangesConfig.sequence_by</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.ApplyChangesConfig.ignore_null_updates"><code class="docutils literal notranslate"><span class="pre">ApplyChangesConfig.ignore_null_updates</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.ApplyChangesConfig.apply_as_deletes"><code class="docutils literal notranslate"><span class="pre">ApplyChangesConfig.apply_as_deletes</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.ApplyChangesConfig.apply_as_truncates"><code class="docutils literal notranslate"><span class="pre">ApplyChangesConfig.apply_as_truncates</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.ApplyChangesConfig.column_list"><code class="docutils literal notranslate"><span class="pre">ApplyChangesConfig.column_list</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.ApplyChangesConfig.except_column_list"><code class="docutils literal notranslate"><span class="pre">ApplyChangesConfig.except_column_list</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.ApplyChangesConfig.stored_as_scd_type"><code class="docutils literal notranslate"><span class="pre">ApplyChangesConfig.stored_as_scd_type</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.ApplyChangesConfig.track_history_column_list"><code class="docutils literal notranslate"><span class="pre">ApplyChangesConfig.track_history_column_list</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.ApplyChangesConfig.track_history_except_column_list"><code class="docutils literal notranslate"><span class="pre">ApplyChangesConfig.track_history_except_column_list</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.DLTConfig"><code class="docutils literal notranslate"><span class="pre">DLTConfig</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.DLTConfig.table_or_view_func"><code class="docutils literal notranslate"><span class="pre">DLTConfig.table_or_view_func</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.DLTConfig.expectation_function"><code class="docutils literal notranslate"><span class="pre">DLTConfig.expectation_function</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.DLTConfig.dlt_expectations"><code class="docutils literal notranslate"><span class="pre">DLTConfig.dlt_expectations</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.DLTConfig.func_name"><code class="docutils literal notranslate"><span class="pre">DLTConfig.func_name</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.DLTConfig.kind"><code class="docutils literal notranslate"><span class="pre">DLTConfig.kind</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.DLTConfig.expectations"><code class="docutils literal notranslate"><span class="pre">DLTConfig.expectations</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.DLTConfig.expectation_action"><code class="docutils literal notranslate"><span class="pre">DLTConfig.expectation_action</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.DLTConfig._expectation_function"><code class="docutils literal notranslate"><span class="pre">DLTConfig._expectation_function</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.DLTConfig._table_or_view_func"><code class="docutils literal notranslate"><span class="pre">DLTConfig._table_or_view_func</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.DLTConfig.write_opts"><code class="docutils literal notranslate"><span class="pre">DLTConfig.write_opts</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.DLTConfig.is_streaming_table"><code class="docutils literal notranslate"><span class="pre">DLTConfig.is_streaming_table</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.DLTConfig.append_config"><code class="docutils literal notranslate"><span class="pre">DLTConfig.append_config</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.DLTConfig.apply_chg_config"><code class="docutils literal notranslate"><span class="pre">DLTConfig.apply_chg_config</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.DLTConfig.validate_expectation_action"><code class="docutils literal notranslate"><span class="pre">DLTConfig.validate_expectation_action()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.DLTConfig.validate_kind"><code class="docutils literal notranslate"><span class="pre">DLTConfig.validate_kind()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.DLTExecutionConfig"><code class="docutils literal notranslate"><span class="pre">DLTExecutionConfig</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.DLTExecutionConfig.dlt_config"><code class="docutils literal notranslate"><span class="pre">DLTExecutionConfig.dlt_config</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.DLTExecutionConfig.table_or_view_func"><code class="docutils literal notranslate"><span class="pre">DLTExecutionConfig.table_or_view_func</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.DLTExecutionConfig.child_func_name"><code class="docutils literal notranslate"><span class="pre">DLTExecutionConfig.child_func_name</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.DLTExecutionConfig.child_func_obj"><code class="docutils literal notranslate"><span class="pre">DLTExecutionConfig.child_func_obj</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.DLTConfigs"><code class="docutils literal notranslate"><span class="pre">DLTConfigs</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../../../../_sources/autoapi/dltflow/quality/config/index.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Ricky Schools.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.2.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.2.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

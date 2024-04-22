@@ -1,0 +1,216 @@
+:py:mod:`dltflow.cli.deploy`
+============================
+
+.. py:module:: dltflow.cli.deploy
+
+.. autoapi-nested-parse::
+
+   dltflow.deploy.py
+   -------------------
+
+   The module provides a command line interface to deploy a python module as a DLT pipeline.
+
+   In the context of Databricks, a DLT pipeline is a Databricks notebook that runs a pipeline. This package provides
+   a unique and standalone interface to deploy a python module as a DLT pipeline.
+
+   It does so in the following steps:
+
+   1. Upload the python package to the Databricks workspace.
+       a. The package is uploaded to the workspace in the form of a directory.
+       b. This is done to ensure that the package is available to the Databricks cluster.
+   2. Create a DLT pipeline notebook.
+       a. The notebook is created with the necessary imports and configurations.
+   3. The notebook is deployed to the Databricks workspace.
+   4. The notebook is registered as a DLT pipeline in the Databricks workspace.
+
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   dltflow.cli.deploy.upload_py_package_to_workspace
+   dltflow.cli.deploy.get_class_name_from_text
+   dltflow.cli.deploy.get_module_info_from_path_name
+   dltflow.cli.deploy.create_notebook_and_upload
+   dltflow.cli.deploy.deploy_py_module_as_notebook
+   dltflow.cli.deploy.register_notebook_as_dlt_pipeline
+   dltflow.cli.deploy.handle_deployment_per_file_config_dependency
+   dltflow.cli.deploy.deploy_py_dlt2
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   dltflow.cli.deploy._BASE_NOTEBOOK
+   dltflow.cli.deploy._CODE_IMPORT_AND_LAUNCH_CELLS
+
+
+.. py:data:: _BASE_NOTEBOOK
+   :value: Multiline-String
+
+    .. raw:: html
+
+        <details><summary>Show Value</summary>
+
+    .. code-block:: python
+
+        """
+        # Databricks notebook source
+        {dependencies}
+        # COMMAND ----------
+        # add the deployed artifact to the python path
+        # so DLT can import the module.
+        import sys
+        import yaml
+        import pathlib
+        sys.path.append('{package_namespace}')
+        """
+
+    .. raw:: html
+
+        </details>
+
+   
+
+.. py:data:: _CODE_IMPORT_AND_LAUNCH_CELLS
+   :value: Multiline-String
+
+    .. raw:: html
+
+        <details><summary>Show Value</summary>
+
+    .. code-block:: python
+
+        """
+        # COMMAND ----------
+        # perform necessary imports to load configuration
+        # and to load the core pipeline code we want to run.
+        from {import_path} import {class_name}
+        {config_holder}
+        # COMMAND ----------
+        # load the configuration file if it exists
+        # and run the pipeline.
+        if config_path is not None: 
+            config = yaml.safe_load(pathlib.Path(config_path).read_text())
+            pipeline = {class_name}(spark=spark, init_conf=config)
+            pipeline.{launch_method}()
+        """
+
+    .. raw:: html
+
+        </details>
+
+   
+
+.. py:function:: upload_py_package_to_workspace(run_id: str, dbfs_path: pathlib.Path, package_path: pathlib.Path, files: list, profile: str, ws_client: databricks.sdk.WorkspaceClient = None)
+
+   Upload a python package to the Databricks workspace. The logic being leveraged by
+   this function loosely follows the `dbx` packages methodology of uploading a package, but
+   with a simpler coding interface.
+
+   Simplicity was chosen, instead of using `dbx` commands as a way to understand the underlying
+   logic of the `dbx` package. At some point in the future, we may switch to using `dbx` commands
+   or `dab` commands to upload the package to the Databricks workspace.
+
+
+   :param run_id:
+   :param dbfs_path:
+   :param package_path:
+   :param files:
+   :param profile:
+   :param ws_client:
+
+
+.. py:function:: get_class_name_from_text(text: str)
+
+
+.. py:function:: get_module_info_from_path_name(project_name, project_path, module_path: str)
+
+   A helper function to get the class name and module name from a module path.
+
+
+   :param project_name:
+   :param project_path:
+   :param module_path:
+
+
+.. py:function:: create_notebook_and_upload(ws_client: databricks.sdk.WorkspaceClient, dbfs_path: pathlib.Path, notebook_name: str, notebook_src: str)
+
+   This function creates a DLT pipeline notebook and uploads it to the Databricks workspace.
+
+   With regards to registering a python module as a DLT pipeline, this might be the most important
+   step of that process. The logic for generating the notebook is simple, and this is the core reason
+   this package is being developed instead of using something like `dbx` or `dab` commands.
+
+   Notebooks should not be used by developers for their production grade code/pipelines. Rather, they
+   should use a proper script/module that can be tested.
+
+   To adhere to this standard, a less than 20 line notebook is generated to run the pipeline. This notebook
+   can be simply considered a "driver" or "executor" for the pipeline. No core business should be
+   added to the notebook.
+
+   :param ws_client:
+   :param dbfs_path:
+   :param notebook_name:
+   :param notebook_src:
+
+
+.. py:function:: deploy_py_module_as_notebook(run_id: str, ws_client: databricks.sdk.WorkspaceClient, project_name: str, workflow_name: str, dbfs_path: pathlib.Path, package_path: pathlib.Path, items: list, dependencies: list = None, launch_method: str = 'launch')
+
+   This function deploys a python module as a DLT pipeline to the Databricks workspace.
+
+   :param run_id:
+   :param ws_client:
+   :type ws_client: WorkspaceClient,
+   :param project_name:
+   :type project_name: str,
+   :param workflow_name:
+   :type workflow_name: str,
+   :param dbfs_path:
+   :type dbfs_path: pathlib.Path,
+   :param package_path:
+   :type package_path: pathlib.Path,
+   :param items:
+   :type items: list,
+   :param dependencies:
+   :type dependencies: list = None,
+   :param package_namespace:
+   :type package_namespace: str = None,
+   :param launch_method:
+   :type launch_method: str = 'launch'
+
+
+.. py:function:: register_notebook_as_dlt_pipeline(ws_client: databricks.sdk.WorkspaceClient, notebook_path: str, pipeline_payload: dltflow.cli.models.deployment.DLTFlowPipeline, project_conf, as_individual: bool)
+
+   Register a notebook as a DLT pipeline in the Databricks workspace.
+
+   :param ws_client:
+   :param notebook_path:
+   :param pipeline_payload:
+
+
+.. py:function:: handle_deployment_per_file_config_dependency(workflow_name, items, dependencies, deployment_config, profile, as_individual: bool)
+
+   A helper function to handle the deployment of a python module as a DLT pipeline.
+
+   :param workflow_name:
+   :param items:
+   :param dependencies:
+   :param deployment_config:
+   :param profile:
+
+
+.. py:function:: deploy_py_dlt2(deployment_file: str, environment: str, as_individual: bool)
+
+   Deploy a DLT pipeline from a python module.
+
+

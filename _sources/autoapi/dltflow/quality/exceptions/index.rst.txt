@@ -1,0 +1,24 @@
+:py:mod:`dltflow.quality.exceptions`
+====================================
+
+.. py:module:: dltflow.quality.exceptions
+
+.. autoapi-nested-parse::
+
+   dltflow.quality.exceptions
+   --------------------------
+   This module contains the exceptions for the DLT operations of dltflow.
+
+
+
+Module Contents
+---------------
+
+.. py:exception:: DLTException
+
+
+   Bases: :py:obj:`BaseException`
+
+   An exception that is raised when a DLT operation is not supported.
+
+

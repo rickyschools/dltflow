@@ -1,0 +1,57 @@
+:py:mod:`dltflow.cli.utils`
+===========================
+
+.. py:module:: dltflow.cli.utils
+
+.. autoapi-nested-parse::
+
+   dltflow.utils.py
+   ------------------
+   This module contains utility functions for working with dltflow configuration files.
+
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   dltflow.cli.utils.get_config
+   dltflow.cli.utils.write_config
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   dltflow.cli.utils.CLI_NAME
+   dltflow.cli.utils.dltflow_config_path
+
+
+.. py:data:: CLI_NAME
+   :value: 'dltflow'
+
+   
+
+.. py:data:: dltflow_config_path
+   :value: 'dltflow.yml'
+
+   
+
+.. py:function:: get_config() -> Union[dltflow.cli.models.project.ProjectConfig, None]
+
+   Reads the dltflow configuration file and returns a ProjectConfig object.
+   If the configuration file does not exist, returns None.
+
+
+.. py:function:: write_config(config: dict)
+
+   Helper function to write a configuration dictionary to a file.
+
+

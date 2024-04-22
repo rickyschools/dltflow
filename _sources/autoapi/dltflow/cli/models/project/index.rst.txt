@@ -1,0 +1,165 @@
+:py:mod:`dltflow.cli.models.project`
+====================================
+
+.. py:module:: dltflow.cli.models.project
+
+.. autoapi-nested-parse::
+
+   dltflow.models.py
+   -------------------
+   This module contains the Pydantic models for the DLTFlow configuration file.
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   dltflow.cli.models.project.ProjectInfo
+   dltflow.cli.models.project.PathName
+   dltflow.cli.models.project.ProjectElements
+   dltflow.cli.models.project.Workspace
+   dltflow.cli.models.project.Environment
+   dltflow.cli.models.project.ProjectConfig
+
+
+
+
+.. py:class:: ProjectInfo
+
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+   ProjectInfo
+   -----------
+   Pydantic model for the project information.
+
+   .. py:attribute:: name
+      :type: str
+
+      
+
+
+.. py:class:: PathName
+
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+   PathName
+   --------
+   Pydantic model for the path information.
+
+   .. py:attribute:: __pydantic_config__
+
+      
+
+   .. py:attribute:: name
+      :type: str
+
+      
+
+
+.. py:class:: ProjectElements
+
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+   ProjectElements
+   ----------------
+   Pydantic model for the project elements.
+
+   .. py:attribute:: code
+      :type: PathName
+
+      
+
+   .. py:attribute:: conf
+      :type: PathName
+
+      
+
+   .. py:attribute:: workflows
+      :type: PathName
+
+      
+
+
+.. py:class:: Workspace
+
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+   Workspace
+   ----------
+   Pydantic model for the workspace.
+
+   .. py:attribute:: host
+      :type: str
+
+      
+
+   .. py:attribute:: root_path
+      :type: str
+
+      
+
+   .. py:attribute:: artifact_path
+      :type: str
+
+      
+
+
+.. py:class:: Environment
+
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+   Environment
+   ------------
+   Pydantic model for the environment.
+
+   .. py:attribute:: mode
+      :type: str
+
+      
+
+   .. py:attribute:: default
+      :type: bool
+
+      
+
+   .. py:attribute:: workspace
+      :type: Workspace
+
+      
+
+
+.. py:class:: ProjectConfig
+
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+   ProjectConfig
+   ---------------
+   Pydantic model for the project configuration.
+
+   .. py:attribute:: dltflow
+      :type: ProjectInfo
+
+      
+
+   .. py:attribute:: include
+      :type: ProjectElements
+
+      
+
+   .. py:attribute:: targets
+      :type: Mapping[str, Environment]
+
+      
+
+
