@@ -42,6 +42,19 @@ Classes
        only intended for notebook development.
    2. A meta-programming (config driven) approach to authoring DLT pipelines.
 
+   .. py:method:: _set_write_opts_if_needed(config)
+
+      Set the write options if the config has a writer attribute and the dlt config doesn't have write_opts.
+
+      :param config: The configuration for the class.
+      :type config: dict
+
+
+   .. py:method:: _set_child_func_attributes()
+
+      Set the attributes for the child functions based on the execution configuration.
+
+
    .. py:method:: _make_execution_plan(configs: dltflow.quality.config.DLTConfigs)
 
       This method is used to create an execution plan for the user function.
@@ -97,6 +110,7 @@ Classes
 
 
    .. py:method:: table_view_expectation_wrapper(child_function, execution_config)
+      :staticmethod:
 
       This method is the "magic" that dynamically and automatically wraps the user function with DLT expectations.
 
@@ -106,10 +120,14 @@ Classes
       Read more about streaming tables in Databricks' documentation:
       https://docs.databricks.com/en/delta-live-tables/python-ref.html#example-define-tables-and-views
 
-      :param child_function:
+      :param child_function: The child function that will be wrapped with DLT expectations.
+      :type child_function: callable
+      :param execution_config: The configuration that will be used to execute the DLT expectations.
+      :type execution_config: DLTExecutionConfig
 
 
    .. py:method:: streaming_table_expectation_wrapper(child_function, execution_config)
+      :staticmethod:
 
       This method is a magic wrapper that applies streaming dlt operations to user queries/functions.
 
@@ -126,7 +144,10 @@ Classes
       https://docs.databricks.com/en/delta-live-tables/python-ref.html#write-to-a-streaming-table-from-multiple-source-streams
       https://docs.databricks.com/en/delta-live-tables/cdc.html
 
-      :param child_function:
+      :param child_function: The child function that will be wrapped with DLT expectations.
+      :type child_function: callable
+      :param execution_config: The configuration that will be used to execute the DLT expectations.
+      :type execution_config: DLTExecutionConfig
 
 
    .. py:method:: apply_dlt(child_function, execution_config: dltflow.quality.config.DLTExecutionConfig)

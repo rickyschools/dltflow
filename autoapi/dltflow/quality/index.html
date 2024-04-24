@@ -392,6 +392,23 @@ wraps a function with DLT expectations.</p>
 <li><p>A meta-programming (config driven) approach to authoring DLT pipelines.</p></li>
 </ol>
 <dl class="py method">
+<dt class="sig sig-object py" id="dltflow.quality.DLTMetaMixin._set_write_opts_if_needed">
+<span class="sig-name descname"><span class="pre">_set_write_opts_if_needed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dltflow.quality.DLTMetaMixin._set_write_opts_if_needed" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the write options if the config has a writer attribute and the dlt config doesn’t have write_opts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config</strong> (<em>dict</em>) – The configuration for the class.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dltflow.quality.DLTMetaMixin._set_child_func_attributes">
+<span class="sig-name descname"><span class="pre">_set_child_func_attributes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dltflow.quality.DLTMetaMixin._set_child_func_attributes" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the attributes for the child functions based on the execution configuration.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="dltflow.quality.DLTMetaMixin._make_execution_plan">
 <span class="sig-name descname"><span class="pre">_make_execution_plan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">configs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dltflow.quality.config.DLTConfigs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dltflow.quality.DLTMetaMixin._make_execution_plan" title="Permalink to this definition">#</a></dt>
 <dd><p>This method is used to create an execution plan for the user function.</p>
@@ -465,7 +482,7 @@ This is done by inspecting the code and typed return annotations.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dltflow.quality.DLTMetaMixin.table_view_expectation_wrapper">
-<span class="sig-name descname"><span class="pre">table_view_expectation_wrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">child_function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">execution_config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dltflow.quality.DLTMetaMixin.table_view_expectation_wrapper" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">table_view_expectation_wrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">child_function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">execution_config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dltflow.quality.DLTMetaMixin.table_view_expectation_wrapper" title="Permalink to this definition">#</a></dt>
 <dd><p>This method is the “magic” that dynamically and automatically wraps the user function with DLT expectations.</p>
 <p>This is used for non-streaming tables and intermediate views in delta live table pipelines. If the user
 chooses, they can also apply expectations to their dataset.</p>
@@ -473,14 +490,17 @@ chooses, they can also apply expectations to their dataset.</p>
 <a class="reference external" href="https://docs.databricks.com/en/delta-live-tables/python-ref.html#example-define-tables-and-views">https://docs.databricks.com/en/delta-live-tables/python-ref.html#example-define-tables-and-views</a></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>child_function</strong> – </p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>child_function</strong> (<em>callable</em>) – The child function that will be wrapped with DLT expectations.</p></li>
+<li><p><strong>execution_config</strong> (<a class="reference internal" href="config/index.html#dltflow.quality.config.DLTExecutionConfig" title="dltflow.quality.config.DLTExecutionConfig"><em>DLTExecutionConfig</em></a>) – The configuration that will be used to execute the DLT expectations.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dltflow.quality.DLTMetaMixin.streaming_table_expectation_wrapper">
-<span class="sig-name descname"><span class="pre">streaming_table_expectation_wrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">child_function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">execution_config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dltflow.quality.DLTMetaMixin.streaming_table_expectation_wrapper" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">streaming_table_expectation_wrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">child_function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">execution_config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dltflow.quality.DLTMetaMixin.streaming_table_expectation_wrapper" title="Permalink to this definition">#</a></dt>
 <dd><p>This method is a magic wrapper that applies streaming dlt operations to user queries/functions.</p>
 <p>This is used for streaming tables in delta live table pipelines. If the user chooses, they can also apply
 expectations to their dataset.</p>
@@ -493,7 +513,10 @@ expectations to their dataset.</p>
 <a class="reference external" href="https://docs.databricks.com/en/delta-live-tables/cdc.html">https://docs.databricks.com/en/delta-live-tables/cdc.html</a></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>child_function</strong> – </p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>child_function</strong> (<em>callable</em>) – The child function that will be wrapped with DLT expectations.</p></li>
+<li><p><strong>execution_config</strong> (<a class="reference internal" href="config/index.html#dltflow.quality.config.DLTExecutionConfig" title="dltflow.quality.config.DLTExecutionConfig"><em>DLTExecutionConfig</em></a>) – The configuration that will be used to execute the DLT expectations.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -572,6 +595,8 @@ a TypeError will be raised.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#package-contents">Package Contents</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classes">Classes</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.DLTMetaMixin"><code class="docutils literal notranslate"><span class="pre">DLTMetaMixin</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.DLTMetaMixin._set_write_opts_if_needed"><code class="docutils literal notranslate"><span class="pre">DLTMetaMixin._set_write_opts_if_needed()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.DLTMetaMixin._set_child_func_attributes"><code class="docutils literal notranslate"><span class="pre">DLTMetaMixin._set_child_func_attributes()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.DLTMetaMixin._make_execution_plan"><code class="docutils literal notranslate"><span class="pre">DLTMetaMixin._make_execution_plan()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.DLTMetaMixin._get_dlt_config"><code class="docutils literal notranslate"><span class="pre">DLTMetaMixin._get_dlt_config()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.DLTMetaMixin._dangerous_code_check"><code class="docutils literal notranslate"><span class="pre">DLTMetaMixin._dangerous_code_check()</span></code></a></li>
