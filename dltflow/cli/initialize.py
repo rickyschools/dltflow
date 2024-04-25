@@ -95,21 +95,27 @@ def init(
     """
     Initialize a new dltflow project.
 
-    This cli command is used to help initialize a dltflow project. At a minimum, it will create a `dltflow` config
-    file in the current directory.
+    This cli command is used to help initialize a dltflow project. At a minimum,
+    it will create a `dltflow` config file in the current directory.
 
-    The code, configuration, and workflow directory names can be customized by the user. The default values are:
-    - code: `my_project`
-    - config: `conf`
-    - workflows: `workflows`
+    The code, configuration, and workflow directory names can be customized
+    by the user. The default values are:
 
-    When these directories are created during initialization, a `.gitkeep` file is created in each directory. This is
-    to ensure that the directories are included in the git repository. Also, a `setup.py` and `pyproject.toml` file are
-    created in the root directory. These files are used to help package the project as a python package.
+        - code: `my_project`
+        - config: `conf`
+        - workflows: `workflows`
 
-    The `pyproject.toml` file is setup to use the `bumpver` package to help manage versioning.
+    When these directories are created during initialization, a `.gitkeep` file
+    is created in each directory. This is to ensure that the directories are
+    included in the git repository. Also, a `setup.py` and `pyproject.toml` file are
+    created in the root directory. These files are used to help package the
+    project as a python package.
 
-    If the user opts in to include directories, dltflow will create the following structure:
+    The `pyproject.toml` file is setup to use the `bumpver` package to help
+    manage versioning.
+
+    If the user opts in to include directories, dltflow will create the
+    directories with the following structure:
 
 
         ```text

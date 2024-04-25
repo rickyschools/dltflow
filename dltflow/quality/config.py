@@ -297,9 +297,10 @@ class DLTExecutionConfig(PydanticV2BaseModelLazy):
     """
     dlt_config: DLTConfig = pyd.Field(..., description="The DLT configuration.")
     table_or_view_func: t.Callable = pyd.Field(..., description="The table or view function.")
-    child_func_name: str = pyd.Field(..., description="The name of the user defined function that will be wrapped with DLT stuff.")
-    child_func_obj: t.Callable = pyd.Field(..., description="The user defined function that will be wrapped with DLT stuff.")
-
+    child_func_name: str = pyd.Field(...,
+                                     description="The name of the user defined function that will be wrapped with DLT stuff.")
+    child_func_obj: t.Callable = pyd.Field(...,
+                                           description="The user defined function that will be wrapped with DLT stuff.")
 
 
 DLTConfigs = t.List[DLTConfig]
