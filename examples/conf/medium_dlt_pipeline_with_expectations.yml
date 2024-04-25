@@ -1,0 +1,19 @@
+reader:
+  ...
+writer:
+  adl_processed_path: "a/fake/path"
+  schema: fake_schema
+  table_name: table_name
+dlt:
+  - func_name: "orchestrate"
+    kind: table
+    expectation_action: "drop"
+    expectations:
+      - name: "check_count"
+        constraint: "count <= 10"
+  - func_name: "intermediate_step"
+    kind: view
+    expectation_action: "drop"
+    expectations:
+      - name: "check_age"
+        constraint: "age between 10 and 100"

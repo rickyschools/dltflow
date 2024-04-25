@@ -1,5 +1,5 @@
 """
-databricks_utils.configuration.quality.dlt.py
+dltflow.quality.config.py
 ---------------------------------------------
 This module contains the pydantic models for the DLT configuration. The Expectation class is a pydantic model that is
 used to declare the expectations that will be checked on the dataset.

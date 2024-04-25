@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dltflow"
+version = '0.0.1'
+description = "An automation package for deploying pyspark python applications as DLT pipelines in a Databricks workspace."
+keywords = ["databricks", "pyspark", "automation", "dlt", "pipeline", "deployment", 'ci/cd']
+authors = [
+    { name = "Ricky Schools", email = "ricky.schools@insightglobal.com" },
+]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+[project.scripts]
+dltflow = "dltflow.cli.interface:cli"
+
+[bumpver]
+current_version = '0.0.1'
+version_pattern = "MAJOR.MINOR.PATCH[PYTAGNUM]"
+
+[bumpver.file_patterns]
+"dltflow/__init__.py" = [
+    "__version__ = '{version}'",
+]
+"setup.py" = [
+    "version='{version}'",
+]
+"pyproject.toml" = [
+    "version = '{version}'",
+    'current_version = "{version}"', # bumpver
+]
+"docs/conf.py" = [
+    "release = '{version}'",
+]

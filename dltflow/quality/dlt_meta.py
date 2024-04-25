@@ -1,5 +1,5 @@
 """
-databricks_utils.quality.dlt.dlt_meta.py
+dltflow.quality.dlt_meta.py
 ----------------------------------------
 This module contains a very slim wrapper around the Databricks Live Tables (DLT) API. The DLTMetaMixin class is a
 metaclass that wraps a function with DLT expectations. The DLTConfig class is a pydantic model that is used to
@@ -29,8 +29,8 @@ cfg = {
     }
 }
 
-from databricks_utils.quality import DLTMetaMixin
-from databricks_utils.dataframe import default_session
+from dltflow.quality import DLTMetaMixin
+from pyspark.pandas.utils import default_session
 
 class MyPipeline(DLTMetaMixin):
     def __init__(self, config: dict):
@@ -99,52 +99,69 @@ class DLTMetaMixin:
 
     def __new__(cls, *args, **kwargs):
         """
-        This method is called when the class is instantiated. It is used to dynamically
-        configure the class based on the provided configuration.
+        Instantiate the class with the provided configuration.
 
         Parameters
         ----------
-        args
-        kwargs
-        """
-        if 'init_conf' in kwargs:
-
-            cfg = kwargs.get('init_conf')
-            new_obj = super().__new__(cls)
-            new_obj._logger = logging.getLogger(__name__)
-            new_obj._conf = new_obj._get_dlt_config(cfg)
-            if hasattr(cfg, 'writer') and 'write_opts' not in cfg.get('dlt', {}):
-                writer_conf = cfg.get('writer')
-                new_obj._conf.write_opts.tablename = writer_conf.get('table')
-                new_obj._conf.write_opts.path = writer_conf.get('path')
-            new_obj._execution_conf = new_obj._make_execution_plan(new_obj._conf)
-            for conf in new_obj._execution_conf:
-                setattr(new_obj, conf.child_func_name, new_obj.apply_dlt(conf.child_func_obj, conf))
-            return new_obj
-
-    def _make_execution_plan(self, configs: DLTConfigs):
-        """
-        This method is used to create an execution plan for the user function.
-
-        Parameters
-        ----------
-        child_function
+        kwargs : dict
+            The configuration for the class.
 
         Returns
         -------
-
+        object
+            The instantiated object.
         """
-        plans = []
+        config = kwargs.get('init_conf')
+        obj = super().__new__(cls)
+        obj._logger = logging.getLogger(__name__)
+        obj._conf: DLTConfigs = obj._get_dlt_config(config)
+        obj._set_write_opts_if_needed(config)
+        obj._execution_conf = obj._make_execution_plan(obj._conf)
+        obj._set_child_func_attributes()
+        return obj
+
+    def _set_write_opts_if_needed(self, config):
+        """
+        Set the write options if the config has a writer attribute and the dlt config doesn't have write_opts.
+
+        Parameters
+        ----------
+        config : dict
+            The configuration for the class.
+        """
+        if hasattr(config, 'writer') and 'write_opts' not in config.get('dlt', {}):
+            writer_conf = config.get('writer')
+            self._conf.write_opts.tablename = writer_conf.get('table')
+            self._conf.write_opts.path = writer_conf.get('path')
+
+    def _set_child_func_attributes(self):
+        """
+        Set the attributes for the child functions based on the execution configuration.
+        """
+        for conf in self._execution_conf:
+            setattr(self, conf.child_func_name, self.apply_dlt(conf.child_func_obj, conf))
+
+    def _make_execution_plan(self, configs: DLTConfigs):
+        """
+        Create an execution plan for the user function.
+
+        Parameters
+        ----------
+        configs : DLTConfigs
+            The configuration for the execution plan.
+
+        Returns
+        -------
+        list
+            The execution plan.
+        """
+        execution_plan = []
         for config in configs:
-            plans.append(
-                DLTExecutionConfig(
-                    dlt_config=config,
-                    table_or_view_func=dlt.table if config.kind == "table" else dlt.view,
-                    child_func_name=config.func_name,
-                    child_func_obj=self._enforce_delta_limitations_and_requirements(config.func_name),
-                )
-            )
-        return plans
+            table_or_view_func = dlt.table if config.kind == "table" else dlt.view
+            child_func_obj = self._enforce_delta_limitations_and_requirements(config.func_name)
+            execution_plan.append(DLTExecutionConfig(dlt_config=config, table_or_view_func=table_or_view_func,
+                                                     child_func_name=config.func_name, child_func_obj=child_func_obj))
+        return execution_plan
 
     @staticmethod
     def _get_dlt_config(config) -> DLTConfigs:
@@ -163,10 +180,11 @@ class DLTMetaMixin:
         """
         if isinstance(config, dict):
             if 'dlt' in config:
-                if isinstance(config.get('dlt'), dict):
-                    return [DLTConfig(**config.get('dlt'))]
-                elif isinstance(config.get('dlt'), list):
-                    return [DLTConfig(**c) for c in config.get('dlt')]
+                dlt_value = config.get('dlt')
+                if isinstance(dlt_value, dict):
+                    return [DLTConfig(**dlt_value)]
+                elif isinstance(dlt_value, list):
+                    return [DLTConfig(**c) for c in dlt_value]
         elif issubclass(config, pyd.BaseModel):
             if hasattr(config, "dlt"):
                 return [DLTConfig(**config.dlt.model_dump())]
@@ -183,17 +201,17 @@ class DLTMetaMixin:
         -------
 
         """
-        for dangerous_action in _DANGEROUS_ACTIONS:
-            if dangerous_action in str(code):
-                warn(
-                    f"Found dangerous action of `{dangerous_action}` in the `{self._func_name}` function. "
+        for action in _DANGEROUS_ACTIONS:
+            if action in code:
+                message = (
+                    f"Found dangerous action of `{action}` in the `{self._func_name}` function. "
                     f"Per Databricks' DLT guidelines, these spark commands could have unintended consequences. "
                     f"Please review the documentation for more information on how to handle this. "
                     f"Ignoring this warning could have detrimental effects on quality of the data "
                     f"your team is curating for the business. Tread carefully.\n\n"
-                    f""
                     f"https://docs.databricks.com/en/delta-live-tables/python-ref.html#limitations"
                 )
+                self._logger.warning(message)
 
     def _unsupported_action_check(self, code: str):
         """
@@ -207,70 +225,75 @@ class DLTMetaMixin:
         -------
 
         """
-        for unsupported_action in _UNSUPPORTED_ACTIONS:
-            if unsupported_action in str(code):
-                error_message = (
-                    f"Found unsupported action of `{unsupported_action}` in the `{self._func_name}` function. "
-                    f"Per Databricks' DLT guidelines, these spark commands are not supported. "
+        for action in _UNSUPPORTED_ACTIONS:
+            if action in str(code):
+                msg = (
+                    f"Found unsupported action of `{action}` in the `{self._func_name}` function. "
                     f"Please review the documentation for more information on how to handle this. "
-                    f"Ignoring this warning could have detrimental effects on quality of the data "
-                    f"your team is curating for the business. Tread carefully.\n\n"
-                    f""
                     f"https://docs.databricks.com/en/delta-live-tables/python-ref.html#limitations"
                 )
-                print(error_message)
-                raise ReferenceError(error_message)
+                self._logger.error(msg)
+                raise ReferenceError(msg)
 
-    def _return_type_check(self, signature):
+    def _return_type_check(self, signature: t.Union[inspect.Signature, t.Callable]):
         """
-        This method aims to ensure that the return type of the user function is a Spark DataFrame.
-        This is done by inspecting the code and typed return annotations.
+        Check if the return type of the user function is a Spark DataFrame.
+
+        This method inspects the code and typed return annotations to ensure that the return type
+        of the user function is a Spark DataFrame. If no return annotation is provided, a warning
+        is issued. If the return type is not a Spark DataFrame, a TypeError is raised.
 
         Parameters
         ----------
-        signature
+        signature : inspect.Signature
+            The signature of the user function.
 
-        Returns
-        -------
+        Raises
+        ------
+        TypeError
+            If the return type of the user function is not a Spark DataFrame.
 
         """
-        if not signature.return_annotation:  # If no return annotation is provided, we can't enforce the return type.
+        # If no return annotation is provided, we can't enforce the return type.
+        if not isinstance(signature, inspect.Signature):
+            signature = inspect.signature(signature)
+        if not signature.return_annotation:
             warn(
                 f"No return type annotation was provided for the `{self._func_name}` function. "
                 f"Please ensure that the return type is a Spark DataFrame."
             )
+        # If the return type is not a Spark DataFrame, raise a TypeError.
         elif not signature.return_annotation == SparkDataFrame:
-            msg = ("`dlt` requires that the return type of the function is a Spark DataFrame. Please ensure to "
-                   "annotate the return type of the function with `spark.sql.DataFrame` class.")
+            msg = ("`dlt` requires that the return type of the function is a Spark DataFrame. "
+                   "Please ensure to annotate the return type of the function with `spark.sql.DataFrame` class.")
+            self._logger.error(msg)
             raise TypeError(msg)
 
     def _enforce_delta_limitations_and_requirements(self, func_name: str) -> t.Callable:
         """
-        This method checks for dangerous code (defined according to Databricks' DLT guidelines) in the provided code.
-
-        This is done by grabbing the user function by name and inspecting the source code.
-
-        https://docs.databricks.com/en/delta-live-tables/python-ref.html#limitations
+        Checks for dangerous and unsupported code in the user function.
 
         Parameters
         ----------
         func_name: str
-            The source code of the user function.
+            The name of the user function.
 
         Returns
         -------
-            None
-
+        Callable
+            The user function.
         """
-        _func = getattr(self, func_name)
-        signature = inspect.signature(_func)
-        code = inspect.getsource(_func)
-        self._dangerous_code_check(code)
-        self._unsupported_action_check(code)
-        self._return_type_check(signature)
-        return _func
+        user_func = getattr(self, func_name)
+        func_code = inspect.getsource(user_func)
 
-    def table_view_expectation_wrapper(self, child_function, execution_config):
+        self._dangerous_code_check(func_code)
+        self._unsupported_action_check(func_code)
+        self._return_type_check(user_func)
+
+        return user_func
+
+    @staticmethod
+    def table_view_expectation_wrapper(child_function, execution_config):
         """
         This method is the "magic" that dynamically and automatically wraps the user function with DLT expectations.
 
@@ -282,7 +305,10 @@ class DLTMetaMixin:
 
         Parameters
         ----------
-        child_function
+        child_function: callable
+            The child function that will be wrapped with DLT expectations.
+        execution_config: DLTExecutionConfig
+            The configuration that will be used to execute the DLT expectations.
 
         Returns
         -------
@@ -300,7 +326,8 @@ class DLTMetaMixin:
 
         return _table_wrapper
 
-    def streaming_table_expectation_wrapper(self, child_function, execution_config):
+    @staticmethod
+    def streaming_table_expectation_wrapper(child_function, execution_config):
         """
         This method is a magic wrapper that applies streaming dlt operations to user queries/functions.
 
@@ -319,7 +346,10 @@ class DLTMetaMixin:
 
         Parameters
         ----------
-        child_function
+        child_function: callable
+            The child function that will be wrapped with DLT expectations.
+        execution_config: DLTExecutionConfig
+            The configuration that will be used to execute the DLT expectations.
 
         Returns
         -------
@@ -379,6 +409,24 @@ class DLTMetaMixin:
 
         @wraps(child_function)
         def wrapper(*args, **kwargs):
+            """
+            A wrapper function that wraps the `child_function` with DLT expectations.
+
+            This function is a decorator that wraps the `child_function` with the DLT expectations that were provided
+            in the `execution_config`. The return value of the `child_function` is expected to be a Spark DataFrame.
+            If the return value is not a Spark DataFrame, a TypeError will be raised.
+
+            Parameters:
+                *args: The positional arguments that will be passed to the `child_function`.
+                **kwargs: The keyword arguments that will be passed to the `child_function`.
+
+            Returns:
+                The result of the `child_function` wrapped with DLT expectations.
+
+            Raises:
+                DLTException: If the provided configuration is not supported.
+
+            """
             self._logger.info(f'Entering wrapped method or {child_function}')
 
             if not execution_config.dlt_config.is_streaming_table:

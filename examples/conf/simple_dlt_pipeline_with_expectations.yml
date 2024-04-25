@@ -1,0 +1,13 @@
+reader:
+  ...
+writer:
+  adl_processed_path: "a/fake/path"
+  schema: fake_schema
+  table_name: table_name
+dlt:
+  func_name: "orchestrate"
+  kind: table
+  expectation_action: "allow"
+  expectations:
+    - name: "check_addition"
+      constraint: "result < 10"

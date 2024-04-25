@@ -1,0 +1,5 @@
+dbx~=0.8.18
+databricks_sdk~=0.24.0
+PyYAML~=6.0.1
+databricks-dlt~=0.2.0
+pyspark>=3.2,<3.6

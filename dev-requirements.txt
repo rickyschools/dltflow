@@ -1,0 +1,7 @@
+tox
+mock
+pytest
+coverage
+pytest-cov
+pytest-xdist
+interrogate

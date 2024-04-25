@@ -1,0 +1,7 @@
+sphinx
+sphinxcontrib-mermaid
+myst-parser
+sphinx-markdown-builder
+sphinx-autodoc2
+sphinx-autoapi
+pydata-sphinx-theme

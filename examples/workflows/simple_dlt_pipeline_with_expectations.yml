@@ -1,0 +1,27 @@
+dev:
+  workflows:
+    - name: "dltflow-simple-pipeline_with_expectations"
+      storage: "/mnt/igdatalake/experiment/dltflow-samples/dlt/simple"
+      target: "dltflow-samples"
+      development: "true"
+      edition: "ADVANCED"
+      continuous: "false"
+      clusters:
+        - label: "default"
+          node_type_id: Standard_DS3_v2"
+          autoscale:
+            min_workers: 1
+            max_workers: 2
+            mode: "ENHANCED"
+      pipeline_type: "WORKSPACE"
+      data_sampling: false
+      tasks:
+        items:
+          - python_file: "pipelines/simple_dlt_pipeline_with_expectations.py"
+            parameters:
+              - "--conf"
+              - "conf/simple_dlt_pipeline_with_expectations.yml"
+        dependencies:
+          - whl: "/dbfs/private-site-packages/dltflow-0.0.1b0-py3-none-any.whl"
+          - pypi:
+              package: "pyspark"
