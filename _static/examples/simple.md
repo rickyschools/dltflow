@@ -1,4 +1,4 @@
-# Simple Example
+# Simple Example - Single Method Decorated
 
 This article shows how to get your hands dirty end-to-end with `dltflow`. In this sample, we'll be going through the
 following steps:

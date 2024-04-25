@@ -13,4 +13,5 @@ Examples are stratified by increasing levels of complexity.
 ::: {toctree}
 :maxdepth: 1
 examples/simple.md
+examples/medium.md
 :::
