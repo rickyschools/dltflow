@@ -134,9 +134,13 @@ Attributes
 
    .. py:method:: _make_execution_plan(configs: dltflow.quality.config.DLTConfigs)
 
-      This method is used to create an execution plan for the user function.
+      Create an execution plan for the user function.
 
-      :param child_function:
+      :param configs: The configuration for the execution plan.
+      :type configs: DLTConfigs
+
+      :returns: The execution plan.
+      :rtype: list
 
 
    .. py:method:: _get_dlt_config(config) -> dltflow.quality.config.DLTConfigs
@@ -164,26 +168,29 @@ Attributes
       :param code:
 
 
-   .. py:method:: _return_type_check(signature)
+   .. py:method:: _return_type_check(signature: Union[inspect.Signature, Callable])
 
-      This method aims to ensure that the return type of the user function is a Spark DataFrame.
-      This is done by inspecting the code and typed return annotations.
+      Check if the return type of the user function is a Spark DataFrame.
 
-      :param signature:
+      This method inspects the code and typed return annotations to ensure that the return type
+      of the user function is a Spark DataFrame. If no return annotation is provided, a warning
+      is issued. If the return type is not a Spark DataFrame, a TypeError is raised.
+
+      :param signature: The signature of the user function.
+      :type signature: inspect.Signature
+
+      :raises TypeError: If the return type of the user function is not a Spark DataFrame.
 
 
    .. py:method:: _enforce_delta_limitations_and_requirements(func_name: str) -> Callable
 
-      This method checks for dangerous code (defined according to Databricks' DLT guidelines) in the provided code.
+      Checks for dangerous and unsupported code in the user function.
 
-      This is done by grabbing the user function by name and inspecting the source code.
-
-      https://docs.databricks.com/en/delta-live-tables/python-ref.html#limitations
-
-      :param func_name: The source code of the user function.
+      :param func_name: The name of the user function.
       :type func_name: str
 
-      :rtype: None
+      :returns: The user function.
+      :rtype: Callable
 
 
    .. py:method:: table_view_expectation_wrapper(child_function, execution_config)

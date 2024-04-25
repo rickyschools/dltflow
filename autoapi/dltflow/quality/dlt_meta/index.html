@@ -506,10 +506,16 @@ wraps a function with DLT expectations.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="dltflow.quality.dlt_meta.DLTMetaMixin._make_execution_plan">
 <span class="sig-name descname"><span class="pre">_make_execution_plan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">configs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dltflow.quality.config.DLTConfigs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dltflow.quality.dlt_meta.DLTMetaMixin._make_execution_plan" title="Permalink to this definition">#</a></dt>
-<dd><p>This method is used to create an execution plan for the user function.</p>
+<dd><p>Create an execution plan for the user function.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>child_function</strong> – </p>
+<dd class="field-odd"><p><strong>configs</strong> (<em>DLTConfigs</em>) – The configuration for the execution plan.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The execution plan.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
 </dd>
 </dl>
 </dd></dl>
@@ -549,12 +555,17 @@ the user-provided code/function.
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dltflow.quality.dlt_meta.DLTMetaMixin._return_type_check">
-<span class="sig-name descname"><span class="pre">_return_type_check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signature</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dltflow.quality.dlt_meta.DLTMetaMixin._return_type_check" title="Permalink to this definition">#</a></dt>
-<dd><p>This method aims to ensure that the return type of the user function is a Spark DataFrame.
-This is done by inspecting the code and typed return annotations.</p>
+<span class="sig-name descname"><span class="pre">_return_type_check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signature</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">inspect.Signature</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Callable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dltflow.quality.dlt_meta.DLTMetaMixin._return_type_check" title="Permalink to this definition">#</a></dt>
+<dd><p>Check if the return type of the user function is a Spark DataFrame.</p>
+<p>This method inspects the code and typed return annotations to ensure that the return type
+of the user function is a Spark DataFrame. If no return annotation is provided, a warning
+is issued. If the return type is not a Spark DataFrame, a TypeError is raised.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>signature</strong> – </p>
+<dd class="field-odd"><p><strong>signature</strong> (<em>inspect.Signature</em>) – The signature of the user function.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>TypeError</strong> – If the return type of the user function is not a Spark DataFrame.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -562,15 +573,16 @@ This is done by inspecting the code and typed return annotations.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="dltflow.quality.dlt_meta.DLTMetaMixin._enforce_delta_limitations_and_requirements">
 <span class="sig-name descname"><span class="pre">_enforce_delta_limitations_and_requirements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Callable</span></span></span><a class="headerlink" href="#dltflow.quality.dlt_meta.DLTMetaMixin._enforce_delta_limitations_and_requirements" title="Permalink to this definition">#</a></dt>
-<dd><p>This method checks for dangerous code (defined according to Databricks’ DLT guidelines) in the provided code.</p>
-<p>This is done by grabbing the user function by name and inspecting the source code.</p>
-<p><a class="reference external" href="https://docs.databricks.com/en/delta-live-tables/python-ref.html#limitations">https://docs.databricks.com/en/delta-live-tables/python-ref.html#limitations</a></p>
+<dd><p>Checks for dangerous and unsupported code in the user function.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>func_name</strong> (<em>str</em>) – The source code of the user function.</p>
+<dd class="field-odd"><p><strong>func_name</strong> (<em>str</em>) – The name of the user function.</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>None</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The user function.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Callable</p>
 </dd>
 </dl>
 </dd></dl>
