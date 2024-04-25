@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Examples &#8212; dltflow 0.0.1 documentation</title>
+    <title>Reference &#8212; dltflow 0.0.1 documentation</title>
   
   
   
@@ -39,11 +39,11 @@
     <script data-url_root="../" id="documentation_options" src="documentation_options.js?v=f6245a2f"></script>
     <script src="doctools.js?v=888ff710"></script>
     <script src="sphinx_highlight.js?v=4825356b"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '_static/examples';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_static/references';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Simple Example" href="examples/simple.html" />
-    <link rel="prev" title="dltflow" href="../index.html" />
+    <link rel="next" title="CLI Reference" href="references/cli_reference.html" />
+    <link rel="prev" title="Simple Example" href="examples/simple.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -130,15 +130,15 @@
 <nav class="navbar-nav">
   <ul class="bd-navbar-elements navbar-nav">
     
-                    <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="#">
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="examples.html">
                         Examples
                       </a>
                     </li>
                 
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="references.html">
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
                         Reference
                       </a>
                     </li>
@@ -232,15 +232,15 @@ document.write(`
 <nav class="navbar-nav">
   <ul class="bd-navbar-elements navbar-nav">
     
-                    <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="#">
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="examples.html">
                         Examples
                       </a>
                     </li>
                 
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="references.html">
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
                         Reference
                       </a>
                     </li>
@@ -283,7 +283,7 @@ document.write(`
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="examples/simple.html">Simple Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references/cli_reference.html">CLI Reference</a></li>
 </ul>
 </div>
 </nav></div>
@@ -321,7 +321,7 @@ document.write(`
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page">Examples</li>
+    <li class="breadcrumb-item active" aria-current="page">Reference</li>
   </ul>
 </nav>
 </div>
@@ -338,22 +338,95 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="examples">
-<h1>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h1>
-<p>This article intends to centralize examples for <code class="docutils literal notranslate"><span class="pre">dltflow</span></code> into a single page to help users get started.</p>
-<p>Examples are stratified by increasing levels of complexity.</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="examples/simple.html"><span class="std std-doc">Simple example</span></a>: A simple example of how to use the <code class="docutils literal notranslate"><span class="pre">dltflow</span></code> package.</p></li>
-<li><p>Medium example: An advanced example of how to use the <code class="docutils literal notranslate"><span class="pre">dltflow</span></code> package.</p></li>
-<li><p>Streaming, Append example</p></li>
-<li><p>Streaming, CDC example</p></li>
-<li><p>Complex, Multi-Step example</p></li>
-</ul>
+  <section id="reference">
+<h1>Reference<a class="headerlink" href="#reference" title="Permalink to this heading">#</a></h1>
+</section>
+<section id="cli-reference">
+<h1>CLI Reference<a class="headerlink" href="#cli-reference" title="Permalink to this heading">#</a></h1>
+<p>This article intends to provide reference documentation for <code class="docutils literal notranslate"><span class="pre">dltflow</span></code> CLI commands.</p>
+<section id="initialize">
+<h2>Initialize<a class="headerlink" href="#initialize" title="Permalink to this heading">#</a></h2>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Initialize a new dltflow project.
+
+This cli command is used to help initialize a dltflow project. At a minimum,
+it will create a `dltflow` config file in the current directory.
+
+The code, configuration, and workflow directory names can be customized
+by the user. The default values are:
+
+    - code: `my_project`
+    - config: `conf`
+    - workflows: `workflows`
+
+When these directories are created during initialization, a `.gitkeep` file
+is created in each directory. This is to ensure that the directories are
+included in the git repository. Also, a `setup.py` and `pyproject.toml` file are
+created in the root directory. These files are used to help package the
+project as a python package.
+
+The `pyproject.toml` file is setup to use the `bumpver` package to help
+manage versioning.
+
+If the user opts in to include directories, dltflow will create the
+directories with the following structure:
+
+
+    ```text
+    git-root/
+        my_project/  # code goes here.
+        conf/  # configuration to drive your pipelines.
+        workflows/  # json or yml definitions for workflows in databricks.
+        dltflow.yml  # dltflow config file.
+        setup.py  # setup file for python packages.
+        pyproject.toml  # pyproject file for python packages.
+    ```
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dltflow<span class="w"> </span>init<span class="w"> </span>--help
+&gt;&gt;&gt;<span class="w"> </span>Usage:<span class="w"> </span>dltflow<span class="w"> </span>init<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+
+<span class="w">  </span>Initialize<span class="w"> </span>the<span class="w"> </span>project<span class="w"> </span>with<span class="w"> </span>a<span class="w"> </span>dltflow.yml<span class="w"> </span>file.<span class="w"> </span>
+<span class="w">  </span>Optionally<span class="w"> </span>start<span class="w"> </span>your<span class="w"> </span>project<span class="w"> </span>with<span class="w"> </span>a<span class="w"> </span>template.
+<span class="w">  </span>
+<span class="w">  </span>Options:
+<span class="w">  </span>-p,<span class="w"> </span>--profile<span class="w"> </span>TEXT<span class="w">         </span>Databricks<span class="w"> </span>profile<span class="w"> </span>to<span class="w"> </span>use
+<span class="w">  </span>-n,<span class="w"> </span>--project-name<span class="w"> </span>TEXT<span class="w">    </span>Name<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>project
+<span class="w">  </span>-c,<span class="w"> </span>--config-path<span class="w"> </span>TEXT<span class="w">     </span>Path<span class="w"> </span>to<span class="w"> </span>configuration<span class="w"> </span>directory
+<span class="w">  </span>-w,<span class="w"> </span>--workflows-path<span class="w"> </span>TEXT<span class="w">  </span>Path<span class="w"> </span>to<span class="w"> </span>workflows<span class="w"> </span>directory
+<span class="w">  </span>-t,<span class="w"> </span>--build-template<span class="w">       </span>Create<span class="w"> </span>a<span class="w"> </span>templated<span class="w"> </span>project?
+<span class="w">  </span>-o,<span class="w"> </span>--overwrite<span class="w">            </span>Overwrite<span class="w"> </span>existing<span class="w"> </span>config<span class="w"> </span>file<span class="w">  </span><span class="o">[</span>default:<span class="w"> </span>True<span class="o">]</span>
+<span class="w">  </span>-d,<span class="w"> </span>--shared<span class="w">               </span>DBFS<span class="w"> </span>location<span class="w"> </span>to<span class="w"> </span>store<span class="w"> </span>the<span class="w"> </span>project<span class="w">  </span><span class="o">[</span>default:
+<span class="w">                             </span>True<span class="o">]</span>
+<span class="w">  </span>--help<span class="w">                     </span>Show<span class="w"> </span>this<span class="w"> </span>message<span class="w"> </span>and<span class="w"> </span>exit.
+</pre></div>
+</div>
+</section>
+<section id="deployment">
+<h2>Deployment<a class="headerlink" href="#deployment" title="Permalink to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dltflow<span class="w"> </span>deploy-py-dlt<span class="w"> </span>--help
+&gt;&gt;&gt;<span class="w"> </span>Usage:<span class="w"> </span>dltflow<span class="w"> </span>deploy-py-dlt<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+
+<span class="w">  </span>Deploy<span class="w"> </span>a<span class="w"> </span>DLT<span class="w"> </span>pipeline.
+
+Options:
+<span class="w">  </span>--deployment-file<span class="w"> </span>TEXT<span class="w">  </span><span class="o">[</span>required<span class="o">]</span>
+<span class="w">  </span>--environment<span class="w"> </span>TEXT<span class="w">      </span><span class="o">[</span>required<span class="o">]</span>
+<span class="w">  </span>--as-individual<span class="w">         </span>Overrides<span class="w"> </span>project<span class="w"> </span>settings.<span class="w"> </span>Useful<span class="w"> </span><span class="k">for</span><span class="w"> </span>developers<span class="w"> </span>as
+<span class="w">                          </span>their<span class="w"> </span>experimenting<span class="w"> </span>with<span class="w"> </span>getting<span class="w"> </span>their<span class="w"> </span>code<span class="w"> </span>fully
+<span class="w">                          </span><span class="k">function</span>.<span class="w"> </span>The<span class="w"> </span>impact<span class="w"> </span>of<span class="w"> </span>this<span class="w"> </span>flag<span class="w"> </span>is<span class="w"> </span>that<span class="w"> </span>any
+<span class="w">                          </span>derived<span class="w"> </span>DLT<span class="w"> </span>pipelines<span class="w"> </span>created<span class="w"> </span>with<span class="w"> </span>have<span class="w"> </span>a<span class="w"> </span>prefix
+<span class="w">                          </span>name<span class="w"> </span>of<span class="w"> </span><span class="o">[{</span>profile<span class="o">}</span>_<span class="o">{</span>user_name<span class="o">}]</span><span class="w"> </span>--<span class="w"> </span>this<span class="w"> </span>is<span class="w"> </span>to<span class="w"> </span>not
+<span class="w">                          </span>overwrite<span class="w"> </span>any<span class="w"> </span>existing<span class="w"> </span>pipelines<span class="w"> </span>with<span class="w"> </span>logic<span class="w"> </span>that<span class="w"> </span>is
+<span class="w">                          </span>not<span class="w"> </span>yet<span class="w"> </span>fully<span class="w"> </span>baked..
+<span class="w">  </span>--help<span class="w">                  </span>Show<span class="w"> </span>this<span class="w"> </span>message<span class="w"> </span>and<span class="w"> </span>exit.
+</pre></div>
+</div>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="examples/simple.html">Simple Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references/cli_reference.html">CLI Reference</a></li>
 </ul>
 </div>
+</section>
 </section>
 
 
@@ -367,20 +440,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../index.html"
+       href="examples/simple.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><code class="docutils literal notranslate"><span class="pre">dltflow</span></code></p>
+        <p class="prev-next-title">Simple Example</p>
       </div>
     </a>
     <a class="right-next"
-       href="examples/simple.html"
+       href="references/cli_reference.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Simple Example</p>
+        <p class="prev-next-title">CLI Reference</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -395,9 +468,27 @@ document.write(`
 
 
   <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Reference</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#cli-reference">CLI Reference</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initialize">Initialize</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment">Deployment</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
 
   <div class="tocsection sourcelink">
-    <a href="../_sources/_static/examples.md.txt">
+    <a href="../_sources/_static/references.md.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
     </a>
   </div>

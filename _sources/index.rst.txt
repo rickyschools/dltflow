@@ -8,6 +8,7 @@
    :hidden:
 
    _static/examples.md
+   _static/references.md
 
 
 

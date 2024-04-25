@@ -137,6 +137,13 @@
                     </li>
                 
 
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../../_static/references.html">
+                        Reference
+                      </a>
+                    </li>
+                
+
                     <li class="nav-item current active">
                       <a class="nav-link nav-internal" href="../../../index.html">
                         API Reference
@@ -228,6 +235,13 @@ document.write(`
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="../../../../_static/examples.html">
                         Examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../../_static/references.html">
+                        Reference
                       </a>
                     </li>
                 
@@ -436,17 +450,26 @@ created in the root directory. These files are used to help package the project 
 <dt class="sig sig-object py" id="dltflow.cli.initialize.init">
 <span class="sig-prename descclassname"><span class="pre">dltflow.cli.initialize.</span></span><span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">profile</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'my_project'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'conf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">workflows_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'workflows'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">build_template</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dbfs_location</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dltflow.cli.initialize.init" title="Permalink to this definition">#</a></dt>
 <dd><p>Initialize a new dltflow project.</p>
-<p>This cli command is used to help initialize a dltflow project. At a minimum, it will create a <cite>dltflow</cite> config
-file in the current directory.</p>
-<p>The code, configuration, and workflow directory names can be customized by the user. The default values are:
-- code: <cite>my_project</cite>
-- config: <cite>conf</cite>
-- workflows: <cite>workflows</cite></p>
-<p>When these directories are created during initialization, a <cite>.gitkeep</cite> file is created in each directory. This is
-to ensure that the directories are included in the git repository. Also, a <cite>setup.py</cite> and <cite>pyproject.toml</cite> file are
-created in the root directory. These files are used to help package the project as a python package.</p>
-<p>The <cite>pyproject.toml</cite> file is setup to use the <cite>bumpver</cite> package to help manage versioning.</p>
-<p>If the user opts in to include directories, dltflow will create the following structure:</p>
+<p>This cli command is used to help initialize a dltflow project. At a minimum,
+it will create a <cite>dltflow</cite> config file in the current directory.</p>
+<p>The code, configuration, and workflow directory names can be customized
+by the user. The default values are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>code: <cite>my_project</cite></p></li>
+<li><p>config: <cite>conf</cite></p></li>
+<li><p>workflows: <cite>workflows</cite></p></li>
+</ul>
+</div></blockquote>
+<p>When these directories are created during initialization, a <cite>.gitkeep</cite> file
+is created in each directory. This is to ensure that the directories are
+included in the git repository. Also, a <cite>setup.py</cite> and <cite>pyproject.toml</cite> file are
+created in the root directory. These files are used to help package the
+project as a python package.</p>
+<p>The <cite>pyproject.toml</cite> file is setup to use the <cite>bumpver</cite> package to help
+manage versioning.</p>
+<p>If the user opts in to include directories, dltflow will create the
+directories with the following structure:</p>
 <blockquote>
 <div><p><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>text
 git-root/</p>
