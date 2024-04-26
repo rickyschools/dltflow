@@ -1,0 +1,19 @@
+reader:
+  ...
+writer:
+  adl_processed_path: "a/fake/path"
+  schema: fake_schema
+  table_name: table_name
+dlt:
+  func_name: "transform"
+  kind: table
+  expectation_action: "drop"
+  expectations:
+    - name: "check_age"
+      constraint: "age between 25 and 45"
+  is_streaming: true
+  append_config:
+    target: 'append_table_name'
+    name: 'queue_example'
+    comment: 'This is a comment'
+

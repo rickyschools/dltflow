@@ -4,9 +4,12 @@ This article intends to centralize examples for `dltflow` into a single page to 
 
 Examples are stratified by increasing levels of complexity.
 
-- [Simple example](./examples/simple.md): A simple example of how to use the `dltflow` package.
-- Medium example: An advanced example of how to use the `dltflow` package.
-- Streaming, Append example
+- [Simple, Single Method Decorated](examples/simple.md)
+  - A simple example of how to use the `dltflow` package.
+- [Moderate, Multi-Method Decoration](examples/medium.md)
+  - A moderate example multiple methods decorated with dlt.
+- [Streaming, Append example](examples/streaming_append.md)
+  - An simple example showcasing how to write streaming append dlt pipelines.
 - Streaming, CDC example
 - Complex, Multi-Step example
 
@@ -14,4 +17,6 @@ Examples are stratified by increasing levels of complexity.
 :maxdepth: 1
 examples/simple.md
 examples/medium.md
+examples/streaming_append.md
+:hidden:
 :::
