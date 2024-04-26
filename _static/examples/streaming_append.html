@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Medium Example - Multi-Method Decoration &#8212; dltflow 0.0.1 documentation</title>
+    <title>Streaming Append Example &#8212; dltflow 0.0.1 documentation</title>
   
   
   
@@ -39,11 +39,11 @@
     <script data-url_root="../../" id="documentation_options" src="../documentation_options.js?v=f6245a2f"></script>
     <script src="../doctools.js?v=888ff710"></script>
     <script src="../sphinx_highlight.js?v=4825356b"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '_static/examples/medium';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_static/examples/streaming_append';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Streaming Append Example" href="streaming_append.html" />
-    <link rel="prev" title="Simple Example - Single Method Decorated" href="simple.html" />
+    <link rel="next" title="Reference" href="../references.html" />
+    <link rel="prev" title="Medium Example - Multi-Method Decoration" href="medium.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -284,8 +284,8 @@ document.write(`
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="simple.html">Simple Example - Single Method Decorated</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Medium Example - Multi-Method Decoration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="streaming_append.html">Streaming Append Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="medium.html">Medium Example - Multi-Method Decoration</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Streaming Append Example</a></li>
 </ul>
 </div>
 </nav></div>
@@ -326,7 +326,7 @@ document.write(`
     
     <li class="breadcrumb-item"><a href="../examples.html" class="nav-link">Examples</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">Medium...</li>
+    <li class="breadcrumb-item active" aria-current="page">Streaming...</li>
   </ul>
 </nav>
 </div>
@@ -343,11 +343,10 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="medium-example-multi-method-decoration">
-<h1>Medium Example - Multi-Method Decoration<a class="headerlink" href="#medium-example-multi-method-decoration" title="Permalink to this heading">#</a></h1>
-<p>This article intends to depict how to use <code class="docutils literal notranslate"><span class="pre">dltflow</span></code> in a slightly more complex example. The core components of this
-example will indent to show how <code class="docutils literal notranslate"><span class="pre">dltflow</span></code> can be configured to wrap multiple functions in a single python module.</p>
-<p>Our structure for this article will follow that of our simple example.</p>
+  <section id="streaming-append-example">
+<h1>Streaming Append Example<a class="headerlink" href="#streaming-append-example" title="Permalink to this heading">#</a></h1>
+<p>This article shows how to get your hands dirty end-to-end with <code class="docutils literal notranslate"><span class="pre">dltflow</span></code>. In this sample, we’ll be going through the
+following steps:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#code">Code</a></p></li>
 <li><p><a class="reference internal" href="#configuration">Configuration</a></p></li>
@@ -424,65 +423,66 @@ initialized in pipelines. This pattern largely follows <code class="docutils lit
 </section>
 <section id="example-pipeline-code">
 <h3>Example Pipeline Code<a class="headerlink" href="#example-pipeline-code" title="Permalink to this heading">#</a></h3>
-<p>For this example we will have a slightly more complex pipeline. In this code base, we will:</p>
+<p>For this example, we will show a simple example with a queue streaming reader.</p>
 <ul class="simple">
 <li><p>Import a <code class="docutils literal notranslate"><span class="pre">DLTMetaMixin</span></code> from <code class="docutils literal notranslate"><span class="pre">dltflow.quality</span></code> and will tell our sample pipeline to inherit from it.</p></li>
-<li><p>Create sample data in memory.</p></li>
-<li><p>We’ll <code class="docutils literal notranslate"><span class="pre">transform</span></code> that data in two steps.</p></li>
-<li><p>In an intermediate step, we will ensure people’s ages are between 10 and 100.</p></li>
-<li><p>In a following step, we will get a count of people in our sample dataset by age range.</p></li>
-<li><p>Both the intermediate and final transformations will be registered in the <code class="docutils literal notranslate"><span class="pre">dlt</span></code> pipeline.</p>
-<ul>
-<li><p>This will be as a <code class="docutils literal notranslate"><span class="pre">view</span></code> and a <code class="docutils literal notranslate"><span class="pre">materialized</span> <span class="pre">table</span></code> respectively.</p></li>
+<li><p>Generate the example data on the fly and put it into a python queue.</p></li>
+<li><p>We will transform it by coercing data types.</p></li>
 </ul>
-</li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dltflow.quality</span> <span class="kn">import</span> <span class="n">DLTMetaMixin</span>
+<p>You should see that there are no direct calls to <code class="docutils literal notranslate"><span class="pre">dlt</span></code>. This is the beauty and intentional simplicity <code class="docutils literal notranslate"><span class="pre">dltflow</span></code>. It does
+not want to get in your way. Rather, it really wants you to focus on your transformation logic to help keep your code
+simple and easy to share with other team members.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">from</span> <span class="nn">queue</span> <span class="kn">import</span> <span class="n">Queue</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+
 <span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">DataFrame</span> <span class="k">as</span> <span class="n">SparkDataFrame</span><span class="p">,</span>
     <span class="n">SparkSession</span><span class="p">,</span>
-    <span class="n">functions</span> <span class="k">as</span> <span class="n">f</span>
+    <span class="n">streaming</span><span class="p">,</span>
+    <span class="n">DataFrame</span>
 <span class="p">)</span>
 
+<span class="kn">from</span> <span class="nn">dltflow.quality</span> <span class="kn">import</span> <span class="n">DLTMetaMixin</span>
 <span class="kn">from</span> <span class="nn">.base_pipeline</span> <span class="kn">import</span> <span class="n">PipelineBase</span>
 
+<span class="n">_NAMES</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Alex&#39;</span><span class="p">,</span> <span class="s1">&#39;Beth&#39;</span><span class="p">,</span> <span class="s1">&#39;Caroline&#39;</span><span class="p">,</span> <span class="s1">&#39;Dave&#39;</span><span class="p">,</span> <span class="s1">&#39;Eleanor&#39;</span><span class="p">,</span> <span class="s1">&#39;Freddie&#39;</span><span class="p">]</span>
 
 
+<span class="k">def</span> <span class="nf">make_people_objects</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="n">Person</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;Person&#39;</span><span class="p">,</span> <span class="s1">&#39;name age gender&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">_NAMES</span><span class="p">)</span>
+        <span class="n">age</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">65</span><span class="p">)</span>
+        <span class="n">gender</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s1">&#39;male&#39;</span><span class="p">,</span> <span class="s1">&#39;female&#39;</span><span class="p">])</span>
+        <span class="k">yield</span> <span class="n">Person</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="n">age</span><span class="p">,</span> <span class="n">gender</span><span class="o">=</span><span class="n">gender</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">MyMediumPipeline</span><span class="p">(</span><span class="n">PipelineBase</span><span class="p">,</span> <span class="n">DLTMetaMixin</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">create_queue</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">):</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">person</span> <span class="ow">in</span> <span class="n">make_people_objects</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">q</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">q</span>
+
+
+<span class="k">class</span> <span class="nc">MyStreamingPipeline</span><span class="p">(</span><span class="n">PipelineBase</span><span class="p">,</span> <span class="n">DLTMetaMixin</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">spark</span><span class="p">:</span> <span class="n">SparkSession</span><span class="p">,</span> <span class="n">init_conf</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">spark</span><span class="o">=</span><span class="n">spark</span><span class="p">,</span> <span class="n">init_conf</span><span class="o">=</span><span class="n">init_conf</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">intermediate_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">SparkDataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SparkDataFrame</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;age&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
-
-    <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SparkDataFrame</span><span class="p">:</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="p">(</span><span class="s1">&#39;Alice&#39;</span><span class="p">,</span> <span class="mi">34</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Bob&#39;</span><span class="p">,</span> <span class="mi">45</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Charlie&#39;</span><span class="p">,</span> <span class="mi">56</span><span class="p">),</span>
-            <span class="p">(</span><span class="s1">&#39;David&#39;</span><span class="p">,</span> <span class="mi">23</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Eve&#39;</span><span class="p">,</span> <span class="mi">78</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Frank&#39;</span><span class="p">,</span> <span class="mi">34</span><span class="p">),</span>
-            <span class="p">(</span><span class="s1">&#39;Grace&#39;</span><span class="p">,</span> <span class="mi">56</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Heidi&#39;</span><span class="p">,</span> <span class="mi">45</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Ivan&#39;</span><span class="p">,</span> <span class="mi">99</span><span class="p">),</span>
-            <span class="p">(</span><span class="s1">&#39;Judy&#39;</span><span class="p">,</span> <span class="mi">23</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Kevin&#39;</span><span class="p">,</span> <span class="mi">45</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Lana&#39;</span><span class="p">,</span> <span class="mi">56</span><span class="p">),</span>
-            <span class="p">(</span><span class="s1">&#39;Mona&#39;</span><span class="p">,</span> <span class="mi">105</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Nina&#39;</span><span class="p">,</span> <span class="mi">34</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Omar&#39;</span><span class="p">,</span> <span class="mi">56</span><span class="p">),</span>
-            <span class="p">(</span><span class="s1">&#39;Pam&#39;</span><span class="p">,</span> <span class="mi">45</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Quinn&#39;</span><span class="p">,</span> <span class="mi">99</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Rita&#39;</span><span class="p">,</span> <span class="mi">23</span><span class="p">),</span>
-            <span class="p">(</span><span class="s1">&#39;Steve&#39;</span><span class="p">,</span> <span class="mi">45</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Tina&#39;</span><span class="p">,</span> <span class="mi">115</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Uma&#39;</span><span class="p">,</span> <span class="mi">78</span><span class="p">),</span>
-            <span class="p">(</span><span class="s1">&#39;Vera&#39;</span><span class="p">,</span> <span class="mi">34</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Wendy&#39;</span><span class="p">,</span> <span class="mi">56</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Xander&#39;</span><span class="p">,</span> <span class="mi">45</span><span class="p">),</span>
-            <span class="p">(</span><span class="s1">&#39;Yara&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Zack&#39;</span><span class="p">,</span> <span class="mi">23</span><span class="p">)</span>
-        <span class="p">]</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">])</span>
-
-    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">SparkDataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SparkDataFrame</span><span class="p">:</span>
-        <span class="n">out_step</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">intermediate_step</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-        <span class="n">out_step2</span> <span class="o">=</span> <span class="n">out_step</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;age_bin&#39;</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">bin</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;age&#39;</span><span class="p">),</span> <span class="mi">10</span><span class="p">))</span> \
-            <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;age_bin_str&#39;</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">lit</span><span class="p">(</span><span class="s1">&#39;age_bin_&#39;</span><span class="p">),</span> <span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;age_bin&#39;</span><span class="p">)))</span> \
-            <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;age_bin_str&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
-
-        <span class="k">return</span> <span class="n">out_step2</span>
-
-    <span class="k">def</span> <span class="nf">orchestrate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span> <span class="n">df_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataFrame</span><span class="p">:</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span> \
+            <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">))</span> \
+            <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">df</span>
+
+    <span class="k">def</span> <span class="nf">orchestrate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataFrame</span><span class="p">:</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">readStream</span> \
+            <span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;maxFilesPerTrigger&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> \
+            <span class="o">.</span><span class="n">queueStream</span><span class="p">(</span><span class="n">create_queue</span><span class="p">())</span> \
+            <span class="o">.</span><span class="n">writeStream</span> \
+            <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;console&#39;</span><span class="p">)</span> \
+            <span class="o">.</span><span class="n">forEachBatch</span><span class="p">(</span><span class="k">lambda</span> <span class="n">df</span><span class="p">,</span> <span class="n">epoch_id</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">epoch_id</span><span class="p">))</span> \
+            <span class="o">.</span><span class="n">start</span><span class="p">()</span>
+        <span class="n">query</span><span class="o">.</span><span class="n">awaitTermination</span><span class="p">()</span>
 </pre></div>
 </div>
 </section>
@@ -505,26 +505,28 @@ requires your configuration to adhere to a specific structure. Namely, file shou
   <span class="n">schema</span><span class="p">:</span> <span class="n">fake_schema</span>
   <span class="n">table_name</span><span class="p">:</span> <span class="n">table_name</span>
 <span class="n">dlt</span><span class="p">:</span>
-  <span class="o">-</span> <span class="n">func_name</span><span class="p">:</span> <span class="s2">&quot;orchestrate&quot;</span>
-    <span class="n">kind</span><span class="p">:</span> <span class="n">table</span>
-    <span class="n">expectation_action</span><span class="p">:</span> <span class="s2">&quot;drop&quot;</span>
-    <span class="n">expectations</span><span class="p">:</span>
-      <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="s2">&quot;check_count&quot;</span>
-        <span class="n">constraint</span><span class="p">:</span> <span class="s2">&quot;count &lt;= 10&quot;</span>
-  <span class="o">-</span> <span class="n">func_name</span><span class="p">:</span> <span class="s2">&quot;intermediate_step&quot;</span>
-    <span class="n">kind</span><span class="p">:</span> <span class="n">view</span>
-    <span class="n">expectation_action</span><span class="p">:</span> <span class="s2">&quot;drop&quot;</span>
-    <span class="n">expectations</span><span class="p">:</span>
-      <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="s2">&quot;check_age&quot;</span>
-        <span class="n">constraint</span><span class="p">:</span> <span class="s2">&quot;age between 10 and 100&quot;</span>
+  <span class="n">func_name</span><span class="p">:</span> <span class="s2">&quot;transform&quot;</span>
+  <span class="n">kind</span><span class="p">:</span> <span class="n">table</span>
+  <span class="n">expectation_action</span><span class="p">:</span> <span class="s2">&quot;drop&quot;</span>
+  <span class="n">expectations</span><span class="p">:</span>
+    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="s2">&quot;check_age&quot;</span>
+      <span class="n">constraint</span><span class="p">:</span> <span class="s2">&quot;age between 25 and 45&quot;</span>
+  <span class="n">is_streaming</span><span class="p">:</span> <span class="n">true</span>
+  <span class="n">append_config</span><span class="p">:</span>
+    <span class="n">target</span><span class="p">:</span> <span class="s1">&#39;append_table_name&#39;</span>
+    <span class="n">name</span><span class="p">:</span> <span class="s1">&#39;queue_example&#39;</span>
+    <span class="n">comment</span><span class="p">:</span> <span class="s1">&#39;This is a comment&#39;</span>
+
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">dlt</span></code> section in this example is a list of <code class="docutils literal notranslate"><span class="pre">DLTConfig</span></code>’s.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">dlt</span></code> section has the following keys, though this configuration can also be a list of <code class="docutils literal notranslate"><span class="pre">dlt</span></code> configs.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">func_name</span></code>: The name of the function/method we want <code class="docutils literal notranslate"><span class="pre">dlt</span></code> to decorate.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">kind</span></code>: Tells <code class="docutils literal notranslate"><span class="pre">dlt</span></code> if this query should be materialized as a <code class="docutils literal notranslate"><span class="pre">table</span></code> or <code class="docutils literal notranslate"><span class="pre">view</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">expectation_action</span></code>: Tells <code class="docutils literal notranslate"><span class="pre">dlt</span></code> how to handle the expectations. <code class="docutils literal notranslate"><span class="pre">drop</span></code>, <code class="docutils literal notranslate"><span class="pre">fail</span></code>, and <code class="docutils literal notranslate"><span class="pre">allow</span></code> are all supported.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">expectations</span></code>: These are a list of constraints we want to apply to our data.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">is_streaming</span></code>: This tells <code class="docutils literal notranslate"><span class="pre">dltflow</span></code> this is a streaming query.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">append_config</span></code>: This tells <code class="docutils literal notranslate"><span class="pre">dltflow</span></code> we’re in a streaming append and fills out necessary <code class="docutils literal notranslate"><span class="pre">dlt</span></code> params.</p></li>
 </ul>
 </section>
 <section id="workflow-spec">
@@ -535,8 +537,8 @@ Pipeline API</span></a> with the addition of a <code class="docutils literal not
 module into a Notebook that can be deployed as a DLT Pipeline.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dev</span><span class="p">:</span>
   <span class="n">workflows</span><span class="p">:</span>
-    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="s2">&quot;dltflow-medium-pipeline_with_expectations&quot;</span>
-      <span class="n">storage</span><span class="p">:</span> <span class="s2">&quot;/mnt/igdatalake/experiment/dltflow-samples/dlt/medium&quot;</span>
+    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="s2">&quot;dltflow-stream-append-pipeline_with_expectations&quot;</span>
+      <span class="n">storage</span><span class="p">:</span> <span class="s2">&quot;/mnt/igdatalake/experiment/dltflow-samples/dlt/stream-append&quot;</span>
       <span class="n">target</span><span class="p">:</span> <span class="s2">&quot;dltflow-samples&quot;</span>
       <span class="n">development</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span>
       <span class="n">edition</span><span class="p">:</span> <span class="s2">&quot;ADVANCED&quot;</span>
@@ -552,10 +554,10 @@ module into a Notebook that can be deployed as a DLT Pipeline.</p>
       <span class="n">data_sampling</span><span class="p">:</span> <span class="n">false</span>
       <span class="n">tasks</span><span class="p">:</span>
         <span class="n">items</span><span class="p">:</span>
-          <span class="o">-</span> <span class="n">python_file</span><span class="p">:</span> <span class="s2">&quot;pipelines/medium_dlt_pipeline_with_expectations.py&quot;</span>
+          <span class="o">-</span> <span class="n">python_file</span><span class="p">:</span> <span class="s2">&quot;pipelines/streaming_append.py&quot;</span>
             <span class="n">parameters</span><span class="p">:</span>
               <span class="o">-</span> <span class="s2">&quot;--conf&quot;</span>
-              <span class="o">-</span> <span class="s2">&quot;conf/medium_dlt_pipeline_with_expectations.yml&quot;</span>
+              <span class="o">-</span> <span class="s2">&quot;conf/streaming_append_dlt_pipeline.yml&quot;</span>
         <span class="n">dependencies</span><span class="p">:</span>
           <span class="o">-</span> <span class="n">whl</span><span class="p">:</span> <span class="s2">&quot;/dbfs/private-site-packages/dltflow-0.0.1b0-py3-none-any.whl&quot;</span>
           <span class="o">-</span> <span class="n">pypi</span><span class="p">:</span>
@@ -569,7 +571,8 @@ module into a Notebook that can be deployed as a DLT Pipeline.</p>
 to a Databricks workspace. To do so, we’ll use the <code class="docutils literal notranslate"><span class="pre">dltflow</span></code> cli.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># bin/sh</span>
 
-<span class="n">dltflow</span> <span class="n">deploy</span><span class="o">-</span><span class="n">py</span><span class="o">-</span><span class="n">dlt</span> <span class="o">--</span><span class="n">deployment</span><span class="o">-</span><span class="n">file</span> <span class="o">../</span><span class="n">workflows</span><span class="o">/</span><span class="n">medium_dlt_pipeline_with_expectations</span><span class="o">.</span><span class="n">yml</span> \
+<span class="n">dltflow</span> <span class="n">deploy</span><span class="o">-</span><span class="n">py</span><span class="o">-</span><span class="n">dlt</span> \
+  <span class="o">--</span><span class="n">deployment</span><span class="o">-</span><span class="n">file</span> <span class="o">../</span><span class="n">workflows</span><span class="o">/</span><span class="n">streaming_dlt_pipeline</span><span class="o">.</span><span class="n">yml</span> \
   <span class="o">--</span><span class="n">environment</span> <span class="n">dev</span> <span class="o">--</span><span class="k">as</span><span class="o">-</span><span class="n">individual</span>
 </pre></div>
 </div>
@@ -587,20 +590,20 @@ to a Databricks workspace. To do so, we’ll use the <code class="docutils liter
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="simple.html"
+       href="medium.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Simple Example - Single Method Decorated</p>
+        <p class="prev-next-title">Medium Example - Multi-Method Decoration</p>
       </div>
     </a>
     <a class="right-next"
-       href="streaming_append.html"
+       href="../references.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Streaming Append Example</p>
+        <p class="prev-next-title">Reference</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -636,7 +639,7 @@ to a Databricks workspace. To do so, we’ll use the <code class="docutils liter
   <div class="sidebar-secondary-item">
 
   <div class="tocsection sourcelink">
-    <a href="../../_sources/_static/examples/medium.md.txt">
+    <a href="../../_sources/_static/examples/streaming_append.md.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
     </a>
   </div>
