@@ -1,5 +1,5 @@
 # `dltflow`
-![Coverage](./coverage/badges.svg) ![Static Badge](https://img.shields.io/badge/python-3.9%2C_3.10%2C_3.11%2C-blue) ![Static Badge](https://img.shields.io/badge/pyspark-3.4%2C_3.5-blue)
+![Static Badge](https://img.shields.io/badge/python-3.9%2C_3.10%2C_3.11%2C-blue) ![Static Badge](https://img.shields.io/badge/pyspark-3.4%2C_3.5-blue) [![codecov](https://codecov.io/gh/rickyschools/dltflow/graph/badge.svg?token=OSHZBF2639)](https://codecov.io/gh/rickyschools/dltflow)
 
 `dltflow` is a Python package that provides authoring utilities and CD patterns for Databricks' DLT product. It intends
 make writing and deploying DLT code and pipelines to Databricks as easy as possible.
