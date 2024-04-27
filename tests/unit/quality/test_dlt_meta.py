@@ -15,6 +15,7 @@ IntegerType = t.IntegerType
 
 sys.path.append("../../../../")
 
+from tests.fixtures import spark
 import dlt
 
 dlt.enable_local_execution()
