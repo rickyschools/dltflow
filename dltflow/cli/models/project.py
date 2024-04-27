@@ -16,6 +16,7 @@ class ProjectInfo(BaseModel):
     -----------
     Pydantic model for the project information.
     """
+
     name: str = Field(..., description="Name of the project")
 
 
@@ -25,6 +26,7 @@ class PathName(BaseModel):
     --------
     Pydantic model for the path information.
     """
+
     __pydantic_config__ = {"extra": "allow"}
     name: str = Field(..., description="Name of the path")
 
@@ -35,10 +37,19 @@ class ProjectElements(BaseModel):
     ----------------
     Pydantic model for the project elements.
     """
-    code: PathName = Field(default_factory=lambda: PathName(name='src', launch_method='launch'),
-                           description="Code of the project")
-    conf: PathName = Field(default_factory=lambda: PathName(name='conf'), description="Configuration of the project")
-    workflows: PathName = Field(default_factory=lambda: PathName(name='workflows'), description="Workflow of the project")
+
+    code: PathName = Field(
+        default_factory=lambda: PathName(name="src", launch_method="launch"),
+        description="Code of the project",
+    )
+    conf: PathName = Field(
+        default_factory=lambda: PathName(name="conf"),
+        description="Configuration of the project",
+    )
+    workflows: PathName = Field(
+        default_factory=lambda: PathName(name="workflows"),
+        description="Workflow of the project",
+    )
 
 
 class Workspace(BaseModel):
@@ -47,6 +58,7 @@ class Workspace(BaseModel):
     ----------
     Pydantic model for the workspace.
     """
+
     host: str = Field(..., description="Host of the workspace")
     root_path: str = Field(..., description="Root path of the workspace")
     artifact_path: str = Field(..., description="Artifact path of the workspace")
@@ -58,7 +70,8 @@ class Environment(BaseModel):
     ------------
     Pydantic model for the environment.
     """
-    mode: str = Field(default='development')
+
+    mode: str = Field(default="development")
     default: bool = Field(default=False)
     workspace: Workspace
 
@@ -69,9 +82,11 @@ class ProjectConfig(BaseModel):
     ---------------
     Pydantic model for the project configuration.
     """
+
     dltflow: ProjectInfo
     include: ProjectElements
     targets: Mapping[str, Environment]
+
 
 # if __name__ == "__main__":
 #     config = ProjectConfig(

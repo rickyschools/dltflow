@@ -63,12 +63,16 @@ from .config import DLTConfig, DLTConfigs, DLTExecutionConfig
 from .exceptions import DLTException
 
 _DANGEROUS_ACTIONS = {
-    '.count()', '.collect()', '.show()', '.head()', '.take()', '.first()', '.toPandas()'
+    ".count()",
+    ".collect()",
+    ".show()",
+    ".head()",
+    ".take()",
+    ".first()",
+    ".toPandas()",
 }
 
-_UNSUPPORTED_ACTIONS = {
-    '.pivot()'
-}
+_UNSUPPORTED_ACTIONS = {".pivot()"}
 
 
 @pyd.dataclasses.dataclass
@@ -79,8 +83,13 @@ class ParameterConfig:
     conjunction with the DLTConfig class to enforce the
     parameters of a function.
     """
-    required: t.Optional[t.List[str]] = pyd.Field(..., description='List of required parameters from a function.')
-    optional: t.Optional[t.List[str]] = pyd.Field([], description='List of optional parameters from a function.')
+
+    required: t.Optional[t.List[str]] = pyd.Field(
+        ..., description="List of required parameters from a function."
+    )
+    optional: t.Optional[t.List[str]] = pyd.Field(
+        [], description="List of optional parameters from a function."
+    )
 
 
 class DLTMetaMixin:
@@ -111,7 +120,7 @@ class DLTMetaMixin:
         object
             The instantiated object.
         """
-        config = kwargs.get('init_conf')
+        config = kwargs.get("init_conf")
         obj = super().__new__(cls)
         obj._logger = logging.getLogger(__name__)
         obj._conf: DLTConfigs = obj._get_dlt_config(config)
@@ -129,17 +138,19 @@ class DLTMetaMixin:
         config : dict
             The configuration for the class.
         """
-        if hasattr(config, 'writer') and 'write_opts' not in config.get('dlt', {}):
-            writer_conf = config.get('writer')
-            self._conf.write_opts.tablename = writer_conf.get('table')
-            self._conf.write_opts.path = writer_conf.get('path')
+        if hasattr(config, "writer") and "write_opts" not in config.get("dlt", {}):
+            writer_conf = config.get("writer")
+            self._conf.write_opts.tablename = writer_conf.get("table")
+            self._conf.write_opts.path = writer_conf.get("path")
 
     def _set_child_func_attributes(self):
         """
         Set the attributes for the child functions based on the execution configuration.
         """
         for conf in self._execution_conf:
-            setattr(self, conf.child_func_name, self.apply_dlt(conf.child_func_obj, conf))
+            setattr(
+                self, conf.child_func_name, self.apply_dlt(conf.child_func_obj, conf)
+            )
 
     def _make_execution_plan(self, configs: DLTConfigs):
         """
@@ -158,9 +169,17 @@ class DLTMetaMixin:
         execution_plan = []
         for config in configs:
             table_or_view_func = dlt.table if config.kind == "table" else dlt.view
-            child_func_obj = self._enforce_delta_limitations_and_requirements(config.func_name)
-            execution_plan.append(DLTExecutionConfig(dlt_config=config, table_or_view_func=table_or_view_func,
-                                                     child_func_name=config.func_name, child_func_obj=child_func_obj))
+            child_func_obj = self._enforce_delta_limitations_and_requirements(
+                config.func_name
+            )
+            execution_plan.append(
+                DLTExecutionConfig(
+                    dlt_config=config,
+                    table_or_view_func=table_or_view_func,
+                    child_func_name=config.func_name,
+                    child_func_obj=child_func_obj,
+                )
+            )
         return execution_plan
 
     @staticmethod
@@ -179,8 +198,8 @@ class DLTMetaMixin:
 
         """
         if isinstance(config, dict):
-            if 'dlt' in config:
-                dlt_value = config.get('dlt')
+            if "dlt" in config:
+                dlt_value = config.get("dlt")
                 if isinstance(dlt_value, dict):
                     return [DLTConfig(**dlt_value)]
                 elif isinstance(dlt_value, list):
@@ -264,8 +283,10 @@ class DLTMetaMixin:
             )
         # If the return type is not a Spark DataFrame, raise a TypeError.
         elif not signature.return_annotation == SparkDataFrame:
-            msg = ("`dlt` requires that the return type of the function is a Spark DataFrame. "
-                   "Please ensure to annotate the return type of the function with `spark.sql.DataFrame` class.")
+            msg = (
+                "`dlt` requires that the return type of the function is a Spark DataFrame. "
+                "Please ensure to annotate the return type of the function with `spark.sql.DataFrame` class."
+            )
             self._logger.error(msg)
             raise TypeError(msg)
 
@@ -316,13 +337,13 @@ class DLTMetaMixin:
         """
         _table_wrapper = execution_config.table_or_view_func(
             child_function,
-            **execution_config.dlt_config.write_opts.model_dump(exclude_none=True)
+            **execution_config.dlt_config.write_opts.model_dump(exclude_none=True),
         )
 
         if execution_config.dlt_config.dlt_expectations:
             _table_wrapper = execution_config.dlt_config.expectation_function(
-                execution_config.dlt_config.dlt_expectations)(
-                _table_wrapper)
+                execution_config.dlt_config.dlt_expectations
+            )(_table_wrapper)
 
         return _table_wrapper
 
@@ -355,34 +376,42 @@ class DLTMetaMixin:
         -------
 
         """
-        assert not (execution_config.dlt_config.append_config and execution_config.dlt_config.apply_chg_config), (
-            'When handling streaming tables, the `append_config` or `apply_chg_config` '
-            'attributes must be provided in the configuration.'
+        assert not (
+            execution_config.dlt_config.append_config
+            and execution_config.dlt_config.apply_chg_config
+        ), (
+            "When handling streaming tables, the `append_config` or `apply_chg_config` "
+            "attributes must be provided in the configuration."
         )
         extra = {}
         if execution_config.dlt_config.dlt_expectations:
             extra = {
-                execution_config.dlt_config.expectation_function.__name__: execution_config.dlt_config.dlt_expectations}
+                execution_config.dlt_config.expectation_function.__name__: execution_config.dlt_config.dlt_expectations
+            }
 
         dlt.create_streaming_table(
             **execution_config.dlt_config.write_opts.model_dump(exclude_none=True),
-            **extra
+            **extra,
         )
 
         if execution_config.dlt_config.apply_chg_config:
             dlt.apply_changes(
-                **execution_config.dlt_config.apply_chg_config.model_dump(exclude_none=True),
+                **execution_config.dlt_config.apply_chg_config.model_dump(
+                    exclude_none=True
+                ),
             )
 
             return dlt.view(
                 child_function,
-                name='streaming_view',
+                name="streaming_view",
                 # **self.read_opts.model_dump(exclude_none=True),
             )
         elif execution_config.dlt_config.append_config:
             return dlt.append_flow(
                 child_function,
-                **execution_config.dlt_config.append_config.model_dump(exclude_none=True),
+                **execution_config.dlt_config.append_config.model_dump(
+                    exclude_none=True
+                ),
             )
 
     def apply_dlt(self, child_function, execution_config: DLTExecutionConfig):
@@ -427,15 +456,19 @@ class DLTMetaMixin:
                 DLTException: If the provided configuration is not supported.
 
             """
-            self._logger.info(f'Entering wrapped method or {child_function}')
+            self._logger.info(f"Entering wrapped method or {child_function}")
 
             if not execution_config.dlt_config.is_streaming_table:
-                return self.table_view_expectation_wrapper(child_function, execution_config)
+                return self.table_view_expectation_wrapper(
+                    child_function, execution_config
+                )
             elif execution_config.dlt_config.is_streaming_table:
-                return self.streaming_table_expectation_wrapper(child_function, execution_config)
+                return self.streaming_table_expectation_wrapper(
+                    child_function, execution_config
+                )
             else:
                 raise DLTException(
-                    'The provided configuration is not supported. Please ensure that the configuration is correct.'
+                    "The provided configuration is not supported. Please ensure that the configuration is correct."
                 )
 
         return wrapper

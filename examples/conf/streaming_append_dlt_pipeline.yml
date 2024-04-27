@@ -16,4 +16,3 @@ dlt:
     target: 'append_table_name'
     name: 'queue_example'
     comment: 'This is a comment'
-

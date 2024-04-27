@@ -53,9 +53,9 @@ your project. Optionally, you can start your project with a template.
 dltflow init --help
 >>> Usage: dltflow init [OPTIONS]
 
-  Initialize the project with a dltflow.yml file. 
+  Initialize the project with a dltflow.yml file.
   Optionally start your project with a template.
-  
+
   Options:
   -p, --profile TEXT         Databricks profile to use
   -n, --project-name TEXT    Name of the project

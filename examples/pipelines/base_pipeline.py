@@ -1,7 +1,7 @@
 import sys
 import pathlib
 from logging import Logger
-from typing import Dict, Any, Union
+from typing import Any, Dict
 from argparse import ArgumentParser
 
 import yaml
@@ -17,9 +17,11 @@ class PipelineBase:
     @staticmethod
     def _get_spark(spark: SparkSession):
         if not spark:
-            spark = builder = SparkSession.builder.master("local[1]") \
-                .appName('dltflow-examples') \
+            spark = builder = (
+                SparkSession.builder.master("local[1]")
+                .appName("dltflow-examples")
                 .getOrCreate()
+            )
         return spark
 
     @staticmethod
@@ -31,7 +33,7 @@ class PipelineBase:
         return namespace.conf_file
 
     @staticmethod
-    def _read_config(conf_file) -> Dict[str, Any]:
+    def _read_config(conf_file) -> dict[str, Any]:
         config = yaml.safe_load(pathlib.Path(conf_file).read_text())
         return config
 

@@ -12,12 +12,16 @@ import inspect  # pragma: no cover
 from dbx.api import config_reader  # pragma: no cover
 from dltflow.utils import dbx_echo  # pragma: no cover
 
-config_reader_source = inspect.getsource(config_reader) \
-    .replace("'Deployment'", "'DLTFlowDeployment'") \
-    .replace("DeploymentConfig", "DLTFlowDeploymentConfig") \
-    .replace("EnvironmentDeploymentInfo", "DLTFlowEnvironmentDeploymentInfo") \
-    .replace("from dbx.models.deployment", "from dltflow.cli.models.deployment")  # pragma: no cover
+config_reader_source = (
+    inspect.getsource(config_reader)
+    .replace("'Deployment'", "'DLTFlowDeployment'")
+    .replace("DeploymentConfig", "DLTFlowDeploymentConfig")
+    .replace("EnvironmentDeploymentInfo", "DLTFlowEnvironmentDeploymentInfo")
+    .replace("from dbx.models.deployment", "from dltflow.cli.models.deployment")
+)  # pragma: no cover
 
-dbx_echo('⚠️🪄[red]Dynamically refactoring `dbx` config reader code to support `dltflow`.')  # pragma: no cover
+dbx_echo(
+    "⚠️🪄[red]Dynamically refactoring `dbx` config reader code to support `dltflow`."
+)  # pragma: no cover
 
 exec(config_reader_source.strip())  # pragma: no cover

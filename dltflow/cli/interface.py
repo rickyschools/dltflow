@@ -10,7 +10,7 @@ from dltflow.cli.initialize import init
 from dltflow.cli.deploy import deploy_py_dlt2
 
 
-@click.group('dltflow')
+@click.group("dltflow")
 def cli():
     pass
 
@@ -18,5 +18,5 @@ def cli():
 cli.add_command(cmd=init)
 cli.add_command(cmd=deploy_py_dlt2)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     cli()

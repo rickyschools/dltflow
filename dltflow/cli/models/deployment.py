@@ -26,13 +26,18 @@ from pydantic.v1 import BaseModel, Field, root_validator
 from dbx.models.workflow.common.flexible import FlexibleModel
 from dbx.models.workflow.common.task import SparkPythonTask
 from dbx.models.workflow.common.pipeline import Pipeline
-from dbx.models.workflow.common.libraries import PythonPyPiLibrary, mutually_exclusive, at_least_one_of
+from dbx.models.workflow.common.libraries import (
+    PythonPyPiLibrary,
+    mutually_exclusive,
+    at_least_one_of,
+)
 
 from dltflow.utils import dbx_echo
 
 
 class DLTFlowDependency(FlexibleModel):
     """A dependency for a DLTFlow task."""
+
     whl: t.Optional[str] = None
     pypi: t.Optional[PythonPyPiLibrary] = None
 
@@ -41,8 +46,10 @@ class DLTFlowDependency(FlexibleModel):
     def validate(cls, values):
         """Ensure that at least one of whl or pypi is provided, but not both."""
         print(values)
-        assert (values.whl or values.pypi), 'At least one of whl or pypi must be provided.'
-        assert not (values.whl and values.pypi), 'whl and pypi are mutually exclusive.'
+        assert (
+            values.whl or values.pypi
+        ), "At least one of whl or pypi must be provided."
+        assert not (values.whl and values.pypi), "whl and pypi are mutually exclusive."
         return values
 
     def get_dependency(self):
@@ -55,19 +62,24 @@ class DLTFlowDependency(FlexibleModel):
 
 class DLTFlowSparkPythonTask(SparkPythonTask):
     """A Pydantic model for a DLTFlow PySpark task."""
-    python_file: str = Field(..., description='Path to the Python file')
-    parameters: t.List[str] = Field(..., description='Parameters for the Python file')
+
+    python_file: str = Field(..., description="Path to the Python file")
+    parameters: t.List[str] = Field(..., description="Parameters for the Python file")
 
     def provide_items(self):
         """Return the task items as a dictionary."""
-        return {'python_file': self.python_file, 'config_path': self.parameters[-1]}
+        return {"python_file": self.python_file, "config_path": self.parameters[-1]}
 
 
 class DLTFlowTasks(BaseModel):
     """A Pydantic model for a DLTFlow tasks object."""
-    items: t.List[DLTFlowSparkPythonTask] = Field(default=None, description='List of PySpark tasks')
-    dependencies: t.List[DLTFlowDependency] = Field(default=None,
-                                                    description='List of dependencies required for the tasks')
+
+    items: t.List[DLTFlowSparkPythonTask] = Field(
+        default=None, description="List of PySpark tasks"
+    )
+    dependencies: t.List[DLTFlowDependency] = Field(
+        default=None, description="List of dependencies required for the tasks"
+    )
 
     def get_items(self):
         """Return the task items as a list of dictionaries."""
@@ -80,8 +92,11 @@ class DLTFlowTasks(BaseModel):
 
 class DLTFlowPipeline(Pipeline):
     """A Pydantic model for a DLTFlow pipeline."""
-    workflow_type: t.Literal['pipeline'] = Field('pipeline', description='Workflow type')
-    tasks: DLTFlowTasks = Field(..., description='Tasks to be executed in the pipeline')
+
+    workflow_type: t.Literal["pipeline"] = Field(
+        "pipeline", description="Workflow type"
+    )
+    tasks: DLTFlowTasks = Field(..., description="Tasks to be executed in the pipeline")
 
     def get_tasks(self):
         """Return the tasks as a list of dictionaries."""
@@ -91,12 +106,16 @@ class DLTFlowPipeline(Pipeline):
 # load deployment classes
 from dbx.models import deployment
 
-deployment_source = inspect.getsource(deployment) \
-    .replace('EnvironmentDeploymentInfo', 'DLTFlowEnvironmentDeploymentInfo') \
-    .replace('DeploymentConfig', 'DLTFlowDeploymentConfig') \
-    .replace(' -> Deployment', ' -> DLTFlowDeployment') \
-    .replace('Optional[WorkflowList]', 'Optional[List[DLTFlowPipeline]]')
+deployment_source = (
+    inspect.getsource(deployment)
+    .replace("EnvironmentDeploymentInfo", "DLTFlowEnvironmentDeploymentInfo")
+    .replace("DeploymentConfig", "DLTFlowDeploymentConfig")
+    .replace(" -> Deployment", " -> DLTFlowDeployment")
+    .replace("Optional[WorkflowList]", "Optional[List[DLTFlowPipeline]]")
+)
 
-dbx_echo('⚠️🪄[red]Dynamically refactoring `dbx` deployment pydantic models to support `dltflow`.')
+dbx_echo(
+    "⚠️🪄[red]Dynamically refactoring `dbx` deployment pydantic models to support `dltflow`."
+)
 
 exec(deployment_source.strip())
