@@ -51,9 +51,9 @@ The `dlt` section has the following keys, though this configuration can also be 
 
 ## Workflow Spec
 
-Now that we've gone through the code and configuration, we need to start defining the workflow that we want to deploy 
-to Databricks so that our pipeline can be registered as a DLT Pipeline. This structure largely follows the [Databricks 
-Pipeline API]() with the addition of a `tasks` key. This key is used during deployment for transitioning your python 
+Now that we've gone through the code and configuration, we need to start defining the workflow that we want to deploy
+to Databricks so that our pipeline can be registered as a DLT Pipeline. This structure largely follows the [Databricks
+Pipeline API]() with the addition of a `tasks` key. This key is used during deployment for transitioning your python
 module into a Notebook that can be deployed as a DLT Pipeline.
 
 :::{literalinclude} ../../../examples/workflows/simple_dlt_pipeline_with_expectations.yml
@@ -61,8 +61,8 @@ module into a Notebook that can be deployed as a DLT Pipeline.
 
 ## Deployment
 
-We're at the final step of this simple example. The last piece of the puzzle here is that we need to deploy our assets 
-to a Databricks workspace. To do so, we'll use the `dltflow` cli. 
+We're at the final step of this simple example. The last piece of the puzzle here is that we need to deploy our assets
+to a Databricks workspace. To do so, we'll use the `dltflow` cli.
 
 :::{literalinclude} ../../../examples/deployment/deploy_simple_dlt_pipeline_with_expectations.sh
 :::

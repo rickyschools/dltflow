@@ -346,48 +346,49 @@ document.write(`
 <p>This article intends to provide reference documentation for <code class="docutils literal notranslate"><span class="pre">dltflow</span></code> CLI commands.</p>
 <section id="initialize">
 <h2>Initialize<a class="headerlink" href="#initialize" title="Permalink to this heading">#</a></h2>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Initialize a new dltflow project.
-
-This cli command is used to help initialize a dltflow project. At a minimum,
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>is_flag=True,
+default=False,
+</pre></div>
+</div>
+<p>)
+&#64;click.option(
+“–overwrite”,
+“-o”,
+help=”Overwrite existing config file”,
+is_flag=True,
+default=True,
+show_default=True,
+)
+&#64;click.option(
+“–shared”,
+“-d”,
+help=”DBFS location to store the project”,
+is_flag=True,
+default=True,
+show_default=True,
+)
+def init(
+profile: str,
+project_name: str = “my_project”,
+config_path: str = “conf”,
+workflows_path: str = “workflows”,
+build_template: bool = False,
+overwrite: bool = True,
+dbfs_location: str = None,
+shared: bool = True,
+):  # pragma: no cover
+“””
+Initialize a new dltflow project.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>This cli command is used to help initialize a dltflow project. At a minimum,
 it will create a `dltflow` config file in the current directory.
-
-The code, configuration, and workflow directory names can be customized
-by the user. The default values are:
-
-    - code: `my_project`
-    - config: `conf`
-    - workflows: `workflows`
-
-When these directories are created during initialization, a `.gitkeep` file
-is created in each directory. This is to ensure that the directories are
-included in the git repository. Also, a `setup.py` and `pyproject.toml` file are
-created in the root directory. These files are used to help package the
-project as a python package.
-
-The `pyproject.toml` file is setup to use the `bumpver` package to help
-manage versioning.
-
-If the user opts in to include directories, dltflow will create the
-directories with the following structure:
-
-
-    ```text
-    git-root/
-        my_project/  # code goes here.
-        conf/  # configuration to drive your pipelines.
-        workflows/  # json or yml definitions for workflows in databricks.
-        dltflow.yml  # dltflow config file.
-        setup.py  # setup file for python packages.
-        pyproject.toml  # pyproject file for python packages.
-    ```
 </pre></div>
 </div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dltflow<span class="w"> </span>init<span class="w"> </span>--help
 &gt;&gt;&gt;<span class="w"> </span>Usage:<span class="w"> </span>dltflow<span class="w"> </span>init<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
 
-<span class="w">  </span>Initialize<span class="w"> </span>the<span class="w"> </span>project<span class="w"> </span>with<span class="w"> </span>a<span class="w"> </span>dltflow.yml<span class="w"> </span>file.<span class="w"> </span>
+<span class="w">  </span>Initialize<span class="w"> </span>the<span class="w"> </span>project<span class="w"> </span>with<span class="w"> </span>a<span class="w"> </span>dltflow.yml<span class="w"> </span>file.
 <span class="w">  </span>Optionally<span class="w"> </span>start<span class="w"> </span>your<span class="w"> </span>project<span class="w"> </span>with<span class="w"> </span>a<span class="w"> </span>template.
-<span class="w">  </span>
+
 <span class="w">  </span>Options:
 <span class="w">  </span>-p,<span class="w"> </span>--profile<span class="w"> </span>TEXT<span class="w">         </span>Databricks<span class="w"> </span>profile<span class="w"> </span>to<span class="w"> </span>use
 <span class="w">  </span>-n,<span class="w"> </span>--project-name<span class="w"> </span>TEXT<span class="w">    </span>Name<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>project

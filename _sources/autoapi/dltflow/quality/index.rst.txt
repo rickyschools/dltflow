@@ -3,6 +3,13 @@
 
 .. py:module:: dltflow.quality
 
+.. autoapi-nested-parse::
+
+   dltflow.quality
+   ----------------
+   This module is the namespace for the quality module.
+
+
 
 Submodules
 ----------

@@ -10,13 +10,13 @@ This article intends to provide reference documentation for `dltflow` CLI comman
 :dedent: 4
 :::
 
-:::{include} ../../README.md 
+:::{include} ../../README.md
 :start-line: 51
 :end-line: 70
 :::
 
 ## Deployment
-:::{include} ../../README.md 
+:::{include} ../../README.md
 :start-line: 316
 :end-line: 336
 :::

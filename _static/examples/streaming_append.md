@@ -48,14 +48,14 @@ The `dlt` section has the following keys, though this configuration can also be 
 - `kind`: Tells `dlt` if this query should be materialized as a `table` or `view`
 - `expectation_action`: Tells `dlt` how to handle the expectations. `drop`, `fail`, and `allow` are all supported.
 - `expectations`: These are a list of constraints we want to apply to our data.
-- `is_streaming`: This tells `dltflow` this is a streaming query. 
+- `is_streaming`: This tells `dltflow` this is a streaming query.
 - `append_config`: This tells `dltflow` we're in a streaming append and fills out necessary `dlt` params.
 
 ## Workflow Spec
 
-Now that we've gone through the code and configuration, we need to start defining the workflow that we want to deploy 
-to Databricks so that our pipeline can be registered as a DLT Pipeline. This structure largely follows the [Databricks 
-Pipeline API]() with the addition of a `tasks` key. This key is used during deployment for transitioning your python 
+Now that we've gone through the code and configuration, we need to start defining the workflow that we want to deploy
+to Databricks so that our pipeline can be registered as a DLT Pipeline. This structure largely follows the [Databricks
+Pipeline API]() with the addition of a `tasks` key. This key is used during deployment for transitioning your python
 module into a Notebook that can be deployed as a DLT Pipeline.
 
 :::{literalinclude} ../../../examples/workflows/streaming_dlt_pipeline.yml
@@ -63,8 +63,8 @@ module into a Notebook that can be deployed as a DLT Pipeline.
 
 ## Deployment
 
-We're at the final step of this simple example. The last piece of the puzzle here is that we need to deploy our assets 
-to a Databricks workspace. To do so, we'll use the `dltflow` cli. 
+We're at the final step of this simple example. The last piece of the puzzle here is that we need to deploy our assets
+to a Databricks workspace. To do so, we'll use the `dltflow` cli.
 
 :::{literalinclude} ../../../examples/deployment/deploy_streaming_append_pipeline.sh
 :::

@@ -99,7 +99,7 @@ Attributes
         # COMMAND ----------
         # load the configuration file if it exists
         # and run the pipeline.
-        if config_path is not None: 
+        if config_path is not None:
             config = yaml.safe_load(pathlib.Path(config_path).read_text())
             pipeline = {class_name}(spark=spark, init_conf=config)
             pipeline.{launch_method}()

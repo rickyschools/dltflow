@@ -364,7 +364,7 @@ initialized in pipelines. This pattern largely follows <code class="docutils lit
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">pathlib</span>
 <span class="kn">from</span> <span class="nn">logging</span> <span class="kn">import</span> <span class="n">Logger</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span>
 <span class="kn">from</span> <span class="nn">argparse</span> <span class="kn">import</span> <span class="n">ArgumentParser</span>
 
 <span class="kn">import</span> <span class="nn">yaml</span>
@@ -380,9 +380,11 @@ initialized in pipelines. This pattern largely follows <code class="docutils lit
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_get_spark</span><span class="p">(</span><span class="n">spark</span><span class="p">:</span> <span class="n">SparkSession</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">spark</span><span class="p">:</span>
-            <span class="n">spark</span> <span class="o">=</span> <span class="n">builder</span> <span class="o">=</span> <span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">master</span><span class="p">(</span><span class="s2">&quot;local[1]&quot;</span><span class="p">)</span> \
-                <span class="o">.</span><span class="n">appName</span><span class="p">(</span><span class="s1">&#39;dltflow-examples&#39;</span><span class="p">)</span> \
+            <span class="n">spark</span> <span class="o">=</span> <span class="n">builder</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">master</span><span class="p">(</span><span class="s2">&quot;local[1]&quot;</span><span class="p">)</span>
+                <span class="o">.</span><span class="n">appName</span><span class="p">(</span><span class="s2">&quot;dltflow-examples&quot;</span><span class="p">)</span>
                 <span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
+            <span class="p">)</span>
         <span class="k">return</span> <span class="n">spark</span>
 
     <span class="nd">@staticmethod</span>
@@ -394,7 +396,7 @@ initialized in pipelines. This pattern largely follows <code class="docutils lit
         <span class="k">return</span> <span class="n">namespace</span><span class="o">.</span><span class="n">conf_file</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_read_config</span><span class="p">(</span><span class="n">conf_file</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">_read_config</span><span class="p">(</span><span class="n">conf_file</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
         <span class="n">config</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">conf_file</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">())</span>
         <span class="k">return</span> <span class="n">config</span>
 
@@ -438,16 +440,9 @@ initialized in pipelines. This pattern largely follows <code class="docutils lit
 </li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dltflow.quality</span> <span class="kn">import</span> <span class="n">DLTMetaMixin</span>
-<span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">DataFrame</span> <span class="k">as</span> <span class="n">SparkDataFrame</span><span class="p">,</span>
-    <span class="n">SparkSession</span><span class="p">,</span>
-    <span class="n">functions</span> <span class="k">as</span> <span class="n">f</span>
-<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">DataFrame</span> <span class="k">as</span> <span class="n">SparkDataFrame</span><span class="p">,</span> <span class="n">SparkSession</span><span class="p">,</span> <span class="n">functions</span> <span class="k">as</span> <span class="n">f</span>
 
 <span class="kn">from</span> <span class="nn">.base_pipeline</span> <span class="kn">import</span> <span class="n">PipelineBase</span>
-
-
-
 
 
 <span class="k">class</span> <span class="nc">MyMediumPipeline</span><span class="p">(</span><span class="n">PipelineBase</span><span class="p">,</span> <span class="n">DLTMetaMixin</span><span class="p">):</span>
@@ -455,27 +450,47 @@ initialized in pipelines. This pattern largely follows <code class="docutils lit
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">spark</span><span class="o">=</span><span class="n">spark</span><span class="p">,</span> <span class="n">init_conf</span><span class="o">=</span><span class="n">init_conf</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">intermediate_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">SparkDataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SparkDataFrame</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;age&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;age&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
 
     <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SparkDataFrame</span><span class="p">:</span>
         <span class="n">data</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="p">(</span><span class="s1">&#39;Alice&#39;</span><span class="p">,</span> <span class="mi">34</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Bob&#39;</span><span class="p">,</span> <span class="mi">45</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Charlie&#39;</span><span class="p">,</span> <span class="mi">56</span><span class="p">),</span>
-            <span class="p">(</span><span class="s1">&#39;David&#39;</span><span class="p">,</span> <span class="mi">23</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Eve&#39;</span><span class="p">,</span> <span class="mi">78</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Frank&#39;</span><span class="p">,</span> <span class="mi">34</span><span class="p">),</span>
-            <span class="p">(</span><span class="s1">&#39;Grace&#39;</span><span class="p">,</span> <span class="mi">56</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Heidi&#39;</span><span class="p">,</span> <span class="mi">45</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Ivan&#39;</span><span class="p">,</span> <span class="mi">99</span><span class="p">),</span>
-            <span class="p">(</span><span class="s1">&#39;Judy&#39;</span><span class="p">,</span> <span class="mi">23</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Kevin&#39;</span><span class="p">,</span> <span class="mi">45</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Lana&#39;</span><span class="p">,</span> <span class="mi">56</span><span class="p">),</span>
-            <span class="p">(</span><span class="s1">&#39;Mona&#39;</span><span class="p">,</span> <span class="mi">105</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Nina&#39;</span><span class="p">,</span> <span class="mi">34</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Omar&#39;</span><span class="p">,</span> <span class="mi">56</span><span class="p">),</span>
-            <span class="p">(</span><span class="s1">&#39;Pam&#39;</span><span class="p">,</span> <span class="mi">45</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Quinn&#39;</span><span class="p">,</span> <span class="mi">99</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Rita&#39;</span><span class="p">,</span> <span class="mi">23</span><span class="p">),</span>
-            <span class="p">(</span><span class="s1">&#39;Steve&#39;</span><span class="p">,</span> <span class="mi">45</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Tina&#39;</span><span class="p">,</span> <span class="mi">115</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Uma&#39;</span><span class="p">,</span> <span class="mi">78</span><span class="p">),</span>
-            <span class="p">(</span><span class="s1">&#39;Vera&#39;</span><span class="p">,</span> <span class="mi">34</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Wendy&#39;</span><span class="p">,</span> <span class="mi">56</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Xander&#39;</span><span class="p">,</span> <span class="mi">45</span><span class="p">),</span>
-            <span class="p">(</span><span class="s1">&#39;Yara&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Zack&#39;</span><span class="p">,</span> <span class="mi">23</span><span class="p">)</span>
+            <span class="p">(</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="mi">34</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="mi">45</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;Charlie&quot;</span><span class="p">,</span> <span class="mi">56</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;David&quot;</span><span class="p">,</span> <span class="mi">23</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;Eve&quot;</span><span class="p">,</span> <span class="mi">78</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;Frank&quot;</span><span class="p">,</span> <span class="mi">34</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;Grace&quot;</span><span class="p">,</span> <span class="mi">56</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;Heidi&quot;</span><span class="p">,</span> <span class="mi">45</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;Ivan&quot;</span><span class="p">,</span> <span class="mi">99</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;Judy&quot;</span><span class="p">,</span> <span class="mi">23</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;Kevin&quot;</span><span class="p">,</span> <span class="mi">45</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;Lana&quot;</span><span class="p">,</span> <span class="mi">56</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;Mona&quot;</span><span class="p">,</span> <span class="mi">105</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;Nina&quot;</span><span class="p">,</span> <span class="mi">34</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;Omar&quot;</span><span class="p">,</span> <span class="mi">56</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;Pam&quot;</span><span class="p">,</span> <span class="mi">45</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;Quinn&quot;</span><span class="p">,</span> <span class="mi">99</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;Rita&quot;</span><span class="p">,</span> <span class="mi">23</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;Steve&quot;</span><span class="p">,</span> <span class="mi">45</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;Tina&quot;</span><span class="p">,</span> <span class="mi">115</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;Uma&quot;</span><span class="p">,</span> <span class="mi">78</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;Vera&quot;</span><span class="p">,</span> <span class="mi">34</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;Wendy&quot;</span><span class="p">,</span> <span class="mi">56</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;Xander&quot;</span><span class="p">,</span> <span class="mi">45</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;Yara&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;Zack&quot;</span><span class="p">,</span> <span class="mi">23</span><span class="p">),</span>
         <span class="p">]</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">])</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">])</span>
 
     <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">SparkDataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SparkDataFrame</span><span class="p">:</span>
         <span class="n">out_step</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">intermediate_step</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-        <span class="n">out_step2</span> <span class="o">=</span> <span class="n">out_step</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;age_bin&#39;</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">bin</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;age&#39;</span><span class="p">),</span> <span class="mi">10</span><span class="p">))</span> \
-            <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;age_bin_str&#39;</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">lit</span><span class="p">(</span><span class="s1">&#39;age_bin_&#39;</span><span class="p">),</span> <span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;age_bin&#39;</span><span class="p">)))</span> \
-            <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;age_bin_str&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+        <span class="n">out_step2</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">out_step</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;age_bin&quot;</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">bin</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;age&quot;</span><span class="p">),</span> <span class="mi">10</span><span class="p">))</span>
+            <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;age_bin_str&quot;</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">lit</span><span class="p">(</span><span class="s2">&quot;age_bin_&quot;</span><span class="p">),</span> <span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;age_bin&quot;</span><span class="p">)))</span>
+            <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;age_bin_str&quot;</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">count</span><span class="p">()</span>
+        <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">out_step2</span>
 
