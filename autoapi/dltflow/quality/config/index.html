@@ -453,6 +453,9 @@ constraint: “count &gt; 1”</p></li>
 <tr class="row-odd"><td><p><a class="reference internal" href="#dltflow.quality.config.DLTExecutionConfig" title="dltflow.quality.config.DLTExecutionConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DLTExecutionConfig</span></code></a></p></td>
 <td><p>A class to represent the configuration of the DLT execution.</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dltflow.quality.config.DLTPipelineConfig" title="dltflow.quality.config.DLTPipelineConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DLTPipelineConfig</span></code></a></p></td>
+<td><p>A class to represent the configuration of the DLT pipeline.</p></td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -782,12 +785,12 @@ private attribute.
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="dltflow.quality.config.DLTConfig.append_config">
-<span class="sig-name descname"><span class="pre">append_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#dltflow.quality.config.AppendFlowConfig" title="dltflow.quality.config.AppendFlowConfig"><span class="pre">AppendFlowConfig</span></a></em><a class="headerlink" href="#dltflow.quality.config.DLTConfig.append_config" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">append_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#dltflow.quality.config.AppendFlowConfig" title="dltflow.quality.config.AppendFlowConfig"><span class="pre">AppendFlowConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#dltflow.quality.config.DLTConfig.append_config" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="dltflow.quality.config.DLTConfig.apply_chg_config">
-<span class="sig-name descname"><span class="pre">apply_chg_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#dltflow.quality.config.ApplyChangesConfig" title="dltflow.quality.config.ApplyChangesConfig"><span class="pre">ApplyChangesConfig</span></a></em><a class="headerlink" href="#dltflow.quality.config.DLTConfig.apply_chg_config" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">apply_chg_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#dltflow.quality.config.ApplyChangesConfig" title="dltflow.quality.config.ApplyChangesConfig"><span class="pre">ApplyChangesConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#dltflow.quality.config.DLTConfig.apply_chg_config" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -835,6 +838,30 @@ private attribute.
 <dt class="sig sig-object py" id="dltflow.quality.config.DLTConfigs">
 <span class="sig-prename descclassname"><span class="pre">dltflow.quality.config.</span></span><span class="sig-name descname"><span class="pre">DLTConfigs</span></span><a class="headerlink" href="#dltflow.quality.config.DLTConfigs" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="dltflow.quality.config.DLTPipelineConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dltflow.quality.config.</span></span><span class="sig-name descname"><span class="pre">DLTPipelineConfig</span></span><a class="headerlink" href="#dltflow.quality.config.DLTPipelineConfig" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#dltflow.quality.config.PydanticV2BaseModelLazy" title="dltflow.quality.config.PydanticV2BaseModelLazy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PydanticV2BaseModelLazy</span></code></a></p>
+<p>A class to represent the configuration of the DLT pipeline.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.config.DLTPipelineConfig.dlt">
+<span class="sig-name descname"><span class="pre">dlt</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#dltflow.quality.config.DLTConfig" title="dltflow.quality.config.DLTConfig"><span class="pre">DLTConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">DLTConfigs</span></em><a class="headerlink" href="#dltflow.quality.config.DLTPipelineConfig.dlt" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dltflow.quality.config.DLTPipelineConfig.validate_dlt">
+<span class="sig-name descname"><span class="pre">validate_dlt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dltflow.quality.config.DLTPipelineConfig.validate_dlt" title="Permalink to this definition">#</a></dt>
+<dd><p>A validator to ensure that the dlt field is either a DLTConfig or a list of DLTConfigs.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dltflow.quality.config.DLTPipelineConfig._config_validator">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_config_validator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dltflow.quality.config.DLTPipelineConfig._config_validator" title="Permalink to this definition">#</a></dt>
+<dd><p>A validator to ensure that the dlt field is either a DLTConfig or a list of DLTConfigs.</p>
+</dd></dl>
+
+</dd></dl>
 
 </section>
 </section>
@@ -978,6 +1005,12 @@ used to declare the expectations that will be checked on the dataset.</a><ul cla
 </ul>
 </li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.DLTConfigs"><code class="docutils literal notranslate"><span class="pre">DLTConfigs</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.DLTPipelineConfig"><code class="docutils literal notranslate"><span class="pre">DLTPipelineConfig</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.DLTPipelineConfig.dlt"><code class="docutils literal notranslate"><span class="pre">DLTPipelineConfig.dlt</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.DLTPipelineConfig.validate_dlt"><code class="docutils literal notranslate"><span class="pre">DLTPipelineConfig.validate_dlt()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.config.DLTPipelineConfig._config_validator"><code class="docutils literal notranslate"><span class="pre">DLTPipelineConfig._config_validator()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

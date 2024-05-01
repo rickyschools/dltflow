@@ -59,6 +59,7 @@ Classes
    dltflow.quality.config.ApplyChangesConfig
    dltflow.quality.config.DLTConfig
    dltflow.quality.config.DLTExecutionConfig
+   dltflow.quality.config.DLTPipelineConfig
 
 
 
@@ -382,12 +383,12 @@ Attributes
       
 
    .. py:attribute:: append_config
-      :type: AppendFlowConfig
+      :type: Optional[AppendFlowConfig]
 
       
 
    .. py:attribute:: apply_chg_config
-      :type: ApplyChangesConfig
+      :type: Optional[ApplyChangesConfig]
 
       
 
@@ -433,4 +434,28 @@ Attributes
 .. py:data:: DLTConfigs
 
    
+
+.. py:class:: DLTPipelineConfig
+
+
+   Bases: :py:obj:`PydanticV2BaseModelLazy`
+
+   A class to represent the configuration of the DLT pipeline.
+
+   .. py:attribute:: dlt
+      :type: Union[DLTConfig, DLTConfigs]
+
+      
+
+   .. py:method:: validate_dlt(value)
+
+      A validator to ensure that the dlt field is either a DLTConfig or a list of DLTConfigs.
+
+
+   .. py:method:: _config_validator(obj)
+      :staticmethod:
+
+      A validator to ensure that the dlt field is either a DLTConfig or a list of DLTConfigs.
+
+
 
