@@ -141,8 +141,8 @@ class TableProperties(PydanticV2BaseModelLazy):
         default=None,
         serialization_alias="pipelines.autoOptimize.zOrderCols",
         description="An optional string containing a comma-separated list of column names to z-order "
-        'this table by. For example, pipelines.autoOptimize.zOrderCols = "year,month" \n\n'
-        "Default = None",
+                    'this table by. For example, pipelines.autoOptimize.zOrderCols = "year,month" \n\n'
+                    "Default = None",
     )
     allow_reset: str = pyd.Field(
         default="true",
@@ -270,10 +270,10 @@ class DLTConfig(PydanticV2BaseModelLazy):
     is_streaming_table: t.Optional[bool] = pyd.Field(
         default=False, description="Flag to indicate if the table is streaming."
     )
-    append_config: AppendFlowConfig = pyd.Field(
+    append_config: t.Optional[AppendFlowConfig] = pyd.Field(
         default=None, description="The configuration for the append flow."
     )
-    apply_chg_config: ApplyChangesConfig = pyd.Field(
+    apply_chg_config: t.Optional[ApplyChangesConfig] = pyd.Field(
         default=None, description="The configuration for the apply changes flow."
     )
 
@@ -361,3 +361,39 @@ class DLTExecutionConfig(PydanticV2BaseModelLazy):
 
 
 DLTConfigs = t.List[DLTConfig]
+
+
+class DLTPipelineConfig(PydanticV2BaseModelLazy):
+    """
+    A class to represent the configuration of the DLT pipeline.
+    """
+
+    dlt: t.Union[DLTConfig, DLTConfigs] = pyd.Field(
+        ...,
+        description="The DLT configuration for a spark pipeline."
+    )
+
+    @pyd.validator("dlt")
+    def validate_dlt(cls, value):
+        """
+        A validator to ensure that the dlt field is either a DLTConfig or a list of DLTConfigs.
+        """
+        if not isinstance(value, (DLTConfig, list)):
+            raise ValueError("The dlt field must be either a DLTConfig or a list of DLTConfigs.")
+
+        if not isinstance(value, list):
+            value = [value]
+
+        if len(value) == 0:
+            raise pyd.ValidationError("The dlt field must be either a DLTConfig or a list of DLTConfigs.")
+
+        map(cls._config_validator, value)
+
+        return value
+
+    @staticmethod
+    def _config_validator(obj):
+        """
+        A validator to ensure that the dlt field is either a DLTConfig or a list of DLTConfigs.
+        """
+        assert isinstance(obj, DLTConfig), "The dlt field must be either a DLTConfig or a list of DLTConfigs."
