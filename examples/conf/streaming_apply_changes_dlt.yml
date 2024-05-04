@@ -1,0 +1,20 @@
+reader:
+  ...
+writer:
+  adl_processed_path: "a/fake/path"
+  schema: fake_schema
+  table_name: table_name
+dlt:
+  func_name: "transform"
+  kind: table
+  expectation_action: "drop"
+  expectations:
+    - name: "valid_city"
+      constraint: 'city in ("Seattle", "Portland", "San Francisco", "Los Angeles")'
+  is_streaming: true
+  apply_chg_config:
+    target: 'apply_changes_table_name'
+    source: 'input_dataset_name'
+    keys: ['id']
+    sequence_by: 'msg_id'
+    stored_as_scd_type: 1
