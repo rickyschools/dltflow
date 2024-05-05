@@ -9,8 +9,9 @@ Examples are stratified by increasing levels of complexity.
 - [Moderate, Multi-Method Decoration](examples/medium.md)
   - A moderate example multiple methods decorated with dlt.
 - [Streaming, Append example](examples/streaming_append.md)
-  - An simple example showcasing how to write streaming append dlt pipelines.
-- Streaming, CDC example
+  - A simple example showcasing how to write streaming append dlt pipelines.
+- [Streaming, CDC example](./examples/streaming_cdc.md)
+  - A simple example showcasing how to write streaming apply changes into dlt pipelines. 
 - Complex, Multi-Step example
 
 ::: {toctree}
@@ -18,5 +19,6 @@ Examples are stratified by increasing levels of complexity.
 examples/simple.md
 examples/medium.md
 examples/streaming_append.md
+examples/streaming_cdc.md
 :hidden:
 :::
