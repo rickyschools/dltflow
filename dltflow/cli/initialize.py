@@ -17,6 +17,7 @@ The `pyproject.toml` file is setup to use the `bumpver` package to help manage v
 """
 
 import os
+import warnings
 import configparser
 
 import click
@@ -53,7 +54,7 @@ def _parse_databricks_cfg():  # pragma: no cover
 
 
 def _environments_from_databricks_profile(
-    username, project_name, shared
+        username, project_name, shared
 ):  # pragma: no cover
     """Get the environments from the databricks profile."""
     config = _parse_databricks_cfg()
@@ -113,14 +114,14 @@ def _environments_from_databricks_profile(
     show_default=True,
 )
 def init(
-    profile: str,
-    project_name: str = "my_project",
-    config_path: str = "conf",
-    workflows_path: str = "workflows",
-    build_template: bool = False,
-    overwrite: bool = True,
-    dbfs_location: str = None,
-    shared: bool = True,
+        profile: str,
+        project_name: str = "my_project",
+        config_path: str = "conf",
+        workflows_path: str = "workflows",
+        build_template: bool = False,
+        overwrite: bool = True,
+        dbfs_location: str = None,
+        shared: bool = True,
 ):  # pragma: no cover
     """
     Initialize a new dltflow project.
@@ -179,8 +180,17 @@ def init(
     """
     dbx_echo(f"Initializing dltflow project configuration.")
 
-    client = WorkspaceClient(profile=profile.upper())
-    user_name = client.current_user.me().user_name
+    _dbx_configured: bool = os.path.exists(_get_path())
+
+    if not _dbx_configured:
+        import getpass
+        user_name = getpass.getuser()
+        warnings.warn("Databricks CLI is not configured. `dltflow` can get setup, but deployments cannot "
+                      "happen without it. Please run `databricks configure` and then re-init dltflow later if "
+                      "you want to proceed now.")
+    else:
+        client = WorkspaceClient(profile=profile.upper())
+        user_name = client.current_user.me().user_name
 
     try:
         cfg = get_config()
@@ -202,6 +212,8 @@ def init(
         _build = click.confirm(
             "Do you want to overwrite the existing `dltflow` config file?"
         )
+    else:
+        cfg = ProjectConfig().dict()
 
     if _build:
         project_name = click.prompt(
@@ -241,9 +253,12 @@ def init(
             workflows=PathName(name=workflows_path),
         )
         shared = True if shared == "shared" else False
-        targets = dict(
-            _environments_from_databricks_profile(user_name, project_name, shared)
-        )
+        if _dbx_configured:
+            targets = dict(
+                _environments_from_databricks_profile(user_name, project_name, shared)
+            )
+        else:
+            targets = None
         project_config = ProjectConfig(
             dltflow=project_info, include=project_elements, targets=targets
         )

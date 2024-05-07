@@ -17,7 +17,7 @@ class ProjectInfo(BaseModel):
     Pydantic model for the project information.
     """
 
-    name: str = Field(..., description="Name of the project")
+    name: str = Field(default='my_project', description="Name of the project")
 
 
 class PathName(BaseModel):
@@ -83,9 +83,9 @@ class ProjectConfig(BaseModel):
     Pydantic model for the project configuration.
     """
 
-    dltflow: ProjectInfo
-    include: ProjectElements
-    targets: Mapping[str, Environment]
+    dltflow: ProjectInfo = Field(default_factory=ProjectInfo)
+    include: ProjectElements = Field(default_factory=ProjectElements)
+    targets: Mapping[str, Environment] = Field(default=None)
 
 
 # if __name__ == "__main__":

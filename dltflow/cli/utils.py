@@ -6,6 +6,7 @@ This module contains utility functions for working with dltflow configuration fi
 
 import os
 from typing import Union
+import subprocess
 
 import yaml
 
