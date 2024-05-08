@@ -120,9 +120,12 @@ def upload_py_package_to_workspace(
 
 
 def get_class_name_from_text(text: str):
-    defs = [line for line in text.split("\n") if "class" in line]
+    defs = [line for line in text.split("\n") if line.startswith("class ")]
     for i, line in enumerate(defs):
-        defs[i] = line.split(" ")[1].split(":")[0].split("(")[0]
+        if ':' in line:  # single line class definition
+            defs[i] = line.split(" ")[1].split(":")[0].split("(")[0]
+        elif '(' in line:  # possible multi-line class definition
+            defs[i] = line.split(" ")[1].split("(")[0]
     return defs
 
 
@@ -387,9 +390,9 @@ def handle_deployment_per_file_config_dependency(
     is_flag=True,
     show_default=True,
     help="Overrides project settings. Useful for developers as their experimenting with getting their code "
-    "fully function. The impact of this flag is that any derived DLT pipelines created with have a "
-    "prefix name of [{profile}_{user_name}] -- this is to not overwrite any existing pipelines with logic "
-    "that is not yet fully baked..",
+         "fully function. The impact of this flag is that any derived DLT pipelines created with have a "
+         "prefix name of [{profile}_{user_name}] -- this is to not overwrite any existing pipelines with logic "
+         "that is not yet fully baked..",
 )
 def deploy_py_dlt2(deployment_file: str, environment: str, as_individual: bool):
     """Deploy a DLT pipeline from a python module."""
@@ -397,13 +400,13 @@ def deploy_py_dlt2(deployment_file: str, environment: str, as_individual: bool):
     deployment_config = ConfigReader(
         pathlib.Path(deployment_file).absolute()
     ).get_config()
-    print(deployment_config.dict(exclude_none=True))
     env_config = deployment_config.get_environment(environment)
-    print(env_config.dict(exclude_none=True))
     for workflow in env_config.payload.workflows:
         items = workflow.tasks.get_items()
         deps = [
             DLTFlowDependency(**dep).get_dependency()
+            if isinstance(dep, dict) and not isinstance(dep, DLTFlowDependency)
+            else dep.get_dependency()
             for dep in workflow.tasks.dependencies
         ]
         handle_deployment_per_file_config_dependency(

@@ -46,6 +46,8 @@ class DLTFlowDependency(FlexibleModel):
     def validate(cls, values):
         """Ensure that at least one of whl or pypi is provided, but not both."""
         print(values)
+        if isinstance(values, dict):
+            values = cls(**values)
         assert (
             values.whl or values.pypi
         ), "At least one of whl or pypi must be provided."
