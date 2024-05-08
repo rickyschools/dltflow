@@ -147,7 +147,9 @@ class DLTMetaMixin:
         """
         Set the attributes for the child functions based on the execution configuration.
         """
+        self._logger.info('Setting child function attributes based on execution plans.')
         for conf in self._execution_conf:
+            self._logger.debug(f'Setting child function attributes for {conf.child_func_name}')
             setattr(
                 self, conf.child_func_name, self.apply_dlt(conf.child_func_obj, conf)
             )
@@ -166,20 +168,25 @@ class DLTMetaMixin:
         list
             The execution plan.
         """
+        self._logger.info('Creating execution plan for the user function(s).')
+        self._logger.info(f'There are {len(configs)} configurations to apply to our codebase..')
         execution_plan = []
         for config in configs:
+            self._logger.debug(f'Dealing with {config.model_dump()}')
             table_or_view_func = dlt.table if config.kind == "table" else dlt.view
             child_func_obj = self._enforce_delta_limitations_and_requirements(
                 config.func_name
             )
-            execution_plan.append(
-                DLTExecutionConfig(
+            _plan =  DLTExecutionConfig(
                     dlt_config=config,
                     table_or_view_func=table_or_view_func,
                     child_func_name=config.func_name,
                     child_func_obj=child_func_obj,
                 )
+            execution_plan.append(
+                _plan
             )
+            self._logger.debug(_plan.model_dump())
         return execution_plan
 
     @staticmethod
