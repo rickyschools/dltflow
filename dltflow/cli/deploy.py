@@ -397,7 +397,9 @@ def deploy_py_dlt2(deployment_file: str, environment: str, as_individual: bool):
     deployment_config = ConfigReader(
         pathlib.Path(deployment_file).absolute()
     ).get_config()
+    print(deployment_config.dict(exclude_none=True))
     env_config = deployment_config.get_environment(environment)
+    print(env_config.dict(exclude_none=True))
     for workflow in env_config.payload.workflows:
         items = workflow.tasks.get_items()
         deps = [
