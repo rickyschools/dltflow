@@ -331,7 +331,7 @@ class DLTMetaMixin:
 
         return user_func
 
-    def table_view_expectation_wrapper(self, child_function, execution_config, *args, *kwargs):
+    def table_view_expectation_wrapper(self, child_function, execution_config, *args, **kwargs):
         """
         This method is the "magic" that dynamically and automatically wraps the user function with DLT expectations.
 
