@@ -57,7 +57,11 @@ from warnings import warn
 
 import dlt
 import pydantic as pyd
-from pyspark.sql import DataFrame as SparkDataFrame
+from pyspark.sql import (
+    SparkSession,
+    DataFrame as SparkDataFrame
+)
+from pyspark.pandas.utils import default_session
 
 from .config import DLTConfig, DLTConfigs, DLTExecutionConfig
 from .exceptions import DLTException
@@ -93,6 +97,7 @@ class ParameterConfig:
 
 
 class DLTMetaMixin:
+    spark: SparkSession = None
     """
     A metaclass that wraps a function with DLT expectations. This metaclass is designed
     to be used in conjunction with the DLTConfig class. The DLTConfig class is a pydantic model
@@ -122,12 +127,26 @@ class DLTMetaMixin:
         """
         config = kwargs.get("init_conf")
         obj = super().__new__(cls)
-        obj._logger = logging.getLogger(__name__)
+        if not hasattr(obj, 'spark'):
+            if 'spark' in kwargs:
+                obj.spark = kwargs.get('spark')
+            else:
+                active_session = SparkSession.getActiveSession()
+                if active_session is not None:
+                    obj.spark = active_session
+                else:
+                    obj.spark = default_session()
+        obj._logger = obj._prepare_spark_logger()
         obj._conf: DLTConfigs = obj._get_dlt_config(config)
         obj._set_write_opts_if_needed(config)
         obj._execution_conf = obj._make_execution_plan(obj._conf)
         obj._set_child_func_attributes()
         return obj
+
+    def _prepare_spark_logger(self) -> logging.Logger:
+        """Sets up the spark logger."""
+        log4j_logger = self.spark._jvm.org.apache.log4j
+        return log4j_logger.LogManager.getLogger(self.__class__.__name__)
 
     def _set_write_opts_if_needed(self, config):
         """
@@ -320,8 +339,7 @@ class DLTMetaMixin:
 
         return user_func
 
-    @staticmethod
-    def table_view_expectation_wrapper(child_function, execution_config):
+    def table_view_expectation_wrapper(self, child_function, execution_config):
         """
         This method is the "magic" that dynamically and automatically wraps the user function with DLT expectations.
 
@@ -342,16 +360,19 @@ class DLTMetaMixin:
         -------
 
         """
+        self._logger.debug(f'Applying batch table/view DLT functionality to {child_function.__name__}.')
         _table_wrapper = execution_config.table_or_view_func(
             child_function,
             **execution_config.dlt_config.write_opts.model_dump(exclude_none=True),
         )
 
         if execution_config.dlt_config.dlt_expectations:
+            self._logger.debug(f'Expectations provided. Applying DLT expectations to {child_function.__name__}.')
             _table_wrapper = execution_config.dlt_config.expectation_function(
                 execution_config.dlt_config.dlt_expectations
             )(_table_wrapper)
 
+        self._logger.debug(f'Done applying DLT expectations to {child_function.__name__}.')
         return _table_wrapper
 
     @staticmethod
