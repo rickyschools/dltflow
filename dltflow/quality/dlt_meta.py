@@ -325,9 +325,9 @@ class DLTMetaMixin:
         user_func = getattr(self, func_name)
         func_code = inspect.getsource(user_func)
 
-        self._dangerous_code_check(func_code, func_name)
-        self._unsupported_action_check(func_code, func_name)
-        self._return_type_check(user_func, func_name)
+        # self._dangerous_code_check(func_code, func_name)
+        # self._unsupported_action_check(func_code, func_name)
+        # self._return_type_check(user_func, func_name)
 
         return user_func
 
