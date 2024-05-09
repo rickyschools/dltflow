@@ -226,7 +226,7 @@ class DLTMetaMixin:
             if hasattr(config, "dlt"):
                 return [DLTConfig(**config.dlt.model_dump())]
 
-    def _dangerous_code_check(self, code: str):
+    def _dangerous_code_check(self, code: str, func_name):
         """
         This method checks for dangerous code (defined according to Databricks' DLT guidelines) in
         the user-provided code/function.
@@ -241,7 +241,7 @@ class DLTMetaMixin:
         for action in _DANGEROUS_ACTIONS:
             if action in code:
                 message = (
-                    f"Found dangerous action of `{action}` in the `{self._func_name}` function. "
+                    f"Found dangerous action of `{action}` in the `{func_name}` function. "
                     f"Per Databricks' DLT guidelines, these spark commands could have unintended consequences. "
                     f"Please review the documentation for more information on how to handle this. "
                     f"Ignoring this warning could have detrimental effects on quality of the data "
@@ -250,7 +250,7 @@ class DLTMetaMixin:
                 )
                 self._logger.warning(message)
 
-    def _unsupported_action_check(self, code: str):
+    def _unsupported_action_check(self, code: str, func_name: str):
         """
         This method checks for unsupported code (defined according to Databricks' DLT guidelines) in
         the user-provided code/function.
@@ -265,14 +265,14 @@ class DLTMetaMixin:
         for action in _UNSUPPORTED_ACTIONS:
             if action in str(code):
                 msg = (
-                    f"Found unsupported action of `{action}` in the `{self._func_name}` function. "
+                    f"Found unsupported action of `{action}` in the `{func_name}` function. "
                     f"Please review the documentation for more information on how to handle this. "
                     f"https://docs.databricks.com/en/delta-live-tables/python-ref.html#limitations"
                 )
                 self._logger.error(msg)
                 raise ReferenceError(msg)
 
-    def _return_type_check(self, signature: t.Union[inspect.Signature, t.Callable]):
+    def _return_type_check(self, signature: t.Union[inspect.Signature, t.Callable], func_name: str):
         """
         Check if the return type of the user function is a Spark DataFrame.
 
@@ -296,7 +296,7 @@ class DLTMetaMixin:
             signature = inspect.signature(signature)
         if not signature.return_annotation:
             warn(
-                f"No return type annotation was provided for the `{self._func_name}` function. "
+                f"No return type annotation was provided for the `{func_name}` function. "
                 f"Please ensure that the return type is a Spark DataFrame."
             )
         # If the return type is not a Spark DataFrame, raise a TypeError.
@@ -325,9 +325,9 @@ class DLTMetaMixin:
         user_func = getattr(self, func_name)
         func_code = inspect.getsource(user_func)
 
-        self._dangerous_code_check(func_code)
-        self._unsupported_action_check(func_code)
-        self._return_type_check(user_func)
+        self._dangerous_code_check(func_code, func_name)
+        self._unsupported_action_check(func_code, func_name)
+        self._return_type_check(user_func, func_name)
 
         return user_func
 
