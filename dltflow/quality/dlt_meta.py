@@ -353,19 +353,23 @@ class DLTMetaMixin:
 
         """
         self._logger.debug(f'Applying batch table/view DLT functionality to {child_function.__name__}.')
-        _table_wrapper = execution_config.table_or_view_func(
-            child_function,
-            **execution_config.dlt_config.write_opts.model_dump(exclude_none=True),
-        )
-
         if execution_config.dlt_config.dlt_expectations:
             self._logger.debug(f'Expectations provided. Applying DLT expectations to {child_function.__name__}.')
-            _table_wrapper = execution_config.dlt_config.expectation_function(
+            return execution_config.dlt_config.expectation_function(
                 execution_config.dlt_config.dlt_expectations
-            )(_table_wrapper)
+            )(
+                execution_config.table_or_view_func(
+                    child_function,
+                    **execution_config.dlt_config.write_opts.model_dump(exclude_none=True),
+                )
 
-        self._logger.debug(f'Done applying DLT expectations to {child_function.__name__}.')
-        return _table_wrapper
+            )
+        else:
+            self._logger.debug(f'Expectations not provided. Applying DLT expectations to {child_function.__name__}.')
+            return execution_config.table_or_view_func(
+                child_function,
+                **execution_config.dlt_config.write_opts.model_dump(exclude_none=True),
+            )
 
     @staticmethod
     def streaming_table_expectation_wrapper(child_function, execution_config):
