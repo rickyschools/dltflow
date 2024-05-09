@@ -331,7 +331,7 @@ class DLTMetaMixin:
 
         return user_func
 
-    def table_view_expectation_wrapper(self, child_function, execution_config):
+    def table_view_expectation_wrapper(self, child_function, execution_config, *args, *kwargs):
         """
         This method is the "magic" that dynamically and automatically wraps the user function with DLT expectations.
 
@@ -483,9 +483,25 @@ class DLTMetaMixin:
             self._logger.info(f"Entering wrapped method or {child_function}")
 
             if not execution_config.dlt_config.is_streaming_table:
-                return self.table_view_expectation_wrapper(
-                    child_function, execution_config
-                )
+                if execution_config.dlt_config.dlt_expectations:
+                    self._logger.debug(
+                        f'Expectations provided. Applying DLT expectations to {child_function.__name__}.')
+                    return execution_config.dlt_config.expectation_function(
+                        execution_config.dlt_config.dlt_expectations
+                    )(
+                        execution_config.table_or_view_func(
+                            child_function,
+                            **execution_config.dlt_config.write_opts.model_dump(exclude_none=True),
+                        )
+
+                    )
+                else:
+                    self._logger.debug(
+                        f'Expectations not provided. Applying DLT expectations to {child_function.__name__}.')
+                    return execution_config.table_or_view_func(
+                        child_function,
+                        **execution_config.dlt_config.write_opts.model_dump(exclude_none=True),
+                    )
             elif execution_config.dlt_config.is_streaming_table:
                 return self.streaming_table_expectation_wrapper(
                     child_function, execution_config
