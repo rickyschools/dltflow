@@ -197,7 +197,7 @@ class DLTMetaMixin:
             execution_plan.append(
                 _plan
             )
-            self._logger.debug(_plan.model_dump())
+            self._logger.debug(f'Created execution plan for {config.func_name}.')
         return execution_plan
 
     @staticmethod
