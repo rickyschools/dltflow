@@ -77,6 +77,9 @@ class PydanticV2BaseModelLazy(pyd.BaseModel):
     A class to represent the base model for the Pydantic models. This class is a slim wrapper around the Pydantic
     """
 
+    def __init__(self, *args, **kwargs):  # pydantic v1 style post init.
+        super().__init__(*args, **kwargs)
+
     def model_dump(self, *args, **kwargs):
         """Method to dump the model as a dictionary."""
         return self.dict(*args, **kwargs)
@@ -118,10 +121,8 @@ class CommonWriteOpts(PydanticV2BaseModelLazy):
         """
         super().__init__(*args, **kwargs)
 
-        # Do things after Pydantic validation
-        if self.name is None and all(
-            [self.tablename is not None, self.database is not None]
-        ):
+        # Set name if not provided
+        if self.name is None and self.tablename and self.database:
             self.name = f"{self.database}.{self.tablename}"
 
 
@@ -160,7 +161,7 @@ class TableWriteOpts(CommonWriteOpts):
 
     __pydantic_model_config__ = pyd.ConfigDict(extra="allow")
     table_properties: t.Optional[dict] = pyd.Field(
-        default_factory=lambda: TableProperties(),
+        default_factory=TableProperties,
         description="The table properties that will be added to the table.",
     )
     path: t.Optional[str] = pyd.Field(

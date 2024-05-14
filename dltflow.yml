@@ -1,0 +1,10 @@
+dltflow:
+  name: my_project
+include:
+  code:
+    name: src
+  conf:
+    name: conf
+  workflows:
+    name: workflows
+targets: null

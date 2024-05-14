@@ -61,6 +61,7 @@ def test_upload_py_package_to_workspace(tmp_dir):
             ws_client=mock_workspace,
             dbfs_path=pathlib.Path("/dbfs_path"),
             package_path=tmp_dir.absolute(),
+            config_path=tmp_dir.joinpath('conf').absolute(),
             profile="test",
             files=["file1.xyz", "file2.xyz"],
         )
@@ -119,6 +120,7 @@ def test_deploy_py_module_as_notebook():
                     workflow_name="workflow_name",
                     dbfs_path=pathlib.Path("/dbfs_path"),
                     package_path=pathlib.Path("data_platform/python/dltflow/"),
+                    config_path=pathlib.Path("data_platform/python/config/"),
                     items=[
                         {"python_file": tmp_file_one, "config_path": "item1"},
                         {"python_file": tmp_file_two, "config_path": "item2"},

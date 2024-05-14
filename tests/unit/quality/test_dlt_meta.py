@@ -26,6 +26,7 @@ from dltflow.quality import (
 from dltflow.quality.config import (
     AppendFlowConfig,
     ApplyChangesConfig,
+    TableWriteOpts,
     DLTConfig,
     DLTConfigs,
 )
@@ -45,6 +46,26 @@ def pipeline_config():
                     {"name": "check_addition", "constraint": "result < 10"}
                 ],
                 "expectation_action": "allow",
+            }
+        ]
+    }
+
+@pytest.fixture
+def streaming_pipeline_config():
+    """A fixture for the streaming pipeline configuration."""
+    return {
+        "dlt": [
+            {
+                "func_name": "orchestrate",
+                "kind": "table",
+                "expectations": [
+                    {"name": "check_addition", "constraint": "result < 10"}
+                ],
+                "expectation_action": "allow",
+                "is_streaming_table": True,
+                "write_opts": {
+                    "name": "test",
+                }
             }
         ]
     }
@@ -170,6 +191,7 @@ def test_dlt_calls_streaming_table_append_flow(
     pipeline_config["dlt"][0]["append_config"] = AppendFlowConfig(
         target="dummy"
     ).model_dump()
+    pipeline_config['dlt'][0]['write_opts'] = TableWriteOpts(name='test').model_dump()
     pipeline_instance = MyPipeline(init_conf=pipeline_config)
 
     with patch("dltflow.quality.dlt_meta.dlt.create_streaming_table") as mock_expect:
@@ -196,13 +218,16 @@ def test_dlt_calls_streaming_table_apply_changes(
     pipeline_config["dlt"][0]["apply_chg_config"] = ApplyChangesConfig(
         target="dummy", source="source", keys=["x", "y"]
     ).model_dump()
-    pipeline_instance = MyPipeline(init_conf=pipeline_config)
+    pipeline_config['dlt'][0]['write_opts'] = TableWriteOpts(name='test').model_dump()
 
-    with patch("dltflow.quality.dlt_meta.dlt.create_streaming_table") as mock_expect:
+    with patch("dltflow.quality.dlt_meta.dlt.create_streaming_table") as mock_streaming_table:
+        pipeline_instance = MyPipeline(init_conf=pipeline_config)
+        assert mock_streaming_table.call_count == 1
+
         with patch("dltflow.quality.dlt_meta.dlt.apply_changes") as mock_apply_changes:
             out_df = pipeline_instance.orchestrate()
             mock_apply_changes.assert_called()
-            mock_expect.assert_called()
+
 
 
 def test_dlt_calls_streaming_fails(

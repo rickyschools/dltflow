@@ -160,6 +160,12 @@ class DLTMetaMixin:
         """
         self._logger.info('Setting child function attributes based on execution plans.')
         for conf in self._execution_conf:
+            if conf.dlt_config.is_streaming_table:
+                self._logger.info('Provided `dlt` config is for a streaming table.')
+                print(conf.dlt_config.write_opts.model_dump(exclude_none=True))
+                dlt.create_streaming_table(
+                    **conf.dlt_config.write_opts.model_dump(exclude_none=True),
+                )
             self._logger.debug(f'Setting child function attributes for {conf.child_func_name}')
             setattr(
                 self, conf.child_func_name, self.apply_dlt(conf.child_func_obj, conf)
@@ -413,11 +419,6 @@ class DLTMetaMixin:
                 execution_config.dlt_config.expectation_function.__name__: execution_config.dlt_config.dlt_expectations
             }
 
-        dlt.create_streaming_table(
-            **execution_config.dlt_config.write_opts.model_dump(exclude_none=True),
-            **extra,
-        )
-
         if execution_config.dlt_config.apply_chg_config:
             dlt.apply_changes(
                 **execution_config.dlt_config.apply_chg_config.model_dump(
@@ -483,25 +484,9 @@ class DLTMetaMixin:
             self._logger.info(f"Entering wrapped method or {child_function}")
 
             if not execution_config.dlt_config.is_streaming_table:
-                if execution_config.dlt_config.dlt_expectations:
-                    self._logger.debug(
-                        f'Expectations provided. Applying DLT expectations to {child_function.__name__}.')
-                    return execution_config.dlt_config.expectation_function(
-                        execution_config.dlt_config.dlt_expectations
-                    )(
-                        execution_config.table_or_view_func(
-                            child_function,
-                            **execution_config.dlt_config.write_opts.model_dump(exclude_none=True),
-                        )
-
-                    )
-                else:
-                    self._logger.debug(
-                        f'Expectations not provided. Applying DLT expectations to {child_function.__name__}.')
-                    return execution_config.table_or_view_func(
-                        child_function,
-                        **execution_config.dlt_config.write_opts.model_dump(exclude_none=True),
-                    )
+                return self.table_view_expectation_wrapper(
+                    child_function, execution_config
+                )
             elif execution_config.dlt_config.is_streaming_table:
                 return self.streaming_table_expectation_wrapper(
                     child_function, execution_config
