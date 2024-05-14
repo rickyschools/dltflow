@@ -72,7 +72,7 @@ Attributes
         import sys
         import yaml
         import pathlib
-        sys.path.append('{package_namespace}')
+        sys.path.append('/dbfs{package_namespace}')
         """
 
     .. raw:: html
@@ -111,7 +111,7 @@ Attributes
 
    
 
-.. py:function:: upload_py_package_to_workspace(run_id: str, dbfs_path: pathlib.Path, package_path: pathlib.Path, files: list, profile: str, ws_client: databricks.sdk.WorkspaceClient = None)
+.. py:function:: upload_py_package_to_workspace(run_id: str, dbfs_path: pathlib.Path, package_path: pathlib.Path, config_path: pathlib.Path, files: list, profile: str, ws_client: databricks.sdk.WorkspaceClient = None)
 
    Upload a python package to the Databricks workspace. The logic being leveraged by
    this function loosely follows the `dbx` packages methodology of uploading a package, but
@@ -164,7 +164,7 @@ Attributes
    :param notebook_src:
 
 
-.. py:function:: deploy_py_module_as_notebook(run_id: str, ws_client: databricks.sdk.WorkspaceClient, project_name: str, workflow_name: str, dbfs_path: pathlib.Path, package_path: pathlib.Path, items: list, dependencies: list = None, launch_method: str = 'launch')
+.. py:function:: deploy_py_module_as_notebook(run_id: str, ws_client: databricks.sdk.WorkspaceClient, project_name: str, workflow_name: str, dbfs_path: pathlib.Path, package_path: pathlib.Path, config_path: pathlib.Path, items: list, dependencies: list = None, launch_method: str = 'launch')
 
    This function deploys a python module as a DLT pipeline to the Databricks workspace.
 

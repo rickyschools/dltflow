@@ -438,7 +438,7 @@ example.orchestrate()</p>
 <td><p>This class is a pydantic model that is used to dynamically</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#dltflow.quality.dlt_meta.DLTMetaMixin" title="dltflow.quality.dlt_meta.DLTMetaMixin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DLTMetaMixin</span></code></a></p></td>
-<td><p>A metaclass that wraps a function with DLT expectations. This metaclass is designed</p></td>
+<td><p></p></td>
 </tr>
 </tbody>
 </table>
@@ -487,6 +487,9 @@ parameters of a function.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="dltflow.quality.dlt_meta.DLTMetaMixin">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dltflow.quality.dlt_meta.</span></span><span class="sig-name descname"><span class="pre">DLTMetaMixin</span></span><a class="headerlink" href="#dltflow.quality.dlt_meta.DLTMetaMixin" title="Permalink to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="dltflow.quality.dlt_meta.DLTMetaMixin.spark">
+<span class="sig-name descname"><span class="pre">spark</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">pyspark.sql.SparkSession</span></em><a class="headerlink" href="#dltflow.quality.dlt_meta.DLTMetaMixin.spark" title="Permalink to this definition">#</a></dt>
 <dd><p>A metaclass that wraps a function with DLT expectations. This metaclass is designed
 to be used in conjunction with the DLTConfig class. The DLTConfig class is a pydantic model
 that is used to configure the DLTMetaMixin class. The DLTMetaMixin class is a metaclass that
@@ -500,6 +503,14 @@ wraps a function with DLT expectations.</p>
 </li>
 <li><p>A meta-programming (config driven) approach to authoring DLT pipelines.</p></li>
 </ol>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dltflow.quality.dlt_meta.DLTMetaMixin.setup_spark_logger">
+<span class="sig-name descname"><span class="pre">setup_spark_logger</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">logging.Logger</span></span></span><a class="headerlink" href="#dltflow.quality.dlt_meta.DLTMetaMixin.setup_spark_logger" title="Permalink to this definition">#</a></dt>
+<dd><p>Configure and return the Spark logger.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="dltflow.quality.dlt_meta.DLTMetaMixin._set_write_opts_if_needed">
 <span class="sig-name descname"><span class="pre">_set_write_opts_if_needed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dltflow.quality.dlt_meta.DLTMetaMixin._set_write_opts_if_needed" title="Permalink to this definition">#</a></dt>
@@ -553,7 +564,7 @@ wraps a function with DLT expectations.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dltflow.quality.dlt_meta.DLTMetaMixin._dangerous_code_check">
-<span class="sig-name descname"><span class="pre">_dangerous_code_check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dltflow.quality.dlt_meta.DLTMetaMixin._dangerous_code_check" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">_dangerous_code_check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dltflow.quality.dlt_meta.DLTMetaMixin._dangerous_code_check" title="Permalink to this definition">#</a></dt>
 <dd><p>This method checks for dangerous code (defined according to Databricks’ DLT guidelines) in
 the user-provided code/function.
 :param code:</p>
@@ -561,7 +572,7 @@ the user-provided code/function.
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dltflow.quality.dlt_meta.DLTMetaMixin._unsupported_action_check">
-<span class="sig-name descname"><span class="pre">_unsupported_action_check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dltflow.quality.dlt_meta.DLTMetaMixin._unsupported_action_check" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">_unsupported_action_check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dltflow.quality.dlt_meta.DLTMetaMixin._unsupported_action_check" title="Permalink to this definition">#</a></dt>
 <dd><p>This method checks for unsupported code (defined according to Databricks’ DLT guidelines) in
 the user-provided code/function.
 :param code:</p>
@@ -569,7 +580,7 @@ the user-provided code/function.
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dltflow.quality.dlt_meta.DLTMetaMixin._return_type_check">
-<span class="sig-name descname"><span class="pre">_return_type_check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signature</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">inspect.Signature</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Callable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dltflow.quality.dlt_meta.DLTMetaMixin._return_type_check" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">_return_type_check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signature</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">inspect.Signature</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dltflow.quality.dlt_meta.DLTMetaMixin._return_type_check" title="Permalink to this definition">#</a></dt>
 <dd><p>Check if the return type of the user function is a Spark DataFrame.</p>
 <p>This method inspects the code and typed return annotations to ensure that the return type
 of the user function is a Spark DataFrame. If no return annotation is provided, a warning
@@ -603,7 +614,7 @@ is issued. If the return type is not a Spark DataFrame, a TypeError is raised.</
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dltflow.quality.dlt_meta.DLTMetaMixin.table_view_expectation_wrapper">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">table_view_expectation_wrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">child_function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">execution_config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dltflow.quality.dlt_meta.DLTMetaMixin.table_view_expectation_wrapper" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">table_view_expectation_wrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">child_function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">execution_config</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dltflow.quality.dlt_meta.DLTMetaMixin.table_view_expectation_wrapper" title="Permalink to this definition">#</a></dt>
 <dd><p>This method is the “magic” that dynamically and automatically wraps the user function with DLT expectations.</p>
 <p>This is used for non-streaming tables and intermediate views in delta live table pipelines. If the user
 chooses, they can also apply expectations to their dataset.</p>
@@ -727,6 +738,8 @@ that will be checked on the dataset.</a></li>
 </ul>
 </li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.dlt_meta.DLTMetaMixin"><code class="docutils literal notranslate"><span class="pre">DLTMetaMixin</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.dlt_meta.DLTMetaMixin.spark"><code class="docutils literal notranslate"><span class="pre">DLTMetaMixin.spark</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.dlt_meta.DLTMetaMixin.setup_spark_logger"><code class="docutils literal notranslate"><span class="pre">DLTMetaMixin.setup_spark_logger()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.dlt_meta.DLTMetaMixin._set_write_opts_if_needed"><code class="docutils literal notranslate"><span class="pre">DLTMetaMixin._set_write_opts_if_needed()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.dlt_meta.DLTMetaMixin._set_child_func_attributes"><code class="docutils literal notranslate"><span class="pre">DLTMetaMixin._set_child_func_attributes()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#dltflow.quality.dlt_meta.DLTMetaMixin._make_execution_plan"><code class="docutils literal notranslate"><span class="pre">DLTMetaMixin._make_execution_plan()</span></code></a></li>

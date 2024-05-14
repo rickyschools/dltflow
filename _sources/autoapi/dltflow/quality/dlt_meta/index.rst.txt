@@ -108,16 +108,24 @@ Attributes
 .. py:class:: DLTMetaMixin
 
 
-   A metaclass that wraps a function with DLT expectations. This metaclass is designed
-   to be used in conjunction with the DLTConfig class. The DLTConfig class is a pydantic model
-   that is used to configure the DLTMetaMixin class. The DLTMetaMixin class is a metaclass that
-   wraps a function with DLT expectations.
+   .. py:attribute:: spark
+      :type: pyspark.sql.SparkSession
 
-   The intent of this metaclass is to:
+      A metaclass that wraps a function with DLT expectations. This metaclass is designed
+      to be used in conjunction with the DLTConfig class. The DLTConfig class is a pydantic model
+      that is used to configure the DLTMetaMixin class. The DLTMetaMixin class is a metaclass that
+      wraps a function with DLT expectations.
 
-   1. To provide an alternative way of writing DLT pipelines that is framework-driven and not
-       only intended for notebook development.
-   2. A meta-programming (config driven) approach to authoring DLT pipelines.
+      The intent of this metaclass is to:
+
+      1. To provide an alternative way of writing DLT pipelines that is framework-driven and not
+          only intended for notebook development.
+      2. A meta-programming (config driven) approach to authoring DLT pipelines.
+
+   .. py:method:: setup_spark_logger() -> logging.Logger
+
+      Configure and return the Spark logger.
+
 
    .. py:method:: _set_write_opts_if_needed(config)
 
@@ -154,21 +162,21 @@ Attributes
       :rtype: DLTConfig
 
 
-   .. py:method:: _dangerous_code_check(code: str)
+   .. py:method:: _dangerous_code_check(code: str, func_name)
 
       This method checks for dangerous code (defined according to Databricks' DLT guidelines) in
       the user-provided code/function.
       :param code:
 
 
-   .. py:method:: _unsupported_action_check(code: str)
+   .. py:method:: _unsupported_action_check(code: str, func_name: str)
 
       This method checks for unsupported code (defined according to Databricks' DLT guidelines) in
       the user-provided code/function.
       :param code:
 
 
-   .. py:method:: _return_type_check(signature: Union[inspect.Signature, Callable])
+   .. py:method:: _return_type_check(signature: Union[inspect.Signature, Callable], func_name: str)
 
       Check if the return type of the user function is a Spark DataFrame.
 
@@ -193,8 +201,7 @@ Attributes
       :rtype: Callable
 
 
-   .. py:method:: table_view_expectation_wrapper(child_function, execution_config)
-      :staticmethod:
+   .. py:method:: table_view_expectation_wrapper(child_function, execution_config, *args, **kwargs)
 
       This method is the "magic" that dynamically and automatically wraps the user function with DLT expectations.
 

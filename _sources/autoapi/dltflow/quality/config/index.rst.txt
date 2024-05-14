@@ -107,7 +107,7 @@ Attributes
 
    
 
-.. py:class:: PydanticV2BaseModelLazy
+.. py:class:: PydanticV2BaseModelLazy(*args, **kwargs)
 
 
    Bases: :py:obj:`pydantic.BaseModel`
@@ -153,7 +153,7 @@ Attributes
       
 
 
-.. py:class:: TableProperties
+.. py:class:: TableProperties(*args, **kwargs)
 
 
    Bases: :py:obj:`PydanticV2BaseModelLazy`
@@ -210,7 +210,7 @@ Attributes
       
 
 
-.. py:class:: AppendFlowConfig
+.. py:class:: AppendFlowConfig(*args, **kwargs)
 
 
    Bases: :py:obj:`PydanticV2BaseModelLazy`
@@ -238,7 +238,7 @@ Attributes
       
 
 
-.. py:class:: ApplyChangesConfig
+.. py:class:: ApplyChangesConfig(*args, **kwargs)
 
 
    Bases: :py:obj:`PydanticV2BaseModelLazy`
@@ -403,7 +403,7 @@ Attributes
 
 
 
-.. py:class:: DLTExecutionConfig
+.. py:class:: DLTExecutionConfig(*args, **kwargs)
 
 
    Bases: :py:obj:`PydanticV2BaseModelLazy`
@@ -435,7 +435,7 @@ Attributes
 
    
 
-.. py:class:: DLTPipelineConfig
+.. py:class:: DLTPipelineConfig(*args, **kwargs)
 
 
    Bases: :py:obj:`PydanticV2BaseModelLazy`
