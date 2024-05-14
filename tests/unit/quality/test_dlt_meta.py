@@ -192,13 +192,14 @@ def test_dlt_calls_streaming_table_append_flow(
         target="dummy"
     ).model_dump()
     pipeline_config['dlt'][0]['write_opts'] = TableWriteOpts(name='test').model_dump()
-    pipeline_instance = MyPipeline(init_conf=pipeline_config)
 
-    with patch("dltflow.quality.dlt_meta.dlt.create_streaming_table") as mock_expect:
+    with patch("dltflow.quality.dlt_meta.dlt.create_streaming_table") as mock_streaming_table:
+        pipeline_instance = MyPipeline(init_conf=pipeline_config)
+        assert mock_streaming_table.call_count == 1
+
         with patch("dltflow.quality.dlt_meta.dlt.append_flow") as mock_flow:
             out_df = pipeline_instance.orchestrate()
             mock_flow.assert_called()
-            mock_expect.assert_called()
 
 
 def test_dlt_calls_streaming_table_apply_changes(
