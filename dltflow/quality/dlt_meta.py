@@ -377,8 +377,7 @@ class DLTMetaMixin:
                 **execution_config.dlt_config.write_opts.model_dump(exclude_none=True),
             )
 
-    @staticmethod
-    def streaming_table_expectation_wrapper(child_function, execution_config):
+    def streaming_table_expectation_wrapper(self, child_function, execution_config):
         """
         This method is a magic wrapper that applies streaming dlt operations to user queries/functions.
 
@@ -406,6 +405,16 @@ class DLTMetaMixin:
         -------
 
         """
+        # if append-flow, put expectations in streaming table creation.
+            # create streaming table
+            # decorate user function with append_flow command.
+
+        # elif apply-changes
+            # create streaming table (this is the target table)
+            # run transformation logic in a materialized view, with expectations
+            # call apply-changes from the view to the target table.
+
+
         assert not (
             execution_config.dlt_config.append_config
             and execution_config.dlt_config.apply_chg_config
@@ -413,31 +422,31 @@ class DLTMetaMixin:
             "When handling streaming tables, the `append_config` or `apply_chg_config` "
             "attributes must be provided in the configuration."
         )
-        extra = {}
-        if execution_config.dlt_config.dlt_expectations:
+        if execution_config.dlt_config.append_config:
             extra = {
                 execution_config.dlt_config.expectation_function.__name__: execution_config.dlt_config.dlt_expectations
             }
+            dlt.create_streaming_table(
+                name=execution_config.dlt_config.append_config.target,
+                **extra
+            )
 
-        if execution_config.dlt_config.apply_chg_config:
+            return dlt.append_flow(
+                **execution_config.dlt_config.append_config.model_dump(exclude_none=True)
+            )
+        elif execution_config.dlt_config.apply_chg_config:
+            dlt.create_streaming_table(name='target')
+
+            view_with_expectations = self.table_view_expectation_wrapper(
+                child_function, execution_config
+            )
+
             dlt.apply_changes(
                 **execution_config.dlt_config.apply_chg_config.model_dump(
                     exclude_none=True
-                ),
+                )
             )
-
-            return dlt.view(
-                child_function,
-                name="streaming_view",
-                # **self.read_opts.model_dump(exclude_none=True),
-            )
-        elif execution_config.dlt_config.append_config:
-            return dlt.append_flow(
-                child_function,
-                **execution_config.dlt_config.append_config.model_dump(
-                    exclude_none=True
-                ),
-            )
+            return view_with_expectations
 
     def apply_dlt(self, child_function, execution_config: DLTExecutionConfig):
         """
