@@ -218,7 +218,6 @@ Attributes
 
 
    .. py:method:: streaming_table_expectation_wrapper(child_function, execution_config)
-      :staticmethod:
 
       This method is a magic wrapper that applies streaming dlt operations to user queries/functions.
 
