@@ -203,7 +203,7 @@ def test_dlt_calls_streaming_table_append_flow(
 
 
 def test_dlt_calls_streaming_table_apply_changes(
-    pipeline_instance, pipeline_config
+    pipeline_instance, pipeline_config, sample_df
 ):  # pragma: no cover
     """
     This test checks that the DLT calls are being made correctly.
@@ -223,11 +223,21 @@ def test_dlt_calls_streaming_table_apply_changes(
 
     with patch("dltflow.quality.dlt_meta.dlt.create_streaming_table") as mock_streaming_table:
         pipeline_instance = MyPipeline(init_conf=pipeline_config)
-        assert mock_streaming_table.call_count == 1
+        with patch.object(
+                pipeline_instance._execution_conf[0].dlt_config,
+                "_expectation_function",
+                autospec=True,
+        ) as mock_expect:
+            with patch.object(
+                    pipeline_instance._execution_conf[0], "table_or_view_func", autospec=True
+            ) as mock_table:
+                mock_table.return_value = sample_df
+                mock_expect.return_value = lambda *args, **kwargs: sample_df
+                assert mock_streaming_table.call_count == 1
 
-        with patch("dltflow.quality.dlt_meta.dlt.apply_changes") as mock_apply_changes:
-            out_df = pipeline_instance.orchestrate()
-            mock_apply_changes.assert_called()
+                with patch("dltflow.quality.dlt_meta.dlt.apply_changes") as mock_apply_changes:
+                    out_df = pipeline_instance.orchestrate()
+                    mock_apply_changes.assert_called()
 
 
 

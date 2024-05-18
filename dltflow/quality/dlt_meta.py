@@ -52,6 +52,7 @@ if __name__ == "__main__":
 import inspect
 import typing as t
 import logging
+from copy import deepcopy
 from functools import wraps
 from warnings import warn
 
@@ -363,12 +364,10 @@ class DLTMetaMixin:
             self._logger.debug(f'Expectations provided. Applying DLT expectations to {child_function.__name__}.')
             return execution_config.dlt_config.expectation_function(
                 execution_config.dlt_config.dlt_expectations
-            )(
-                execution_config.table_or_view_func(
+            )(execution_config.table_or_view_func(
                     child_function,
                     **execution_config.dlt_config.write_opts.model_dump(exclude_none=True),
                 )
-
             )
         else:
             self._logger.debug(f'Expectations not provided. Applying DLT expectations to {child_function.__name__}.')
@@ -437,8 +436,13 @@ class DLTMetaMixin:
         elif execution_config.dlt_config.apply_chg_config:
             dlt.create_streaming_table(name='target')
 
+            # rename view with a prefix of vw_ to separate out
+            # the user table target from the intermediate target
+            vw_execution_config = execution_config
+            vw_execution_config.dlt_config.apply_chg_config.target = f'vw_{execution_config.dlt_config.apply_chg_config.target}'
+
             view_with_expectations = self.table_view_expectation_wrapper(
-                child_function, execution_config
+                child_function, vw_execution_config
             )
 
             dlt.apply_changes(
